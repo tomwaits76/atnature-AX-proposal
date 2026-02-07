@@ -13,7 +13,7 @@ export default function Slide2_Definitions() {
                 transition={{ duration: 0.8 }}
                 className="z-10 w-full mb-12"
             >
-                <h2 className="text-4xl text-sage-400 font-medium mb-4">Core Concepts</h2>
+                <h2 className="text-4xl text-sage-400 font-medium mb-4">Summary</h2>
                 <div className="w-full h-[1px] bg-sage-300" />
             </motion.div>
 
@@ -47,8 +47,8 @@ export default function Slide2_Definitions() {
                     <p className="text-xl text-sage-600 leading-relaxed">
                         판촉, 판매, 관리, 고객 대응 등 복잡한 운영 업무 전반에<br />
                         <span className="font-semibold text-sage-800">AI 중심 워크플로우를 이식</span>하여 인적 개입을 최소화,<br />
-                        운영 효율을 높여 <span className="font-semibold text-sage-800">공격적인 사업 확장</span>과<br />
-                        지속 가능한 경영 체계를 구축합니다.
+                        운영 효율을 높여 공격적인 사업 확장과<br />
+                        <span className="font-semibold text-sage-800">지속 가능한 경영 체계</span>를 구축합니다.
                     </p>
                 </motion.div>
             </div>

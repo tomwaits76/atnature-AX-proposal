@@ -5,8 +5,8 @@ import { FileText, ExternalLink } from "lucide-react";
 export default function Slide16_Appendix() {
     const materials = [
         { title: "앳네이처 AI 컨설턴트", link: "https://gemini.google.com/gem/1s2wDH_r28V8aO62MCuVquXnY9r30H6IN?usp=sharing" },
-        { title: "앳네이처 전략 심층 보고서 : AI 제작", link: "https://gemini.google.com/gem/1s2wDH_r28V8aO62MCuVquXnY9r30H6IN?usp=sharing" },
-        { title: "앳네이처 전략 요약 페이지 : AI 제작", link: "https://gemini.google.com/gem/1s2wDH_r28V8aO62MCuVquXnY9r30H6IN?usp=sharing" }
+        { title: "AI의 전략 심층 보고서", link: "https://gemini.google.com/gem/1s2wDH_r28V8aO62MCuVquXnY9r30H6IN?usp=sharing" },
+        { title: "AI의 전략 요약 페이지", link: "https://gemini.google.com/gem/1s2wDH_r28V8aO62MCuVquXnY9r30H6IN?usp=sharing" }
     ];
 
     return (
@@ -18,7 +18,7 @@ export default function Slide16_Appendix() {
                 transition={{ duration: 0.8 }}
             >
                 <div className="flex items-center gap-4 mb-12 border-b border-sage-200 pb-6">
-                    <h2 className="text-4xl font-bold text-sage-900">부록 자료</h2>
+                    <h2 className="text-4xl font-bold text-sage-900">참고 자료</h2>
                     <span className="text-sage-500 text-xl font-light">Appendix</span>
                 </div>
 

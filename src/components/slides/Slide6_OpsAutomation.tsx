@@ -33,7 +33,7 @@ export default function Slide6_OpsAutomation() {
                     <div className="flex items-center justify-between mb-8 border-b border-sage-700 pb-4">
                         <div className="flex items-center gap-3">
                             <LayoutDashboard className="text-sage-400" />
-                            <span className="font-mono text-sage-200">AtNature Admin OS</span>
+                            <span className="font-mono text-sage-200">ATNATURE. Admin OS</span>
                         </div>
                         <div className="flex gap-2">
                             <div className="w-3 h-3 rounded-full bg-red-400" />
