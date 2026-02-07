@@ -24,27 +24,30 @@ export default function Slide16_Appendix() {
 
                 <div className="grid grid-cols-1 gap-6">
                     {materials.map((item, i) => (
-                        <motion.a
+                        <motion.div
                             key={i}
-                            href={item.link}
-                            target="_blank"
-                            rel="noopener noreferrer"
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: 0.2 + (i * 0.1) }}
-                            className="group bg-white p-8 rounded-xl border border-sage-200 shadow-sm hover:shadow-md hover:border-sage-400 transition-all flex items-center justify-between"
                         >
-                            <div className="flex items-center gap-6">
-                                <div className="w-12 h-12 bg-sage-100 rounded-lg flex items-center justify-center text-sage-600 group-hover:bg-sage-600 group-hover:text-white transition-colors">
-                                    <FileText size={24} />
+                            <a
+                                href={item.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="group bg-white p-8 rounded-xl border border-sage-200 shadow-sm hover:shadow-md hover:border-sage-400 transition-all flex items-center justify-between"
+                            >
+                                <div className="flex items-center gap-6">
+                                    <div className="w-12 h-12 bg-sage-100 rounded-lg flex items-center justify-center text-sage-600 group-hover:bg-sage-600 group-hover:text-white transition-colors">
+                                        <FileText size={24} />
+                                    </div>
+                                    <span className="text-xl font-medium text-sage-800 group-hover:text-sage-900">{item.title}</span>
                                 </div>
-                                <span className="text-xl font-medium text-sage-800 group-hover:text-sage-900">{item.title}</span>
-                            </div>
-                            <div className="flex items-center gap-2 text-sage-400 group-hover:text-sage-600">
-                                <span className="text-sm underline opacity-0 group-hover:opacity-100 transition-opacity">{item.link}</span>
-                                <ExternalLink size={20} />
-                            </div>
-                        </motion.a>
+                                <div className="flex items-center gap-2 text-sage-400 group-hover:text-sage-600">
+                                    <span className="text-sm underline opacity-0 group-hover:opacity-100 transition-opacity">{item.link}</span>
+                                    <ExternalLink size={20} />
+                                </div>
+                            </a>
+                        </motion.div>
                     ))}
                 </div>
             </motion.div>

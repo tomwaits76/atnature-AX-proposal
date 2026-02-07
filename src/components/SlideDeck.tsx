@@ -38,6 +38,17 @@ export default function SlideDeck() {
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
             if (printMode) return;
+
+            // Don't trigger slide change when typing in an input or pressing Enter/Space on a button/link
+            const activeElement = document.activeElement;
+            const isInteractive =
+                activeElement instanceof HTMLAnchorElement ||
+                activeElement instanceof HTMLButtonElement ||
+                activeElement instanceof HTMLInputElement ||
+                activeElement instanceof HTMLTextAreaElement;
+
+            if (isInteractive && (e.key === "Enter" || e.key === " ")) return;
+
             if (e.key === "ArrowRight" || e.key === " " || e.key === "Enter") {
                 nextSlide();
             } else if (e.key === "ArrowLeft") {
