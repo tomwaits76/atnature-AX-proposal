@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 export default function Slide3_CapacityBuilding() {
     return (
-        <div className="w-full h-full bg-sage-800 flex flex-col items-center justify-center p-20 relative text-white text-center">
+        <div className="w-[1920px] h-[1080px] bg-sage-800 flex flex-col items-center justify-center p-20 relative text-white text-center">
             {/* Background Pattern */}
             <div className="absolute inset-0 opacity-10"
                 style={{ backgroundImage: 'radial-gradient(circle at 50% 50%, #fff 1px, transparent 1px)', backgroundSize: '40px 40px' }}

@@ -10,7 +10,7 @@ export default function Slide16_Appendix() {
     ];
 
     return (
-        <div className="w-full h-full bg-sage-50 flex flex-col items-center justify-center p-20 relative overflow-hidden">
+        <div className="w-[1920px] h-[1080px] bg-sage-50 flex flex-col items-center justify-center p-20 relative overflow-hidden">
             <motion.div
                 className="z-10 w-full max-w-5xl"
                 initial={{ opacity: 0, y: 30 }}

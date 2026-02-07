@@ -10,7 +10,7 @@ export default function Slide6_OpsAutomation() {
     ];
 
     return (
-        <div className="w-full h-full bg-sage-900 p-20 flex flex-col relative overflow-hidden text-white">
+        <div className="w-[1920px] h-[1080px] bg-sage-900 p-20 flex flex-col relative overflow-hidden text-white">
             {/* Header */}
             <div className="flex justify-between items-end mb-20 z-10">
                 <div>

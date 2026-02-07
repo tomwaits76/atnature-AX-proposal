@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 export default function Slide11_TechInnovation() {
     return (
-        <div className="w-full h-full bg-sage-900 flex flex-col items-center justify-center p-20 relative text-white text-center">
+        <div className="w-[1920px] h-[1080px] bg-sage-900 flex flex-col items-center justify-center p-20 relative text-white text-center">
             {/* Background Tech Lines */}
             <svg className="absolute inset-0 w-full h-full opacity-20 pointer-events-none">
                 <defs>

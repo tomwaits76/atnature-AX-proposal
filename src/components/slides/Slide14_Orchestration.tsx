@@ -10,7 +10,7 @@ export default function Slide14_Orchestration() {
     ];
 
     return (
-        <div className="w-full h-full bg-sage-900 p-20 flex flex-col items-center justify-center relative overflow-hidden text-white">
+        <div className="w-[1920px] h-[1080px] bg-sage-900 p-20 flex flex-col items-center justify-center relative overflow-hidden text-white">
             {/* Background Beams */}
             <div className="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-transparent via-sage-500 to-transparent opacity-20" />
             <div className="absolute top-0 right-1/4 w-px h-full bg-gradient-to-b from-transparent via-sage-500 to-transparent opacity-20" />

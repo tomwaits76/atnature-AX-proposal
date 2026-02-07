@@ -10,7 +10,7 @@ export default function Slide15_Conclusion() {
     ];
 
     return (
-        <div className="w-full h-full bg-sage-50 flex flex-col items-center justify-center p-20 relative overflow-hidden">
+        <div className="w-[1920px] h-[1080px] bg-sage-50 flex flex-col items-center justify-center p-20 relative overflow-hidden">
             {/* Background Pattern */}
             <div className="absolute -left-20 -bottom-20 w-96 h-96 bg-sage-200 rounded-full blur-[120px] opacity-50" />
             <div className="absolute -right-20 -top-20 w-96 h-96 bg-sage-300 rounded-full blur-[120px] opacity-50" />

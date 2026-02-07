@@ -11,7 +11,7 @@ export default function Slide9_Subscription() {
     ];
 
     return (
-        <div className="w-full h-full bg-sage-50 p-20 flex relative overflow-hidden">
+        <div className="w-[1920px] h-[1080px] bg-sage-50 p-20 flex relative overflow-hidden">
             {/* Left Content */}
             <div className="w-1/2 z-10 flex flex-col justify-center pr-12">
                 <motion.div

@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 export default function Slide2_Definitions() {
     return (
-        <div className="w-full h-full bg-sage-50 flex flex-col p-20 relative overflow-hidden">
+        <div className="w-[1920px] h-[1080px] bg-sage-50 flex flex-col p-20 relative overflow-hidden">
             {/* Background Decorative */}
             <div className="absolute top-0 right-0 w-[40%] h-full bg-sage-100 opacity-50 skew-x-12 transform origin-top-right -translate-x-[20%]" />
 

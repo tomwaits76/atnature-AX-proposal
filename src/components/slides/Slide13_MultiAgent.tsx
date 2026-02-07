@@ -4,7 +4,7 @@ import { Bot, FileText, Share2 } from "lucide-react";
 
 export default function Slide13_MultiAgent() {
     return (
-        <div className="w-full h-full bg-white p-20 flex relative overflow-hidden">
+        <div className="w-[1920px] h-[1080px] bg-white p-20 flex relative overflow-hidden">
             {/* Left Content */}
             <div className="w-1/2 z-10 flex flex-col justify-center pr-12">
                 <motion.div

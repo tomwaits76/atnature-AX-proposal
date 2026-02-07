@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 export default function Slide17_Closing() {
     return (
-        <div className="w-full h-full bg-sage-800 flex flex-col items-center justify-center p-20 relative text-white text-center">
+        <div className="w-[1920px] h-[1080px] bg-sage-800 flex flex-col items-center justify-center p-20 relative text-white text-center">
             <div className="absolute inset-0 opacity-10 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white via-sage-900 to-sage-900" />
 
             <motion.div

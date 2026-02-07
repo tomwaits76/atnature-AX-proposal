@@ -10,7 +10,7 @@ export default function Slide12_DataSovereignty() {
     ];
 
     return (
-        <div className="w-full h-full bg-sage-50 p-20 flex flex-col relative overflow-hidden">
+        <div className="w-[1920px] h-[1080px] bg-sage-50 p-20 flex flex-col relative overflow-hidden">
             {/* Header */}
             <motion.div className="z-10 mb-12 text-center" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
                 <div className="inline-block px-4 py-2 bg-sage-200 text-sage-800 rounded-full text-sm font-semibold mb-6">핵심 기재 : 기술 혁신</div>

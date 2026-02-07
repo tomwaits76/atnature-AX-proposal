@@ -10,7 +10,7 @@ export default function Slide8_SpaceDesign() {
     ];
 
     return (
-        <div className="w-full h-full bg-white p-20 flex relative overflow-hidden">
+        <div className="w-[1920px] h-[1080px] bg-white p-20 flex relative overflow-hidden">
             {/* Decorative Grid */}
             <div className="absolute inset-0 z-0 opacity-10"
                 style={{ backgroundImage: 'linear-gradient(#4A614F 1px, transparent 1px), linear-gradient(90deg, #4A614F 1px, transparent 1px)', backgroundSize: '50px 50px' }}

@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 export default function Slide7_Expansion() {
     return (
-        <div className="w-full h-full bg-sage-50 flex flex-col items-center justify-center p-20 relative text-sage-900 text-center overflow-hidden">
+        <div className="w-[1920px] h-[1080px] bg-sage-50 flex flex-col items-center justify-center p-20 relative text-sage-900 text-center overflow-hidden">
             {/* Background Shapes */}
             <motion.div
                 animate={{ rotate: 360 }}

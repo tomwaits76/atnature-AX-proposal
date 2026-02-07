@@ -10,7 +10,7 @@ export default function Slide5_DataMarketing() {
     ];
 
     return (
-        <div className="w-full h-full bg-white p-20 flex relative overflow-hidden">
+        <div className="w-[1920px] h-[1080px] bg-white p-20 flex relative overflow-hidden">
             {/* Background Accent */}
             <div className="absolute right-0 top-0 w-1/3 h-full bg-sage-50 z-0" />
 

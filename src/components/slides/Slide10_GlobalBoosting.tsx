@@ -10,7 +10,7 @@ export default function Slide10_GlobalBoosting() {
     ];
 
     return (
-        <div className="w-full h-full bg-sage-900 p-20 flex flex-col relative overflow-hidden text-white">
+        <div className="w-[1920px] h-[1080px] bg-sage-900 p-20 flex flex-col relative overflow-hidden text-white">
             {/* Background Map Effect */}
             <div className="absolute inset-0 opacity-20 bg-[url('https://upload.wikimedia.org/wikipedia/commons/8/80/World_map_-_low_resolution.svg')] bg-cover bg-center pointer-events-none bg-no-repeat" style={{ filter: 'invert(1)' }}></div>
 
