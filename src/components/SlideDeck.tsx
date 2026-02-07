@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, Printer } from "lucide-react";
 import Slide1_Title from "@/components/slides/Slide1_Title";
@@ -22,9 +22,13 @@ import Slide16_Appendix from "@/components/slides/Slide16_Appendix";
 import Slide17_Closing from "@/components/slides/Slide17_Closing";
 
 const SLIDE_COUNT = 17;
+const SLIDE_WIDTH = 1920;
+const SLIDE_HEIGHT = 1080;
 
 export default function SlideDeck() {
     const [currentSlide, setCurrentSlide] = useState(0);
+    const [scale, setScale] = useState(1);
+    const containerRef = useRef<HTMLDivElement>(null);
 
     const handlePrint = useCallback(() => {
         window.print();
@@ -38,9 +42,30 @@ export default function SlideDeck() {
         setCurrentSlide((prev) => (prev > 0 ? prev - 1 : prev));
     }, []);
 
+    // Calculate scale based on viewport size
+    useEffect(() => {
+        const calculateScale = () => {
+            if (!containerRef.current) return;
+
+            const containerWidth = containerRef.current.clientWidth;
+            const containerHeight = containerRef.current.clientHeight;
+
+            // Calculate scale to fit while maintaining 16:9 aspect ratio
+            const scaleX = containerWidth / SLIDE_WIDTH;
+            const scaleY = containerHeight / SLIDE_HEIGHT;
+
+            // Use the smaller scale to ensure the slide fits completely
+            setScale(Math.min(scaleX, scaleY));
+        };
+
+        calculateScale();
+        window.addEventListener("resize", calculateScale);
+        return () => window.removeEventListener("resize", calculateScale);
+    }, []);
+
+    // Keyboard navigation
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
-            // Don't trigger slide change when typing in an input or pressing Enter/Space on a button/link
             const activeElement = document.activeElement;
             const isInteractive =
                 activeElement instanceof HTMLAnchorElement ||
@@ -58,14 +83,11 @@ export default function SlideDeck() {
         };
 
         const handleWheel = (e: WheelEvent) => {
-            // Prevent default scrolling behavior
             e.preventDefault();
 
             if (e.deltaY > 0) {
-                // Wheel down -> next slide
                 nextSlide();
             } else if (e.deltaY < 0) {
-                // Wheel up -> previous slide
                 prevSlide();
             }
         };
@@ -124,8 +146,8 @@ export default function SlideDeck() {
                     </button>
                 </div>
 
-                {/* Slide Display */}
-                <div className="w-full h-full flex items-center justify-center">
+                {/* Slide Display Container */}
+                <div ref={containerRef} className="w-full h-full flex items-center justify-center">
                     <AnimatePresence mode="wait">
                         <motion.div
                             key={currentSlide}
@@ -133,7 +155,13 @@ export default function SlideDeck() {
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -20 }}
                             transition={{ duration: 0.5, ease: "easeInOut" }}
-                            className="aspect-[16/9] max-w-full max-h-full relative bg-white shadow-2xl overflow-hidden"
+                            className="relative bg-white shadow-2xl overflow-hidden"
+                            style={{
+                                width: SLIDE_WIDTH,
+                                height: SLIDE_HEIGHT,
+                                transform: `scale(${scale})`,
+                                transformOrigin: 'center center',
+                            }}
                         >
                             {renderSlide(currentSlide)}
                         </motion.div>
