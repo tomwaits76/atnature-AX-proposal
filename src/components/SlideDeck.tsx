@@ -106,7 +106,7 @@ export default function SlideDeck() {
                 </div>
                 <div className="space-y-0">
                     {Array.from({ length: SLIDE_COUNT }).map((_, index) => (
-                        <div key={index} className="w-[1920px] h-[1080px] overflow-hidden relative page-break-after-always">
+                        <div key={index} className="w-[1920px] h-[1080px] overflow-hidden relative slide-container">
                             {renderSlide(index)}
                         </div>
                     ))}
