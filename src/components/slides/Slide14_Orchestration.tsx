@@ -18,7 +18,7 @@ export default function Slide14_Orchestration() {
             <div className="z-10 text-center mb-16">
                 <div className="text-sage-400 text-sm font-semibold tracking-wider mb-4 uppercase">기술 혁신</div>
                 <h2 className="text-5xl font-bold mb-6">AI 오케스트레이션 환경 구축</h2>
-                <p className="text-2xl text-sage-200 font-light opacity-80">데이터 신경망에 연결된 멀티 에이전트들이 상호 유기적으로<br />작동하기 위한 통합 지휘 체계</p>
+                <p className="text-2xl text-sage-200 font-light">데이터 신경망에 연결된 멀티 에이전트들이 상호 유기적으로<br />작동하기 위한 통합 지휘 체계</p>
             </div>
 
             <div className="grid grid-cols-3 gap-12 max-w-7xl z-10">

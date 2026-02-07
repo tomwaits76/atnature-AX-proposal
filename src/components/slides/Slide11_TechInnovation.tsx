@@ -24,7 +24,7 @@ export default function Slide11_TechInnovation() {
                 <h2 className="text-7xl font-bold mb-8 text-white">기술 혁신</h2>
                 <p className="text-3xl text-sage-200 max-w-5xl mx-auto leading-relaxed font-light mb-16">
                     내부 강화에 이어 외연 확장을 실현하는 핵심 기술을 정의하고,<br />
-                    <span className="font-semibold text-white">앳네이처만의 기술적 해자</span>를 구축하기 위한 토대 마련
+                    <span className="text-white">앳네이처만의 기술적 해자</span>를 구축하기 위한 토대 마련
                 </p>
 
                 <div className="grid grid-cols-3 gap-8 text-center max-w-6xl mx-auto">

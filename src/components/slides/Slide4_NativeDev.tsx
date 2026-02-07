@@ -55,17 +55,19 @@ export default function Slide4_NativeDev() {
                         <span className="font-bold text-lg">AI Native<br />Dev. Core</span>
                     </div>
 
-                    {/* Satellite Nodes */}
+                    {/* Satellite Nodes - Fixed positions for stable line connections */}
                     {[
-                        { icon: Globe, label: "Web Store", pos: "top-0 left-1/2 -translate-x-1/2 -translate-y-4" }, // Adjusted distance
-                        { icon: Smartphone, label: "Mobile App", pos: "bottom-10 right-0 -translate-x-4 -translate-y-1/2" },
-                        { icon: Monitor, label: "Brand Page", pos: "bottom-10 left-0 translate-x-4 -translate-y-1/2" }
+                        { icon: Globe, label: "Web Store", top: "30px", left: "50%", translateX: "-50%", lineEnd: { x: 300, y: 110 } },
+                        { icon: Smartphone, label: "Mobile App", top: "430px", left: "calc(100% - 100px)", translateX: "-50%", lineEnd: { x: 500, y: 510 } },
+                        { icon: Monitor, label: "Brand Page", top: "430px", left: "100px", translateX: "-50%", lineEnd: { x: 100, y: 510 } }
                     ].map((node, i) => (
                         <motion.div
                             key={i}
-                            className={`absolute ${node.pos} w-40 h-40 bg-white border-2 border-sage-200 rounded-3xl flex flex-col items-center justify-center shadow-lg text-sage-700`}
-                            animate={{ y: [0, -10, 0] }}
-                            transition={{ repeat: Infinity, duration: 3, delay: i * 0.5, ease: "easeInOut" }}
+                            className="absolute w-40 h-40 bg-white border-2 border-sage-200 rounded-3xl flex flex-col items-center justify-center shadow-lg text-sage-700 z-10"
+                            style={{ top: node.top, left: node.left, transform: `translateX(${node.translateX})` }}
+                            initial={{ scale: 0 }}
+                            animate={{ scale: 1 }}
+                            transition={{ delay: 0.5 + (i * 0.2), type: "spring" }}
                         >
                             <node.icon size={32} className="mb-2 text-sage-500" />
                             <span className="font-medium">{node.label}</span>
@@ -73,29 +75,35 @@ export default function Slide4_NativeDev() {
                     ))}
 
                     {/* Connecting Lines (SVG) */}
-                    <svg className="absolute inset-0 w-full h-full -z-10 pointer-events-none">
+                    <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 0 }}>
+                        {/* Center to Web Store (top) */}
                         <motion.path
-                            d="M 300 300 L 300 100"
+                            d="M 300 224 L 300 110"
                             stroke="#CFDFD4"
-                            strokeWidth="1.5"
+                            strokeWidth="2"
+                            strokeDasharray="6 4"
                             fill="none"
                             initial={{ pathLength: 0 }}
                             animate={{ pathLength: 1 }}
                             transition={{ duration: 1.5, delay: 0.5 }}
                         />
+                        {/* Center to Brand Page (bottom-left) */}
                         <motion.path
-                            d="M 300 300 L 100 500"
+                            d="M 224 300 L 100 510"
                             stroke="#CFDFD4"
-                            strokeWidth="1.5"
+                            strokeWidth="2"
+                            strokeDasharray="6 4"
                             fill="none"
                             initial={{ pathLength: 0 }}
                             animate={{ pathLength: 1 }}
                             transition={{ duration: 1.5, delay: 0.7 }}
                         />
+                        {/* Center to Mobile App (bottom-right) */}
                         <motion.path
-                            d="M 300 300 L 500 500"
+                            d="M 376 300 L 500 510"
                             stroke="#CFDFD4"
-                            strokeWidth="1.5"
+                            strokeWidth="2"
+                            strokeDasharray="6 4"
                             fill="none"
                             initial={{ pathLength: 0 }}
                             animate={{ pathLength: 1 }}

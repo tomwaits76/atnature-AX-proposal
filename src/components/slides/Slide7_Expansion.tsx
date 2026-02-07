@@ -21,7 +21,7 @@ export default function Slide7_Expansion() {
                 <h2 className="text-7xl font-bold mb-8 text-sage-800">외연 확장</h2>
                 <p className="text-3xl text-sage-600 max-w-4xl mx-auto leading-relaxed font-light mb-12">
                     강화된 역량을 발판으로 수익 모델을 다각화하고<br />
-                    해외 시장을 적극적으로 개척, <span className="font-semibold text-sage-800">앳네이처의 웰니스 생태계를 전파</span>
+                    해외 시장을 적극적으로 개척, <span className="text-sage-800">앳네이처의 웰니스 생태계를 전파</span>
                 </p>
 
                 <div className="grid grid-cols-3 gap-8 text-center">

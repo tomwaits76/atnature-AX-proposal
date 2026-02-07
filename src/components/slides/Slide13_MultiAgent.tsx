@@ -38,8 +38,8 @@ export default function Slide13_MultiAgent() {
             </div>
 
             {/* Right Infographic: Hexagon Swarm Structure */}
-            <div className="w-1/2 z-10 flex items-center justify-center pl-12 h-screen">
-                <div className="relative w-[600px] h-[600px] flex items-center justify-center">
+            <div className="w-1/2 z-10 flex items-center justify-center pl-12">
+                <div className="relative w-[660px] h-[660px] flex items-center justify-center -mt-12" style={{ transform: 'scale(1.1)' }}>
                     {/* Connecting Lines (Neural Network style background) */}
                     <svg className="absolute inset-0 w-full h-full opacity-30 pointer-events-none z-0">
                         <line x1="300" y1="300" x2="300" y2="150" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" /> {/* Top */}
@@ -62,14 +62,14 @@ export default function Slide13_MultiAgent() {
                         <span className="text-sm font-bold leading-tight text-center">Shared<br />Goal</span>
                     </motion.div>
 
-                    {/* Surrounding Agents (Hexagons) */}
+                    {/* Surrounding Agents (Hexagons) - Expanded spacing */}
                     {[
-                        { role: "Designer", icon: PenTool, x: 0, y: -160, color: "bg-purple-100 text-purple-900" },
-                        { role: "Developer", icon: Terminal, x: 140, y: -80, color: "bg-blue-100 text-blue-900" },
-                        { role: "Marketer", icon: Target, x: 140, y: 80, color: "bg-orange-100 text-orange-900" },
-                        { role: "Analyst", icon: BarChart3, x: 0, y: 160, color: "bg-green-100 text-green-900" },
-                        { role: "Operator", icon: Settings, x: -140, y: 80, color: "bg-red-100 text-red-900" },
-                        { role: "Manager", icon: Users, x: -140, y: -80, color: "bg-yellow-100 text-yellow-900" }, // Added 6th node for symmetry
+                        { role: "Designer", icon: PenTool, x: 0, y: -180, color: "bg-purple-100 text-purple-900" },
+                        { role: "Developer", icon: Terminal, x: 160, y: -90, color: "bg-blue-100 text-blue-900" },
+                        { role: "Marketer", icon: Target, x: 160, y: 90, color: "bg-orange-100 text-orange-900" },
+                        { role: "Analyst", icon: BarChart3, x: 0, y: 180, color: "bg-green-100 text-green-900" },
+                        { role: "Operator", icon: Settings, x: -160, y: 90, color: "bg-red-100 text-red-900" },
+                        { role: "Manager", icon: Users, x: -160, y: -90, color: "bg-yellow-100 text-yellow-900" },
                     ].map((agent, i) => (
                         <motion.div
                             key={i}
@@ -89,12 +89,14 @@ export default function Slide13_MultiAgent() {
                         </motion.div>
                     ))}
 
-                    {/* Floating Knowledge Nodes */}
+                    {/* Floating Knowledge Nodes - Repositioned and expanded */}
                     {[
-                        { x: -200, y: -200, delay: 0 },
-                        { x: 200, y: -200, delay: 1 },
-                        { x: 230, y: 0, delay: 1.5 },
-                        { x: -230, y: 100, delay: 0.5 },
+                        { x: -250, y: -250, delay: 0 },
+                        { x: 250, y: -250, delay: 1 },
+                        { x: 280, y: 0, delay: 1.5 },
+                        { x: -280, y: 120, delay: 0.5 },
+                        { x: 200, y: 200, delay: 0.8 },
+                        { x: -180, y: 180, delay: 1.2 },
                     ].map((node, i) => (
                         <motion.div
                             key={i}

@@ -12,7 +12,7 @@ export default function Slide6_OpsAutomation() {
     return (
         <div className="w-[1920px] h-[1080px] bg-sage-900 p-20 flex flex-col relative overflow-hidden text-white">
             {/* Header */}
-            <div className="flex justify-between items-end mb-20 z-10">
+            <div className="flex justify-between items-end mb-12 z-10">
                 <div>
                     <div className="text-sage-400 text-sm font-semibold tracking-wider mb-4 uppercase">역량 강화</div>
                     <h2 className="text-5xl font-bold mb-4">단일 대시보드 기반 운영 자동화</h2>
@@ -76,7 +76,7 @@ export default function Slide6_OpsAutomation() {
                             <div className="flex justify-between text-sage-300 z-10"><Users size={20} /> <span className="text-sm">Active Users</span></div>
                             <div className="text-3xl font-mono text-white z-10 mt-2">45.2K <span className="text-blue-400 text-sm">~2.4k</span></div>
 
-                            <div className="absolute bottom-0 left-0 w-full h-24 opacity-50">
+                            <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-3/4 h-24 opacity-50">
                                 <svg width="100%" height="100%" viewBox="0 0 100 50" preserveAspectRatio="none">
                                     <motion.path
                                         d="M0 25 L 10 30 L 20 15 L 30 35 L 40 20 L 50 40 L 60 10 L 70 30 L 80 20 L 90 35 L 100 15"
@@ -95,13 +95,13 @@ export default function Slide6_OpsAutomation() {
                         {/* AI Task Automation - Sine Wave Bars */}
                         <div className="bg-sage-700/50 rounded-xl p-6 col-span-2 relative overflow-hidden">
                             <div className="flex justify-between text-sage-300 mb-4 z-10 relative"><Activity size={20} /> <span>AI Task Automation</span></div>
-                            <div className="flex justify-between items-end h-24 gap-1 relative z-10 px-2">
+                            <div className="flex justify-between items-end h-32 gap-1 relative z-10 px-2 mt-4">
                                 {Array.from({ length: 20 }).map((_, i) => (
                                     <motion.div
                                         key={i}
                                         className="w-full bg-sage-500 rounded-t opacity-80"
                                         animate={{
-                                            height: [20, 40 + Math.sin(i) * 20, 20]
+                                            height: [15, 70 + Math.sin(i) * 30, 15]
                                         }}
                                         transition={{
                                             repeat: Infinity,

@@ -4,15 +4,15 @@ import { Database, Filter, BrainCircuit, ArrowRight } from "lucide-react";
 
 export default function Slide12_DataSovereignty() {
     const steps = [
-        { icon: Database, title: "Multilayer Data", text: "하나의 파이프라인으로 각종 데이터를 취합,\n입체적인 원천 소스로 적재" },
-        { icon: Filter, title: "Ontology Model", text: "원천 소스를 정제하고 의미를 해석,\n라벨링하여 활용 가능한 정보로 자산화" },
-        { icon: BrainCircuit, title: "Neural Network", text: "정보 간 상관 관계를 부여,\n이를 신경망에 기반한 의사 결정 구조로 치환" }
+        { icon: Database, title: "Multilayer Data", text: "하나의 파이프라인으로\n각종 데이터를 취합,\n입체적인 원천 소스로 적재" },
+        { icon: Filter, title: "Ontology Model", text: "원천 소스를 정제하고\n의미를 해석,\n라벨링하여 활용 가능한 정보로 자산화" },
+        { icon: BrainCircuit, title: "Neural Network", text: "정보 간 상관 관계를 부여,\n이를 신경망에\n기반한 의사 결정 구조로 치환" }
     ];
 
     return (
         <div className="w-[1920px] h-[1080px] bg-sage-50 p-20 flex flex-col relative overflow-hidden">
             {/* Header */}
-            <motion.div className="z-10 mb-12 text-center" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+            <motion.div className="z-10 mb-16 text-center" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
                 <div className="inline-block px-4 py-2 bg-sage-200 text-sage-800 rounded-full text-sm font-semibold mb-6">기술 혁신</div>
                 <h2 className="text-5xl font-bold text-sage-900 mb-4">데이터 주권과 신경망 설계</h2>
                 <p className="text-2xl text-sage-600 font-light">제품, 고객, 시장 등 다층적 데이터를 체계적으로 관리하고 이를 전략적으로 연결하는 것이 핵심</p>

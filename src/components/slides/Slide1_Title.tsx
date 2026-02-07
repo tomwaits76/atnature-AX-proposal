@@ -41,7 +41,7 @@ export default function Slide1_Title() {
             >
                 <h1 className="text-7xl md:text-9xl font-bold tracking-tighter leading-tight mb-8 drop-shadow-sm">
                     <span className="text-sage-600">ATNATURE.</span><br />
-                    <span className="text-sage-900 font-light">AX 전략 제언</span>
+                    <span className="text-sage-900 font-light text-5xl md:text-6xl tracking-wide">AX 전략 제언</span>
                 </h1>
 
                 <div className="w-24 h-1 bg-sage-400 mx-auto my-12" />

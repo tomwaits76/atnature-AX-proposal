@@ -1,5 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
+import { Leaf, Server } from "lucide-react";
 
 export default function Slide2_Definitions() {
     return (
@@ -23,9 +24,16 @@ export default function Slide2_Definitions() {
                     initial={{ opacity: 0, x: -50 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.8, delay: 0.4 }}
-                    className="bg-white p-12 rounded-3xl shadow-lg border border-sage-100 text-center h-[500px] flex flex-col justify-center"
+                    className="bg-white p-12 rounded-3xl shadow-lg border border-sage-100 text-center h-[500px] flex flex-col justify-center relative overflow-hidden"
                 >
-                    <div className="w-20 h-20 bg-sage-200 rounded-full mx-auto mb-8 flex items-center justify-center text-3xl">🌱</div>
+                    {/* Organic Background Pattern */}
+                    <svg className="absolute inset-0 w-full h-full opacity-10 pointer-events-none" viewBox="0 0 100 100" preserveAspectRatio="none">
+                        <path d="M0 0 C 30 50 70 50 100 100 L 0 100 Z" fill="#5e8c61" />
+                        <path d="M0 100 C 30 50 70 50 100 0 L 0 0 Z" fill="#5e8c61" opacity="0.5" />
+                    </svg>
+                    <div className="w-20 h-20 bg-sage-200 rounded-full mx-auto mb-8 flex items-center justify-center relative z-10">
+                        <Leaf size={40} className="text-sage-600" />
+                    </div>
                     <h3 className="text-4xl font-bold text-sage-800 mb-6">웰니스 테크 기업</h3>
                     <p className="text-xl text-sage-600 leading-relaxed">
                         앳네이처의 수준 높은 제품과 서비스에 <br />
@@ -40,9 +48,20 @@ export default function Slide2_Definitions() {
                     initial={{ opacity: 0, x: 50 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.8, delay: 0.6 }}
-                    className="bg-white p-12 rounded-3xl shadow-lg border border-sage-100 text-center h-[500px] flex flex-col justify-center"
+                    className="bg-white p-12 rounded-3xl shadow-lg border border-sage-100 text-center h-[500px] flex flex-col justify-center relative overflow-hidden"
                 >
-                    <div className="w-20 h-20 bg-sage-200 rounded-full mx-auto mb-8 flex items-center justify-center text-3xl">⚙️</div>
+                    {/* Grid Background Pattern */}
+                    <svg className="absolute inset-0 w-full h-full opacity-10 pointer-events-none">
+                        <defs>
+                            <pattern id="grid-pattern-box" width="20" height="20" patternUnits="userSpaceOnUse">
+                                <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#5e8c61" strokeWidth="0.5" />
+                            </pattern>
+                        </defs>
+                        <rect width="100%" height="100%" fill="url(#grid-pattern-box)" />
+                    </svg>
+                    <div className="w-20 h-20 bg-sage-200 rounded-full mx-auto mb-8 flex items-center justify-center relative z-10">
+                        <Server size={40} className="text-sage-600" />
+                    </div>
                     <h3 className="text-4xl font-bold text-sage-800 mb-6">자율형 운영 기업</h3>
                     <p className="text-xl text-sage-600 leading-relaxed">
                         판촉, 판매, 관리, 고객 대응 등 복잡한 운영 업무 전반에<br />

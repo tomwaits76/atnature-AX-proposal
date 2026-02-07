@@ -20,7 +20,7 @@ export default function Slide9_Subscription() {
                     transition={{ duration: 0.8 }}
                 >
                     <div className="inline-block px-4 py-2 bg-sage-200 text-sage-800 rounded-full text-sm font-semibold mb-6">외연 확장</div>
-                    <h2 className="text-5xl font-bold text-sage-900 mb-6 leading-tight">맞춤형 고객 경험 기반<br />구독 모델</h2>
+                    <h2 className="text-5xl font-bold text-sage-900 mb-6 leading-tight">맞춤형 고객 경험 기반 구독 모델</h2>
                     <h3 className="text-2xl text-sage-600 mb-12 font-light">고객 취향과 소비 패턴 학습 기반의 맞춤형 구독 체계,<br />데이터와 피드백을 반영한 향기 큐레이션</h3>
 
                     <div className="space-y-6">
@@ -39,17 +39,21 @@ export default function Slide9_Subscription() {
 
             {/* Right Infographic: Spiral LTV Loop */}
             <div className="w-1/2 z-10 flex items-center justify-center pl-12 relative">
-                {/* Spiral Background Path */}
-                <svg className="absolute w-[120%] h-[120%] opacity-20 pointer-events-none" viewBox="0 0 500 500">
+                {/* Spiral Background Path - Smooth rotation only */}
+                <motion.svg
+                    className="absolute w-[120%] h-[120%] opacity-20 pointer-events-none"
+                    viewBox="0 0 500 500"
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+                >
                     <path
                         d="M 250 250 m 0 0 a 1 1 0 0 1 3 0 a 20 20 0 0 1 -20 20 a 50 50 0 0 1 -60 -50 a 80 80 0 0 1 90 -90 a 120 120 0 0 1 130 130 a 160 160 0 0 1 -170 170"
                         fill="none"
                         stroke="#5e8c61"
                         strokeWidth="2"
                         strokeDasharray="10 10"
-                        className="animate-[spin_20s_linear_infinite]"
                     />
-                </svg>
+                </motion.svg>
 
                 <div className="relative w-[500px] h-[500px] flex items-center justify-center">
                     {/* Central LTV Core */}
@@ -83,8 +87,8 @@ export default function Slide9_Subscription() {
                                 }}
                                 transition={{ delay: i * 0.2, duration: 0.5 }}
                             >
-                                <step.icon size={32} className="mb-2 text-sage-800" />
-                                <span className="text-sage-900 font-bold leading-tight">{step.label}</span>
+                                <step.icon size={28} className="mb-1 text-sage-800" />
+                                <span className="text-sage-900 font-semibold text-sm leading-tight">{step.label}</span>
 
                                 {/* Connecting Arrow */}
                                 <motion.div
