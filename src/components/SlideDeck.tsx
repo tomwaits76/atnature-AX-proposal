@@ -57,8 +57,26 @@ export default function SlideDeck() {
             }
         };
 
+        const handleWheel = (e: WheelEvent) => {
+            // Prevent default scrolling behavior
+            e.preventDefault();
+
+            if (e.deltaY > 0) {
+                // Wheel down -> next slide
+                nextSlide();
+            } else if (e.deltaY < 0) {
+                // Wheel up -> previous slide
+                prevSlide();
+            }
+        };
+
         window.addEventListener("keydown", handleKeyDown);
-        return () => window.removeEventListener("keydown", handleKeyDown);
+        window.addEventListener("wheel", handleWheel, { passive: false });
+
+        return () => {
+            window.removeEventListener("keydown", handleKeyDown);
+            window.removeEventListener("wheel", handleWheel);
+        };
     }, [nextSlide, prevSlide]);
 
     const renderSlide = (index: number) => {
@@ -115,7 +133,7 @@ export default function SlideDeck() {
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -20 }}
                             transition={{ duration: 0.5, ease: "easeInOut" }}
-                            className="w-full h-full max-w-[1920px] max-h-[1080px] relative bg-white shadow-2xl overflow-hidden"
+                            className="w-full h-auto aspect-[16/9] max-h-[100vh] relative bg-white shadow-2xl overflow-hidden"
                         >
                             {renderSlide(currentSlide)}
                         </motion.div>
