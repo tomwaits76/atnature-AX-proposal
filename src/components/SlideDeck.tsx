@@ -29,6 +29,8 @@ export default function SlideDeck() {
     const [currentSlide, setCurrentSlide] = useState(0);
     const [scale, setScale] = useState(1);
     const containerRef = useRef<HTMLDivElement>(null);
+    const lastInputTime = useRef(0);
+    const INPUT_THROTTLE_MS = 150;
 
     const handlePrint = useCallback(() => {
         window.print();
@@ -77,6 +79,11 @@ export default function SlideDeck() {
 
             if (isInteractive && (e.key === "Enter" || e.key === " ")) return;
 
+            // Throttle keyboard input to prevent animation-state desync
+            const now = Date.now();
+            if (now - lastInputTime.current < INPUT_THROTTLE_MS) return;
+            lastInputTime.current = now;
+
             if (e.key === "ArrowRight" || e.key === " " || e.key === "Enter") {
                 nextSlide();
             } else if (e.key === "ArrowLeft") {
@@ -86,6 +93,11 @@ export default function SlideDeck() {
 
         const handleWheel = (e: WheelEvent) => {
             e.preventDefault();
+
+            // Throttle wheel input to prevent animation-state desync
+            const now = Date.now();
+            if (now - lastInputTime.current < INPUT_THROTTLE_MS) return;
+            lastInputTime.current = now;
 
             if (e.deltaY > 0) {
                 nextSlide();
