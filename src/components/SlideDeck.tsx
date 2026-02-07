@@ -55,7 +55,9 @@ export default function SlideDeck() {
             const scaleY = containerHeight / SLIDE_HEIGHT;
 
             // Use the smaller scale to ensure the slide fits completely
-            setScale(Math.min(scaleX, scaleY));
+            // Cap at 1.0 to never exceed 1920x1080
+            const calculatedScale = Math.min(scaleX, scaleY, 1);
+            setScale(calculatedScale);
         };
 
         calculateScale();
