@@ -28,8 +28,7 @@ body {
 
 @media print {
   @page {
-    size: 297mm 210mm;
-    /* A4 Landscape */
+    size: 1920px 1080px;
     margin: 0;
   }
 
@@ -37,41 +36,17 @@ body {
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
     background-color: #F5F9F6 !important;
-    margin: 0;
-    padding: 0;
-    width: 100vw;
-    height: 100vh;
   }
 
   .no-print {
     display: none !important;
   }
 
-  /* Wrapper acts as the page container (A4 Landscape) */
-  .print-slide-wrapper {
+  .slide-container {
     break-after: page;
     page-break-after: always;
-    width: 100vw;
-    height: 100vh;
+    height: 100vh !important;
+    width: 100vw !important;
     overflow: hidden;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0;
-    padding: 0;
-  }
-
-  /* Content maintains 1920x1080 ratio and scales down */
-  .print-slide-content {
-    width: 1920px;
-    height: 1080px;
-    transform-origin: center center;
-    /* Scale down to fit typical A4 print width (approx 1123px at 96dpi) */
-    /* 1123 / 1920 ≈ 0.585 */
-    transform: scale(0.585);
-    /* Use 'contain' to force aspect ratio preservation within viewport */
-    /* But since we hardcoded scale, we rely on that. Alternatively: */
-    /* zoom: 0.585; (non-standard but works in Chrome print) */
   }
 }
