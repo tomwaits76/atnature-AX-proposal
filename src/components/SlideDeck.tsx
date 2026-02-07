@@ -25,7 +25,6 @@ const SLIDE_COUNT = 17;
 
 export default function SlideDeck() {
     const [currentSlide, setCurrentSlide] = useState(0);
-    const [printMode, setPrintMode] = useState(false);
 
     const handlePrint = useCallback(() => {
         window.print();
@@ -41,8 +40,6 @@ export default function SlideDeck() {
 
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
-            if (printMode) return;
-
             // Don't trigger slide change when typing in an input or pressing Enter/Space on a button/link
             const activeElement = document.activeElement;
             const isInteractive =
@@ -62,7 +59,7 @@ export default function SlideDeck() {
 
         window.addEventListener("keydown", handleKeyDown);
         return () => window.removeEventListener("keydown", handleKeyDown);
-    }, [nextSlide, prevSlide, printMode]);
+    }, [nextSlide, prevSlide]);
 
     const renderSlide = (index: number) => {
         switch (index) {
@@ -87,69 +84,53 @@ export default function SlideDeck() {
         }
     };
 
-    if (printMode) {
-        return (
-            <div className="bg-white min-h-screen">
-                <div className="fixed top-4 right-4 z-50 no-print">
-                    <button
-                        onClick={handlePrint}
-                        className="bg-sage-600 text-white px-4 py-2 rounded shadow hover:bg-sage-700 mr-2"
-                    >
-                        Save as PDF
-                    </button>
-                    <button
-                        onClick={() => setPrintMode(false)}
-                        className="bg-gray-200 text-gray-800 px-4 py-2 rounded shadow hover:bg-gray-300"
-                    >
-                        Close Print Mode
-                    </button>
-                </div>
-                <div className="space-y-0">
-                    {Array.from({ length: SLIDE_COUNT }).map((_, index) => (
-                        <div key={index} className="w-[1920px] h-[1080px] overflow-hidden relative slide-container">
-                            {renderSlide(index)}
-                        </div>
-                    ))}
-                </div>
-            </div>
-        );
-    }
-
     return (
-        <div className="relative w-screen h-screen overflow-hidden bg-sage-50 text-sage-900">
-            {/* Navigation Controls */}
-            <div className="absolute bottom-8 right-8 z-50 flex items-center space-x-4 bg-white/80 backdrop-blur-md border border-sage-200 p-3 rounded-full shadow-lg transition-all duration-300">
-                <button onClick={prevSlide} disabled={currentSlide === 0} className="p-2 rounded-full bg-sage-100 hover:bg-sage-200 text-sage-700 disabled:opacity-30 transition-colors">
-                    <ChevronLeft size={20} />
-                </button>
-                <div className="flex items-center space-x-2 px-2 border-x border-sage-200">
-                    <span className="font-mono text-sm font-semibold text-sage-700">{String(currentSlide + 1).padStart(2, '0')}</span>
-                    <span className="text-sage-300">/</span>
-                    <span className="font-mono text-sm text-sage-500">{String(SLIDE_COUNT).padStart(2, '0')}</span>
+        <>
+            {/* Main Interactive View - Hidden during print */}
+            <div className="relative w-screen h-screen overflow-hidden bg-sage-50 text-sage-900 no-print">
+                {/* Navigation Controls */}
+                <div className="absolute bottom-8 right-8 z-50 flex items-center space-x-4 bg-white/80 backdrop-blur-md border border-sage-200 p-3 rounded-full shadow-lg transition-all duration-300">
+                    <button onClick={prevSlide} disabled={currentSlide === 0} className="p-2 rounded-full bg-sage-100 hover:bg-sage-200 text-sage-700 disabled:opacity-30 transition-colors">
+                        <ChevronLeft size={20} />
+                    </button>
+                    <div className="flex items-center space-x-2 px-2 border-x border-sage-200">
+                        <span className="font-mono text-sm font-semibold text-sage-700">{String(currentSlide + 1).padStart(2, '0')}</span>
+                        <span className="text-sage-300">/</span>
+                        <span className="font-mono text-sm text-sage-500">{String(SLIDE_COUNT).padStart(2, '0')}</span>
+                    </div>
+                    <button onClick={nextSlide} disabled={currentSlide === SLIDE_COUNT - 1} className="p-2 rounded-full bg-sage-100 hover:bg-sage-200 text-sage-700 disabled:opacity-30 transition-colors">
+                        <ChevronRight size={20} />
+                    </button>
+                    <button onClick={handlePrint} className="p-2 rounded-full bg-sage-600 hover:bg-sage-700 text-white shadow-sm ml-2 transition-all hover:scale-110" title="PDF로 저장">
+                        <Printer size={20} />
+                    </button>
                 </div>
-                <button onClick={nextSlide} disabled={currentSlide === SLIDE_COUNT - 1} className="p-2 rounded-full bg-sage-100 hover:bg-sage-200 text-sage-700 disabled:opacity-30 transition-colors">
-                    <ChevronRight size={20} />
-                </button>
-                <button onClick={() => setPrintMode(true)} className="p-2 rounded-full bg-sage-600 hover:bg-sage-700 text-white shadow-sm ml-2 transition-all hover:scale-110" title="Print Mode">
-                    <Printer size={20} />
-                </button>
+
+                {/* Slide Display */}
+                <div className="w-full h-full flex items-center justify-center">
+                    <AnimatePresence mode="wait">
+                        <motion.div
+                            key={currentSlide}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -20 }}
+                            transition={{ duration: 0.5, ease: "easeInOut" }}
+                            className="w-full h-full max-w-[1920px] max-h-[1080px] relative bg-white shadow-2xl overflow-hidden"
+                        >
+                            {renderSlide(currentSlide)}
+                        </motion.div>
+                    </AnimatePresence>
+                </div>
             </div>
 
-            {/* Slide Display */}
-            <div className="w-full h-full flex items-center justify-center">
-                <AnimatePresence mode="wait">
-                    <motion.div
-                        key={currentSlide}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -20 }}
-                        transition={{ duration: 0.5, ease: "easeInOut" }}
-                        className="w-full h-full max-w-[1920px] max-h-[1080px] relative bg-white shadow-2xl overflow-hidden"
-                    >
-                        {renderSlide(currentSlide)}
-                    </motion.div>
-                </AnimatePresence>
+            {/* Print-Only Container - Hidden on screen, visible only during print */}
+            <div className="print-only">
+                {Array.from({ length: SLIDE_COUNT }).map((_, index) => (
+                    <div key={index} className="slide-container">
+                        {renderSlide(index)}
+                    </div>
+                ))}
             </div>
-        </div>
+        </>
     );
 }

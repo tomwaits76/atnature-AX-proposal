@@ -26,6 +26,11 @@ body {
   color: var(--color-sage-800);
 }
 
+/* Hide print-only container on screen */
+.print-only {
+  display: none;
+}
+
 @media print {
   @page {
     size: 1920px 1080px;
@@ -38,15 +43,27 @@ body {
     background-color: #F5F9F6 !important;
   }
 
+  /* Hide interactive view during print */
   .no-print {
     display: none !important;
   }
 
+  /* Show print-only container during print */
+  .print-only {
+    display: block !important;
+  }
+
+  /* Slide container for print */
   .slide-container {
+    width: 1920px;
+    height: 1080px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* Add page break ONLY for non-last slides */
+  .slide-container:not(:last-child) {
     break-after: page;
     page-break-after: always;
-    height: 100vh !important;
-    width: 100vw !important;
-    overflow: hidden;
   }
 }
