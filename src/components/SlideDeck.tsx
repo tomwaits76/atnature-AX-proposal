@@ -133,7 +133,7 @@ export default function SlideDeck() {
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -20 }}
                             transition={{ duration: 0.5, ease: "easeInOut" }}
-                            className="w-full h-auto aspect-[16/9] max-h-[100vh] relative bg-white shadow-2xl overflow-hidden"
+                            className="aspect-[16/9] max-w-full max-h-full relative bg-white shadow-2xl overflow-hidden"
                         >
                             {renderSlide(currentSlide)}
                         </motion.div>
