@@ -1,3 +1,12 @@
+# AtNature AX Proposal Slides
+
+> [!IMPORTANT]
+> **Production Restore: Phase C (Stable)**
+> Verified State: Commit 6df19fa
+> Restore Timestamp: 2026-02-07 22:36 KST
+
+---
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
