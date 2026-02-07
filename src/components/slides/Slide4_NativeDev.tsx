@@ -74,9 +74,33 @@ export default function Slide4_NativeDev() {
 
                     {/* Connecting Lines (SVG) */}
                     <svg className="absolute inset-0 w-full h-full -z-10 pointer-events-none">
-                        <motion.line x1="50%" y1="50%" x2="50%" y2="15%" stroke="#CFDFD4" strokeWidth="2" strokeDasharray="5,5" />
-                        <motion.line x1="50%" y1="50%" x2="20%" y2="80%" stroke="#CFDFD4" strokeWidth="2" strokeDasharray="5,5" />
-                        <motion.line x1="50%" y1="50%" x2="80%" y2="80%" stroke="#CFDFD4" strokeWidth="2" strokeDasharray="5,5" />
+                        <motion.path
+                            d="M 300 300 L 300 100"
+                            stroke="#CFDFD4"
+                            strokeWidth="1.5"
+                            fill="none"
+                            initial={{ pathLength: 0 }}
+                            animate={{ pathLength: 1 }}
+                            transition={{ duration: 1.5, delay: 0.5 }}
+                        />
+                        <motion.path
+                            d="M 300 300 L 100 500"
+                            stroke="#CFDFD4"
+                            strokeWidth="1.5"
+                            fill="none"
+                            initial={{ pathLength: 0 }}
+                            animate={{ pathLength: 1 }}
+                            transition={{ duration: 1.5, delay: 0.7 }}
+                        />
+                        <motion.path
+                            d="M 300 300 L 500 500"
+                            stroke="#CFDFD4"
+                            strokeWidth="1.5"
+                            fill="none"
+                            initial={{ pathLength: 0 }}
+                            animate={{ pathLength: 1 }}
+                            transition={{ duration: 1.5, delay: 0.9 }}
+                        />
                     </svg>
                 </motion.div>
             </div>

@@ -34,17 +34,19 @@ export default function Slide16_Appendix() {
                                 href={item.link}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="group bg-white p-8 rounded-xl border border-sage-200 shadow-sm hover:shadow-md hover:border-sage-400 transition-all flex items-center justify-between"
+                                className="group bg-white p-10 rounded-2xl border border-sage-200 shadow-sm hover:shadow-xl hover:border-sage-300 transition-all flex items-center justify-between"
                             >
-                                <div className="flex items-center gap-6">
-                                    <div className="w-12 h-12 bg-sage-100 rounded-lg flex items-center justify-center text-sage-600 group-hover:bg-sage-600 group-hover:text-white transition-colors">
-                                        <FileText size={24} />
+                                <div className="flex items-center gap-8">
+                                    <div className="w-16 h-16 bg-sage-50 rounded-2xl flex items-center justify-center text-sage-500 group-hover:bg-sage-600 group-hover:text-white transition-all shadow-inner">
+                                        <FileText size={32} />
                                     </div>
-                                    <span className="text-xl font-medium text-sage-800 group-hover:text-sage-900">{item.title}</span>
+                                    <div className="flex flex-col">
+                                        <span className="text-2xl font-bold text-sage-900 group-hover:text-sage-700">{item.title}</span>
+                                        <span className="text-sage-400 text-sm mt-1 group-hover:text-sage-500 transition-colors">Click to view resource</span>
+                                    </div>
                                 </div>
-                                <div className="flex items-center gap-2 text-sage-400 group-hover:text-sage-600">
-                                    <span className="text-sm underline opacity-0 group-hover:opacity-100 transition-opacity">{item.link}</span>
-                                    <ExternalLink size={20} />
+                                <div className="bg-sage-50 top-4 right-4 p-3 rounded-full text-sage-400 group-hover:text-white group-hover:bg-sage-600 transition-all">
+                                    <ExternalLink size={24} />
                                 </div>
                             </a>
                         </motion.div>

@@ -28,11 +28,11 @@ export default function Slide12_DataSovereignty() {
                             transition={{ delay: 0.2 + (i * 0.3) }}
                             className="bg-white rounded-3xl p-8 shadow-lg border border-sage-100 flex-1 h-[400px] flex flex-col items-center text-center justify-center relative z-10"
                         >
-                            <div className="w-20 h-20 bg-sage-100 rounded-full flex items-center justify-center mb-6 text-sage-600">
-                                <step.icon size={40} />
+                            <div className="w-24 h-24 bg-sage-50 rounded-2xl flex items-center justify-center mb-8 text-sage-600 shadow-inner">
+                                <step.icon size={48} />
                             </div>
-                            <h3 className="text-2xl font-bold text-sage-800 mb-4">{step.title}</h3>
-                            <p className="text-lg text-sage-600 leading-relaxed word-keep-all">{step.text}</p>
+                            <h3 className="text-2xl font-bold text-sage-900 mb-6">{step.title}</h3>
+                            <p className="text-xl text-sage-600 leading-relaxed word-keep-all">{step.text}</p>
                         </motion.div>
 
                         {i < steps.length - 1 && (

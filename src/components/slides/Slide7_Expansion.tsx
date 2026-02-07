@@ -15,7 +15,7 @@ export default function Slide7_Expansion() {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.8 }}
-                className="z-10 bg-white/80 backdrop-blur-md p-16 rounded-3xl shadow-xl border border-sage-100"
+                className="z-10 bg-white/90 backdrop-blur-2xl p-20 rounded-[3rem] shadow-[0_30px_60px_rgba(0,0,0,0.12)] border border-white/50 ring-1 ring-sage-100"
             >
                 <span className="text-sage-500 text-2xl font-medium tracking-widest mb-6 block uppercase">Phase 02</span>
                 <h2 className="text-7xl font-bold mb-8 text-sage-800">다음 단계 : 외연 확장</h2>

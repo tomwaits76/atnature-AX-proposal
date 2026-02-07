@@ -11,8 +11,19 @@ export default function Slide10_GlobalBoosting() {
 
     return (
         <div className="w-[1920px] h-[1080px] bg-sage-900 p-20 flex flex-col relative overflow-hidden text-white">
-            {/* Background Map Effect */}
-            <div className="absolute inset-0 opacity-20 bg-[url('https://upload.wikimedia.org/wikipedia/commons/8/80/World_map_-_low_resolution.svg')] bg-cover bg-center pointer-events-none bg-no-repeat" style={{ filter: 'invert(1)' }}></div>
+            {/* Background Map Effect - CSS Pattern */}
+            <div className="absolute inset-0 opacity-10 pointer-events-none">
+                <svg width="100%" height="100%">
+                    <pattern id="dot-pattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+                        <circle cx="2" cy="2" r="1.5" className="text-sage-500" fill="currentColor" />
+                    </pattern>
+                    <rect width="100%" height="100%" fill="url(#dot-pattern)" />
+                </svg>
+                {/* Abstract World Curves */}
+                <svg className="absolute inset-0 w-full h-full text-sage-800/30" stroke="currentColor" fill="none">
+                    <path d="M -100 600 Q 400 300 960 540 T 2020 400" strokeWidth="200" style={{ filter: 'blur(60px)' }} />
+                </svg>
+            </div>
 
             {/* Header */}
             <div className="z-10 mb-16 text-center">

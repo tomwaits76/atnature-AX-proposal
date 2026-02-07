@@ -26,8 +26,8 @@ export default function Slide6_OpsAutomation() {
                 <motion.div
                     initial={{ opacity: 0, scale: 0.9, rotateX: 10 }}
                     animate={{ opacity: 1, scale: 1, rotateX: 0 }}
-                    transition={{ duration: 1 }}
-                    className="w-3/5 bg-sage-800 rounded-2xl border border-sage-700 p-6 shadow-2xl flex flex-col"
+                    transition={{ duration: 1, ease: "easeOut" }}
+                    className="w-3/5 bg-sage-800/90 backdrop-blur-xl rounded-2xl border border-sage-600/50 p-6 shadow-[0_20px_50px_rgba(0,0,0,0.3)] flex flex-col"
                 >
                     {/* Mock Header */}
                     <div className="flex items-center justify-between mb-8 border-b border-sage-700 pb-4">

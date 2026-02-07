@@ -5,10 +5,10 @@ export default function Slide1_Title() {
     return (
         <div className="w-[1920px] h-[1080px] bg-sage-50 flex flex-col items-center justify-center p-20 relative overflow-hidden">
             {/* Background Decorative Elements */}
-            <div className="absolute top-0 left-0 w-full h-full opacity-30 pointer-events-none">
-                <div className="absolute -top-[20%] -left-[10%] w-[50%] h-[50%] bg-sage-200 rounded-full blur-[100px]" />
-                <div className="absolute top-[30%] right-[10%] w-[30%] h-[30%] bg-sage-300 rounded-full blur-[120px]" />
-                <div className="absolute bottom-[0%] left-[20%] w-[40%] h-[40%] bg-sage-100 rounded-full blur-[80px]" />
+            <div className="absolute top-0 left-0 w-full h-full opacity-40 pointer-events-none">
+                <div className="absolute -top-[20%] -left-[10%] w-[60%] h-[60%] bg-sage-200 rounded-full blur-[120px] mix-blend-multiply" />
+                <div className="absolute top-[20%] right-[5%] w-[40%] h-[40%] bg-sage-300 rounded-full blur-[140px] mix-blend-multiply" />
+                <div className="absolute -bottom-[10%] left-[20%] w-[50%] h-[50%] bg-sage-100 rounded-full blur-[100px] mix-blend-multiply" />
             </div>
 
             <motion.div
@@ -17,9 +17,9 @@ export default function Slide1_Title() {
                 transition={{ duration: 0.8, delay: 0.2 }}
                 className="text-center z-10 max-w-5xl"
             >
-                <h1 className="text-6xl md:text-8xl font-bold text-sage-900 tracking-tight leading-tight mb-8">
-                    앳네이처 x AX<br />
-                    <span className="text-sage-600">전략 제언</span>
+                <h1 className="text-7xl md:text-9xl font-bold text-sage-900 tracking-tighter leading-tight mb-8 drop-shadow-sm">
+                    ATNATURE.<br />
+                    <span className="text-sage-600 font-light">AX Strategy Proposal</span>
                 </h1>
 
                 <div className="w-24 h-1 bg-sage-400 mx-auto my-12" />

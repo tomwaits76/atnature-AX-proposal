@@ -53,20 +53,21 @@ export default function Slide13_MultiAgent() {
 
                     {/* Agents */}
                     {[
-                        { role: "Designer", pos: "-translate-y-40 -translate-x-20" },
-                        { role: "Developer", pos: "-translate-y-20 translate-x-40" },
-                        { role: "Marketer", pos: "translate-y-30 translate-x-30" },
-                        { role: "Analyst", pos: "translate-y-40 -translate-x-30" },
+                        { role: "Designer", pos: "-translate-y-40 -translate-x-20", color: "border-purple-300 bg-purple-50" },
+                        { role: "Developer", pos: "-translate-y-20 translate-x-40", color: "border-blue-300 bg-blue-50" },
+                        { role: "Marketer", pos: "translate-y-30 translate-x-30", color: "border-orange-300 bg-orange-50" },
+                        { role: "Analyst", pos: "translate-y-40 -translate-x-30", color: "border-green-300 bg-green-50" },
                     ].map((agent, i) => (
                         <motion.div
                             key={i}
-                            className={`absolute w-24 h-24 bg-white border-2 border-sage-300 rounded-2xl flex flex-col items-center justify-center shadow-lg text-sage-700 z-10 transform ${agent.pos}`}
+                            className={`absolute w-28 h-28 rounded-2xl flex flex-col items-center justify-center shadow-lg text-sage-800 z-10 transform ${agent.pos} border-2 ${agent.color}`}
                             initial={{ opacity: 0, scale: 0 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ delay: 0.8 + (i * 0.2) }}
                         >
-                            <Bot size={24} className="mb-2 text-sage-500" />
-                            <span className="text-xs font-semibold">{agent.role}</span>
+                            <Bot size={28} className="mb-2 text-sage-600" />
+                            <span className="text-sm font-bold tracking-wide">{agent.role}</span>
+
 
                             {/* Connection Lines */}
                             <svg className="absolute inset-0 w-full h-full overflow-visible pointer-events-none -z-10">

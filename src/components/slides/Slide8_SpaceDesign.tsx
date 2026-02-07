@@ -78,11 +78,16 @@ export default function Slide8_SpaceDesign() {
                     />
 
                     {/* UI Overlay */}
-                    <div className="absolute top-4 left-4 bg-black/50 text-white px-3 py-1 rounded backdrop-blur text-sm flex items-center gap-2">
-                        <Scan size={14} /> Analyzing Spatial Volume...
+                    <div className="absolute top-6 left-6 bg-black/40 text-white px-4 py-2 rounded-full backdrop-blur-md border border-white/10 text-sm flex items-center gap-2 shadow-lg">
+                        <Scan size={14} className="text-sage-300 animate-pulse" />
+                        <span className="font-mono tracking-wide">Scanning Spatial Volume...</span>
                     </div>
-                    <div className="absolute bottom-4 right-4 bg-sage-600 text-white px-4 py-2 rounded shadow-lg flex items-center gap-2">
-                        <Box size={16} /> Solution Found: Woody Base
+                    <div className="absolute bottom-6 right-6 bg-sage-600/90 text-white px-6 py-3 rounded-xl shadow-xl backdrop-blur border border-sage-500/50 flex items-center gap-3">
+                        <Box size={18} className="text-sage-200" />
+                        <div>
+                            <div className="text-[10px] text-sage-200 uppercase tracking-wider font-bold">Analysis Complete</div>
+                            <div className="font-medium">Recommended: Woody Base</div>
+                        </div>
                     </div>
                 </motion.div>
             </div>
