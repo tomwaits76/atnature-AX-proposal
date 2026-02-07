@@ -5,8 +5,8 @@ import { RefreshCw, Sparkles, Database, Package } from "lucide-react";
 export default function Slide9_Subscription() {
     const cycleSteps = [
         { icon: Sparkles, label: "AI 큐레이션", color: "bg-sage-200" },
-        { icon: Package, label: "맞춤 판매 & 배송", color: "bg-sage-300" },
-        { icon: RefreshCw, label: "피드백 & 재구독", color: "bg-sage-400" },
+        { icon: Package, label: "맞춤 판매 &\n배송", color: "bg-sage-300" },
+        { icon: RefreshCw, label: "피드백 &\n재구독", color: "bg-sage-400" },
         { icon: Database, label: "고객 데이터", color: "bg-sage-500" },
     ];
 
@@ -37,24 +37,8 @@ export default function Slide9_Subscription() {
                 </motion.div>
             </div>
 
-            {/* Right Infographic: Spiral LTV Loop */}
+            {/* Right Infographic: LTV Loop */}
             <div className="w-1/2 z-10 flex items-center justify-center pl-12 relative">
-                {/* Spiral Background Path - Smooth rotation only */}
-                <motion.svg
-                    className="absolute w-[120%] h-[120%] opacity-20 pointer-events-none"
-                    viewBox="0 0 500 500"
-                    animate={{ rotate: 360 }}
-                    transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-                >
-                    <path
-                        d="M 250 250 m 0 0 a 1 1 0 0 1 3 0 a 20 20 0 0 1 -20 20 a 50 50 0 0 1 -60 -50 a 80 80 0 0 1 90 -90 a 120 120 0 0 1 130 130 a 160 160 0 0 1 -170 170"
-                        fill="none"
-                        stroke="#5e8c61"
-                        strokeWidth="2"
-                        strokeDasharray="10 10"
-                    />
-                </motion.svg>
-
                 <div className="relative w-[500px] h-[500px] flex items-center justify-center">
                     {/* Central LTV Core */}
                     <motion.div
@@ -76,7 +60,6 @@ export default function Slide9_Subscription() {
                                 className={`absolute w-32 h-32 rounded-full flex flex-col items-center justify-center text-center p-4 shadow-lg border-2 border-white ${step.color}`}
                                 style={{
                                     transformOrigin: "center center",
-                                    // Calculate position on a circle
                                 }}
                                 initial={{ opacity: 0, scale: 0, x: 0, y: 0 }}
                                 animate={{
@@ -87,8 +70,8 @@ export default function Slide9_Subscription() {
                                 }}
                                 transition={{ delay: i * 0.2, duration: 0.5 }}
                             >
-                                <step.icon size={28} className="mb-1 text-sage-800" />
-                                <span className="text-sage-900 font-semibold text-sm leading-tight">{step.label}</span>
+                                <step.icon size={28} className="mb-3 text-sage-800" />
+                                <span className="text-sage-900 font-semibold text-sm leading-tight whitespace-pre-line">{step.label}</span>
 
                                 {/* Connecting Arrow */}
                                 <motion.div
@@ -103,8 +86,10 @@ export default function Slide9_Subscription() {
                         );
                     })}
 
-                    {/* Active Pulse Animation indicating speed */}
+                    {/* Active Pulse Animations - 3 pulses with staggered delays */}
                     <div className="absolute inset-0 rounded-full border border-sage-300 animate-[ping_3s_linear_infinite] opacity-30" />
+                    <div className="absolute inset-0 rounded-full border border-sage-300 animate-[ping_3s_linear_infinite] opacity-30" style={{ animationDelay: '1s' }} />
+                    <div className="absolute inset-0 rounded-full border border-sage-300 animate-[ping_3s_linear_infinite] opacity-30" style={{ animationDelay: '2s' }} />
                 </div>
             </div>
         </div>

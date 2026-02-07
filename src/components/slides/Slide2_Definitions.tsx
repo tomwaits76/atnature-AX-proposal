@@ -51,7 +51,7 @@ export default function Slide2_Definitions() {
                     className="bg-white p-12 rounded-3xl shadow-lg border border-sage-100 text-center h-[500px] flex flex-col justify-center relative overflow-hidden"
                 >
                     {/* Grid Background Pattern */}
-                    <svg className="absolute inset-0 w-full h-full opacity-10 pointer-events-none">
+                    <svg className="absolute inset-0 w-full h-full opacity-20 pointer-events-none">
                         <defs>
                             <pattern id="grid-pattern-box" width="20" height="20" patternUnits="userSpaceOnUse">
                                 <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#5e8c61" strokeWidth="0.5" />

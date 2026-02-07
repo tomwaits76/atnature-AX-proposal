@@ -12,10 +12,10 @@ export default function Slide6_OpsAutomation() {
     return (
         <div className="w-[1920px] h-[1080px] bg-sage-900 p-20 flex flex-col relative overflow-hidden text-white">
             {/* Header */}
-            <div className="flex justify-between items-end mb-12 z-10">
+            <div className="flex justify-between items-end mb-20 z-10">
                 <div>
                     <div className="text-sage-400 text-sm font-semibold tracking-wider mb-4 uppercase">역량 강화</div>
-                    <h2 className="text-5xl font-bold mb-4">단일 대시보드 기반 운영 자동화</h2>
+                    <h2 className="text-5xl font-bold mb-6">단일 대시보드 기반 운영 자동화</h2>
                     <h3 className="text-2xl text-sage-300 font-light">국내외 판매 채널의 데이터를 하나로 통합하고,<br />고객 대응 및 운영 전반의 업무 흐름 개편</h3>
                 </div>
             </div>
@@ -76,7 +76,7 @@ export default function Slide6_OpsAutomation() {
                             <div className="flex justify-between text-sage-300 z-10"><Users size={20} /> <span className="text-sm">Active Users</span></div>
                             <div className="text-3xl font-mono text-white z-10 mt-2">45.2K <span className="text-blue-400 text-sm">~2.4k</span></div>
 
-                            <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-3/4 h-24 opacity-50">
+                            <div className="absolute bottom-0 left-0 right-0 mx-auto w-3/4 h-24 opacity-50 flex justify-center">
                                 <svg width="100%" height="100%" viewBox="0 0 100 50" preserveAspectRatio="none">
                                     <motion.path
                                         d="M0 25 L 10 30 L 20 15 L 30 35 L 40 20 L 50 40 L 60 10 L 70 30 L 80 20 L 90 35 L 100 15"
@@ -95,7 +95,7 @@ export default function Slide6_OpsAutomation() {
                         {/* AI Task Automation - Sine Wave Bars */}
                         <div className="bg-sage-700/50 rounded-xl p-6 col-span-2 relative overflow-hidden">
                             <div className="flex justify-between text-sage-300 mb-4 z-10 relative"><Activity size={20} /> <span>AI Task Automation</span></div>
-                            <div className="flex justify-between items-end h-32 gap-1 relative z-10 px-2 mt-4">
+                            <div className="flex justify-between items-end h-32 gap-1 relative z-10 px-2 mt-8">
                                 {Array.from({ length: 20 }).map((_, i) => (
                                     <motion.div
                                         key={i}

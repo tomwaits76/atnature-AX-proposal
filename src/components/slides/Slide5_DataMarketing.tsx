@@ -46,7 +46,7 @@ export default function Slide5_DataMarketing() {
 
             {/* Right Infographic: Funnel/Workflow */}
             <div className="w-1/2 z-10 flex items-center justify-center pl-12">
-                <motion.div className="flex flex-col items-center space-y-6 w-full max-w-md">
+                <motion.div className="flex flex-col items-center space-y-12 w-full max-w-md">
                     {["Data Mining", "AI Analysis", "Creative Gen.", "Optimization", "Release"].map((step, i) => (
                         <motion.div
                             key={i}
@@ -54,7 +54,7 @@ export default function Slide5_DataMarketing() {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.2 + (i * 0.2) }}
                             className="w-full bg-white border border-sage-200 p-6 rounded-2xl shadow-lg relative flex items-center justify-between"
-                            style={{ width: `${100 - (i * 10)}%` }}
+                            style={{ width: `${100 - (i * 15)}%` }}
                         >
                             <span className="font-bold text-sage-700">Step 0{i + 1}</span>
                             <span className="text-sage-900 font-medium text-lg">{step}</span>

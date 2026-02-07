@@ -19,8 +19,8 @@ export default function Slide17_Closing() {
 
                 <div className="w-20 h-1 bg-sage-500 mx-auto my-12" />
 
-                <h1 className="text-7xl font-light mb-6 text-sage-200">고맙습니다.</h1>
-                <p className="text-sage-300 mt-8 text-xl font-medium tracking-widest uppercase opacity-80">ATNATURE. x AX Strategy Proposal</p>
+                <h1 className="text-4xl font-light mb-6 text-sage-200">고맙습니다.</h1>
+                <p className="text-sage-300 mt-8 text-xl font-medium tracking-widest uppercase opacity-80">ATNATURE. <span className="lowercase text-lg">x</span> AX Strategy Proposal</p>
             </motion.div>
         </div>
     );

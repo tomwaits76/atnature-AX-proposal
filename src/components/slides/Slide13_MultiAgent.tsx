@@ -39,15 +39,15 @@ export default function Slide13_MultiAgent() {
 
             {/* Right Infographic: Hexagon Swarm Structure */}
             <div className="w-1/2 z-10 flex items-center justify-center pl-12">
-                <div className="relative w-[660px] h-[660px] flex items-center justify-center -mt-12" style={{ transform: 'scale(1.1)' }}>
-                    {/* Connecting Lines (Neural Network style background) */}
+                <div className="relative w-[660px] h-[660px] flex items-center justify-center -mt-12" style={{ transform: 'scale(1.2)' }}>
+                    {/* Connecting Lines - to hexagon vertices */}
                     <svg className="absolute inset-0 w-full h-full opacity-30 pointer-events-none z-0">
-                        <line x1="300" y1="300" x2="300" y2="150" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" /> {/* Top */}
-                        <line x1="300" y1="300" x2="430" y2="225" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" /> {/* Top Right */}
-                        <line x1="300" y1="300" x2="430" y2="375" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" /> {/* Bottom Right */}
-                        <line x1="300" y1="300" x2="300" y2="450" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" /> {/* Bottom */}
-                        <line x1="300" y1="300" x2="170" y2="375" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" /> {/* Bottom Left */}
-                        <line x1="300" y1="300" x2="170" y2="225" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" /> {/* Top Left */}
+                        <line x1="300" y1="300" x2="300" y2="120" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" /> {/* Top */}
+                        <line x1="300" y1="300" x2="456" y2="210" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" /> {/* Top Right */}
+                        <line x1="300" y1="300" x2="456" y2="390" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" /> {/* Bottom Right */}
+                        <line x1="300" y1="300" x2="300" y2="480" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" /> {/* Bottom */}
+                        <line x1="300" y1="300" x2="144" y2="390" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" /> {/* Bottom Left */}
+                        <line x1="300" y1="300" x2="144" y2="210" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" /> {/* Top Left */}
                     </svg>
 
                     {/* Central Core: Shared Goal */}
@@ -62,41 +62,46 @@ export default function Slide13_MultiAgent() {
                         <span className="text-sm font-bold leading-tight text-center">Shared<br />Goal</span>
                     </motion.div>
 
-                    {/* Surrounding Agents (Hexagons) - Expanded spacing */}
+                    {/* Surrounding Agents (Hexagons) - Uniform circular spacing */}
                     {[
-                        { role: "Designer", icon: PenTool, x: 0, y: -180, color: "bg-purple-100 text-purple-900" },
-                        { role: "Developer", icon: Terminal, x: 160, y: -90, color: "bg-blue-100 text-blue-900" },
-                        { role: "Marketer", icon: Target, x: 160, y: 90, color: "bg-orange-100 text-orange-900" },
-                        { role: "Analyst", icon: BarChart3, x: 0, y: 180, color: "bg-green-100 text-green-900" },
-                        { role: "Operator", icon: Settings, x: -160, y: 90, color: "bg-red-100 text-red-900" },
-                        { role: "Manager", icon: Users, x: -160, y: -90, color: "bg-yellow-100 text-yellow-900" },
-                    ].map((agent, i) => (
-                        <motion.div
-                            key={i}
-                            className={`absolute w-32 h-32 ${agent.color} flex flex-col items-center justify-center z-10 shadow-lg`}
-                            style={{
-                                clipPath: "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)",
-                                x: agent.x,
-                                y: agent.y
-                            }}
-                            initial={{ opacity: 0, scale: 0 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ delay: 0.2 + (i * 0.1) }}
-                            whileHover={{ scale: 1.1, zIndex: 30 }}
-                        >
-                            <agent.icon size={28} className="mb-2 opacity-80" />
-                            <span className="text-xs font-bold">{agent.role}</span>
-                        </motion.div>
-                    ))}
+                        { role: "Designer", icon: PenTool, angle: 0, color: "bg-purple-100 text-purple-900" },
+                        { role: "Developer", icon: Terminal, angle: 60, color: "bg-blue-100 text-blue-900" },
+                        { role: "Marketer", icon: Target, angle: 120, color: "bg-orange-100 text-orange-900" },
+                        { role: "Analyst", icon: BarChart3, angle: 180, color: "bg-green-100 text-green-900" },
+                        { role: "Operator", icon: Settings, angle: 240, color: "bg-red-100 text-red-900" },
+                        { role: "Manager", icon: Users, angle: 300, color: "bg-yellow-100 text-yellow-900" },
+                    ].map((agent, i) => {
+                        const radius = 160;
+                        const angleRad = (agent.angle - 90) * (Math.PI / 180);
+                        const x = Math.cos(angleRad) * radius;
+                        const y = Math.sin(angleRad) * radius;
+                        return (
+                            <motion.div
+                                key={i}
+                                className={`absolute w-32 h-32 ${agent.color} flex flex-col items-center justify-center z-10 shadow-lg`}
+                                style={{
+                                    clipPath: "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)",
+                                    x: x,
+                                    y: y
+                                }}
+                                initial={{ opacity: 0, scale: 0 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                transition={{ delay: 0.2 + (i * 0.1) }}
+                                whileHover={{ scale: 1.1, zIndex: 30 }}
+                            >
+                                <agent.icon size={28} className="mb-2 opacity-80" />
+                                <span className="text-xs font-bold">{agent.role}</span>
+                            </motion.div>
+                        );
+                    })}
 
-                    {/* Floating Knowledge Nodes - Repositioned and expanded */}
+                    {/* Floating Knowledge Nodes - Operator 하단 점 제거됨 */}
                     {[
                         { x: -250, y: -250, delay: 0 },
                         { x: 250, y: -250, delay: 1 },
                         { x: 280, y: 0, delay: 1.5 },
                         { x: -280, y: 120, delay: 0.5 },
                         { x: 200, y: 200, delay: 0.8 },
-                        { x: -180, y: 180, delay: 1.2 },
                     ].map((node, i) => (
                         <motion.div
                             key={i}

@@ -66,8 +66,8 @@ export default function Slide4_NativeDev() {
                             className="absolute w-40 h-40 bg-white border-2 border-sage-200 rounded-3xl flex flex-col items-center justify-center shadow-lg text-sage-700 z-10"
                             style={{ top: node.top, left: node.left, transform: `translateX(${node.translateX})` }}
                             initial={{ scale: 0 }}
-                            animate={{ scale: 1 }}
-                            transition={{ delay: 0.5 + (i * 0.2), type: "spring" }}
+                            animate={{ scale: 1, y: [0, -5, 0] }}
+                            transition={{ delay: 0.5 + (i * 0.2), type: "spring", y: { repeat: Infinity, duration: 2, ease: "easeInOut", delay: i * 0.3 } }}
                         >
                             <node.icon size={32} className="mb-2 text-sage-500" />
                             <span className="font-medium">{node.label}</span>

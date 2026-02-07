@@ -12,9 +12,9 @@ export default function Slide12_DataSovereignty() {
     return (
         <div className="w-[1920px] h-[1080px] bg-sage-50 p-20 flex flex-col relative overflow-hidden">
             {/* Header */}
-            <motion.div className="z-10 mb-16 text-center" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+            <motion.div className="z-10 mb-6 text-center" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
                 <div className="inline-block px-4 py-2 bg-sage-200 text-sage-800 rounded-full text-sm font-semibold mb-6">기술 혁신</div>
-                <h2 className="text-5xl font-bold text-sage-900 mb-4">데이터 주권과 신경망 설계</h2>
+                <h2 className="text-5xl font-bold text-sage-900 mb-6">데이터 주권과 신경망 설계</h2>
                 <p className="text-2xl text-sage-600 font-light">제품, 고객, 시장 등 다층적 데이터를 체계적으로 관리하고 이를 전략적으로 연결하는 것이 핵심</p>
             </motion.div>
 
@@ -26,7 +26,7 @@ export default function Slide12_DataSovereignty() {
                             initial={{ opacity: 0, y: 50 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.2 + (i * 0.3) }}
-                            className="bg-white rounded-3xl p-8 shadow-lg border border-sage-100 flex-1 h-[400px] flex flex-col items-center text-center justify-center relative z-10"
+                            className="bg-white rounded-3xl p-8 shadow-lg border border-sage-100 w-[400px] h-[400px] flex flex-col items-center text-center justify-center relative z-10"
                         >
                             <div className="w-24 h-24 bg-sage-50 rounded-2xl flex items-center justify-center mb-8 text-sage-600 shadow-inner">
                                 <step.icon size={48} />
