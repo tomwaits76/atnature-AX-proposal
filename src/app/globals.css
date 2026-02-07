@@ -42,11 +42,15 @@ body {
     display: none !important;
   }
 
-  .slide-container {
+  .slide-container,
+  .page-break-after-always {
     break-after: page;
     page-break-after: always;
-    height: 100vh !important;
-    width: 100vw !important;
+    height: 1080px !important;
+    width: 1920px !important;
     overflow: hidden;
+    position: relative;
+    margin: 0;
+    padding: 0;
   }
 }
