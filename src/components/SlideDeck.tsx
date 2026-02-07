@@ -161,8 +161,7 @@ export default function SlideDeck() {
                             style={{
                                 width: SLIDE_WIDTH,
                                 height: SLIDE_HEIGHT,
-                                transform: `scale(${scale})`,
-                                transformOrigin: 'center center',
+                                zoom: scale,
                             }}
                         >
                             {renderSlide(currentSlide)}
