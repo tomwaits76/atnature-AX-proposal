@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { Bot, FileText, Share2 } from "lucide-react";
+import { Bot, FileText, Share2, PenTool, Terminal, Target, BarChart3, Settings, Users } from "lucide-react";
 
 export default function Slide13_MultiAgent() {
     return (
@@ -12,7 +12,7 @@ export default function Slide13_MultiAgent() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.8 }}
                 >
-                    <div className="inline-block px-4 py-2 bg-sage-100 text-sage-700 rounded-full text-sm font-semibold mb-6">핵심 기재 : 기술 혁신</div>
+                    <div className="inline-block px-4 py-2 bg-sage-100 text-sage-700 rounded-full text-sm font-semibold mb-6">기술 혁신</div>
                     <h2 className="text-5xl font-bold text-sage-900 mb-6 leading-tight">멀티 AI 에이전트 분업</h2>
                     <h3 className="text-2xl text-sage-600 mb-12 font-light">각 직군별로 특화된 전문 에이전트를 다수 배치하는<br />분업 체계를 전제한 협업 프로세스 환경</h3>
 
@@ -37,57 +37,72 @@ export default function Slide13_MultiAgent() {
                 </motion.div>
             </div>
 
-            {/* Right Infographic: Agent Network */}
-            <div className="w-1/2 z-10 flex items-center justify-center pl-12 bg-sage-50/50 rounded-3xl m-4">
-                <div className="relative w-full h-full flex items-center justify-center">
-                    {/* Central Node */}
+            {/* Right Infographic: Hexagon Swarm Structure */}
+            <div className="w-1/2 z-10 flex items-center justify-center pl-12 h-screen">
+                <div className="relative w-[600px] h-[600px] flex items-center justify-center">
+                    {/* Connecting Lines (Neural Network style background) */}
+                    <svg className="absolute inset-0 w-full h-full opacity-30 pointer-events-none z-0">
+                        <line x1="300" y1="300" x2="300" y2="150" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" /> {/* Top */}
+                        <line x1="300" y1="300" x2="430" y2="225" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" /> {/* Top Right */}
+                        <line x1="300" y1="300" x2="430" y2="375" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" /> {/* Bottom Right */}
+                        <line x1="300" y1="300" x2="300" y2="450" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" /> {/* Bottom */}
+                        <line x1="300" y1="300" x2="170" y2="375" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" /> {/* Bottom Left */}
+                        <line x1="300" y1="300" x2="170" y2="225" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" /> {/* Top Left */}
+                    </svg>
+
+                    {/* Central Core: Shared Goal */}
                     <motion.div
-                        className="absolute w-32 h-32 bg-sage-600 rounded-full flex flex-col items-center justify-center text-white z-20 shadow-xl"
+                        className="absolute w-40 h-40 bg-sage-600 clip-path-hexagon flex flex-col items-center justify-center text-white z-20 shadow-2xl"
+                        style={{ clipPath: "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)" }} // CSS Hexagon
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
-                        transition={{ type: "spring", delay: 0.5 }}
+                        transition={{ type: "spring", bounce: 0.5 }}
                     >
-                        <Share2 size={32} />
-                        <span className="text-sm font-bold mt-2">Swarm<br />Core</span>
+                        <Share2 size={36} className="mb-2" />
+                        <span className="text-sm font-bold leading-tight text-center">Shared<br />Goal</span>
                     </motion.div>
 
-                    {/* Agents */}
+                    {/* Surrounding Agents (Hexagons) */}
                     {[
-                        { role: "Designer", pos: "-translate-y-40 -translate-x-20", color: "border-purple-300 bg-purple-50" },
-                        { role: "Developer", pos: "-translate-y-20 translate-x-40", color: "border-blue-300 bg-blue-50" },
-                        { role: "Marketer", pos: "translate-y-30 translate-x-30", color: "border-orange-300 bg-orange-50" },
-                        { role: "Analyst", pos: "translate-y-40 -translate-x-30", color: "border-green-300 bg-green-50" },
+                        { role: "Designer", icon: PenTool, x: 0, y: -160, color: "bg-purple-100 text-purple-900" },
+                        { role: "Developer", icon: Terminal, x: 140, y: -80, color: "bg-blue-100 text-blue-900" },
+                        { role: "Marketer", icon: Target, x: 140, y: 80, color: "bg-orange-100 text-orange-900" },
+                        { role: "Analyst", icon: BarChart3, x: 0, y: 160, color: "bg-green-100 text-green-900" },
+                        { role: "Operator", icon: Settings, x: -140, y: 80, color: "bg-red-100 text-red-900" },
+                        { role: "Manager", icon: Users, x: -140, y: -80, color: "bg-yellow-100 text-yellow-900" }, // Added 6th node for symmetry
                     ].map((agent, i) => (
                         <motion.div
                             key={i}
-                            className={`absolute w-28 h-28 rounded-2xl flex flex-col items-center justify-center shadow-lg text-sage-800 z-10 transform ${agent.pos} border-2 ${agent.color}`}
+                            className={`absolute w-32 h-32 ${agent.color} flex flex-col items-center justify-center z-10 shadow-lg`}
+                            style={{
+                                clipPath: "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)",
+                                x: agent.x,
+                                y: agent.y
+                            }}
                             initial={{ opacity: 0, scale: 0 }}
                             animate={{ opacity: 1, scale: 1 }}
-                            transition={{ delay: 0.8 + (i * 0.2) }}
+                            transition={{ delay: 0.2 + (i * 0.1) }}
+                            whileHover={{ scale: 1.1, zIndex: 30 }}
                         >
-                            <Bot size={28} className="mb-2 text-sage-600" />
-                            <span className="text-sm font-bold tracking-wide">{agent.role}</span>
-
-
-                            {/* Connection Lines */}
-                            <svg className="absolute inset-0 w-full h-full overflow-visible pointer-events-none -z-10">
-                                <line x1="50%" y1="50%" x2="50%" y2="50%" stroke="#CFDFD4" strokeWidth="2" style={{ transformOrigin: "center" }} />
-                                {/* Note: SVG lines from center wrapper would be cleaner, but absolute positioning works for visual approximation */}
-                            </svg>
+                            <agent.icon size={28} className="mb-2 opacity-80" />
+                            <span className="text-xs font-bold">{agent.role}</span>
                         </motion.div>
                     ))}
 
-                    {/* Floating Knowledge Nodes (RAG) */}
-                    {[1, 2, 3].map((n) => (
+                    {/* Floating Knowledge Nodes */}
+                    {[
+                        { x: -200, y: -200, delay: 0 },
+                        { x: 200, y: -200, delay: 1 },
+                        { x: 230, y: 0, delay: 1.5 },
+                        { x: -230, y: 100, delay: 0.5 },
+                    ].map((node, i) => (
                         <motion.div
-                            key={n}
-                            className="absolute bg-sage-100 p-2 rounded text-sage-400"
-                            animate={{ y: [0, -10, 0], opacity: [0.5, 1, 0.5] }}
-                            transition={{ duration: 3, delay: n, repeat: Infinity }}
-                            style={{ top: `${20 + n * 20}%`, left: `${10 + n * 20}%` }}
-                        >
-                            <FileText size={16} />
-                        </motion.div>
+                            key={i}
+                            className="absolute w-3 h-3 bg-sage-400 rounded-full opacity-60"
+                            style={{ x: node.x, y: node.y }}
+                            animate={{ y: [node.y, node.y - 10, node.y] }}
+                            transition={{ duration: 2, repeat: Infinity, delay: node.delay, ease: "easeInOut" }}
+                        />
                     ))}
                 </div>
             </div>

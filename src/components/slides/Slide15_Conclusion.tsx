@@ -4,9 +4,9 @@ import { Check } from "lucide-react";
 
 export default function Slide15_Conclusion() {
     const points = [
-        { title: "Cost Efficiency & Diversification", text: "AX로 고정비를 절감하고, 확보된 재원을 수익 모델 다변화, 해외 시장 개척, 신규 제품 및 서비스에 배치하여 수익 경로를 다변화합니다." },
-        { title: "Global Brand Value", text: "데이터 기반의 워크플로우와 의사 결정 구조로 사업 전략을 최적화하여, 글로벌 웰니스 테크 기업으로서의 브랜드 가치를 창출합니다." },
-        { title: "Autonomous Operation", text: "경영진의 전략적 의사 결정이 AI 기반 통합 지휘 환경 아래 에이전트들이 즉각적이고 일관되게 실행하는, 자율형 운영 기업을 완성합니다." }
+        { title: "Constitution Improvement", text: "AX 도입으로 고정비를 절감하고, 확보된 재원을 연구 개발, 수익 모델 다변화, 해외 시장 개척, 신규 제품 및 서비스에 배치하여 수익 경로를 다변화합니다." },
+        { title: "Global Wellness Tech", text: "시장, 트렌드, 고객 데이터 기반의 워크플로우와 의사 결정 구조로 사업 전략을 최적화하여, 글로벌 웰니스 테크 기업으로서의 브랜드 가치를 창출합니다." },
+        { title: "Autonomous Enterprise", text: "경영진의 전략적 의사 결정을 통합 지휘 환경 아래 각각의 AI 에이전트들이 즉각적이고 일관되게 실행하는, 딥테크 기반의 자율형 운영 기업을 완성합니다." }
     ];
 
     return (

@@ -16,7 +16,7 @@ export default function Slide3_CapacityBuilding() {
                 className="z-10"
             >
                 <span className="text-sage-300 text-2xl font-medium tracking-widest mb-6 block uppercase">Phase 01</span>
-                <h2 className="text-7xl font-bold mb-8">첫 걸음 : 역량 강화</h2>
+                <h2 className="text-7xl font-bold mb-8">역량 강화</h2>
                 <p className="text-3xl text-sage-200 max-w-4xl mx-auto leading-relaxed font-light">
                     AI 기술로 소프트웨어 개발 역량을 조직 안으로 흡수,<br />
                     사업 활동 전반을 통합 관리하고 자동화 운영 체계를 구축

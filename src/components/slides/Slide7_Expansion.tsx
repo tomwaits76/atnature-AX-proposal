@@ -18,7 +18,7 @@ export default function Slide7_Expansion() {
                 className="z-10 bg-white/90 backdrop-blur-2xl p-20 rounded-[3rem] shadow-[0_30px_60px_rgba(0,0,0,0.12)] border border-white/50 ring-1 ring-sage-100"
             >
                 <span className="text-sage-500 text-2xl font-medium tracking-widest mb-6 block uppercase">Phase 02</span>
-                <h2 className="text-7xl font-bold mb-8 text-sage-800">다음 단계 : 외연 확장</h2>
+                <h2 className="text-7xl font-bold mb-8 text-sage-800">외연 확장</h2>
                 <p className="text-3xl text-sage-600 max-w-4xl mx-auto leading-relaxed font-light mb-12">
                     강화된 역량을 발판으로 수익 모델을 다각화하고<br />
                     해외 시장을 적극적으로 개척, <span className="font-semibold text-sage-800">앳네이처의 웰니스 생태계를 전파</span>

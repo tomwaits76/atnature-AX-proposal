@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { Code, Monitor, Smartphone, Globe } from "lucide-react";
+import { Code, Monitor, Smartphone, Globe, Server } from "lucide-react";
 
 export default function Slide4_NativeDev() {
     const benefits = [
@@ -18,7 +18,7 @@ export default function Slide4_NativeDev() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.8 }}
                 >
-                    <div className="inline-block px-4 py-2 bg-sage-200 text-sage-800 rounded-full text-sm font-semibold mb-6">첫 걸음 : 역량 강화</div>
+                    <div className="inline-block px-4 py-2 bg-sage-200 text-sage-800 rounded-full text-sm font-semibold mb-6">역량 강화</div>
                     <h2 className="text-5xl font-bold text-sage-900 mb-6 leading-tight">AI 네이티브 개발 환경 내재화</h2>
                     <h3 className="text-2xl text-sage-600 mb-12 font-light">자사몰, 브랜드 페이지, 웹 앱 등<br />모든 디지털 접점의 AI 기반 내부 개발 및 관리</h3>
 
@@ -51,15 +51,15 @@ export default function Slide4_NativeDev() {
                 >
                     {/* Central Hub */}
                     <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-sage-600 rounded-full flex flex-col items-center justify-center text-white p-4 text-center shadow-2xl z-20">
-                        <Code size={48} className="mb-2" />
-                        <span className="font-bold text-lg">AI Native<br />Dev Core</span>
+                        <Server size={48} className="mb-2" />
+                        <span className="font-bold text-lg">AI Native<br />Dev. Core</span>
                     </div>
 
                     {/* Satellite Nodes */}
                     {[
-                        { icon: Globe, label: "Web Store", pos: "top-0 left-1/2 -translate-x-1/2" },
-                        { icon: Smartphone, label: "Mobile App", pos: "bottom-0 right-0 -translate-x-1/2 -translate-y-1/2" }, // Adjusted for 3 points
-                        { icon: Monitor, label: "Brand Page", pos: "bottom-0 left-0 translate-x-1/2 -translate-y-1/2" }
+                        { icon: Globe, label: "Web Store", pos: "top-0 left-1/2 -translate-x-1/2 -translate-y-4" }, // Adjusted distance
+                        { icon: Smartphone, label: "Mobile App", pos: "bottom-10 right-0 -translate-x-4 -translate-y-1/2" },
+                        { icon: Monitor, label: "Brand Page", pos: "bottom-10 left-0 translate-x-4 -translate-y-1/2" }
                     ].map((node, i) => (
                         <motion.div
                             key={i}

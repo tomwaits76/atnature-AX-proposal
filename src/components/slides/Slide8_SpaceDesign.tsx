@@ -23,7 +23,7 @@ export default function Slide8_SpaceDesign() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.8 }}
                 >
-                    <div className="inline-block px-4 py-2 bg-sage-600 text-white rounded-full text-sm font-semibold mb-6">다음 단계 : 외연 확장</div>
+                    <div className="inline-block px-4 py-2 bg-sage-600 text-white rounded-full text-sm font-semibold mb-6">외연 확장</div>
                     <h2 className="text-5xl font-bold text-sage-900 mb-6 leading-tight">지능형 공간 디자인<br />소프트웨어</h2>
                     <h3 className="text-2xl text-sage-600 mb-12 font-light">사진이나 화면을 분석하여 공간에 최적화된<br />조향 솔루션을 제안하고, 가이드를 제공하는 서비스</h3>
 
@@ -47,46 +47,78 @@ export default function Slide8_SpaceDesign() {
             {/* Right Infographic: Space Analysis Simulation */}
             <div className="w-1/2 z-10 flex items-center justify-center pl-12">
                 <motion.div
-                    className="relative w-full aspect-video bg-gray-200 rounded-xl overflow-hidden shadow-2xl"
+                    className="relative w-full aspect-video bg-gray-900 rounded-xl overflow-hidden shadow-2xl border border-sage-500/30"
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
                 >
-                    {/* Simulated Room Image Placeholder */}
-                    <div className="absolute inset-0 bg-sage-100 flex items-end justify-center">
-                        <div className="w-1/2 h-2/3 bg-sage-300 rounded-t-lg mx-4" /> {/* Sofa */}
-                        <div className="w-1/4 h-1/2 bg-sage-400 rounded-t-lg mx-4" /> {/* Table */}
+                    {/* Simulated Room Image - Abstract blocks representing furniture */}
+                    <div className="absolute inset-0 bg-sage-900 flex items-end justify-center perspective-[500px]">
+                        {/* Floor Grid */}
+                        <div className="absolute inset-0 opacity-20"
+                            style={{
+                                backgroundImage: 'linear-gradient(0deg, transparent 24%, rgba(255, 255, 255, .3) 25%, rgba(255, 255, 255, .3) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, .3) 75%, rgba(255, 255, 255, .3) 76%, transparent 77%, transparent), linear-gradient(90deg, transparent 24%, rgba(255, 255, 255, .3) 25%, rgba(255, 255, 255, .3) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, .3) 75%, rgba(255, 255, 255, .3) 76%, transparent 77%, transparent)',
+                                backgroundSize: '50px 50px',
+                                transform: 'rotateX(60deg) scale(2)'
+                            }}
+                        />
+
+                        {/* 3D Wireframe Objects */}
+                        <motion.div
+                            className="w-1/2 h-2/3 border-2 border-sage-400 bg-sage-800/50 rounded-t-lg mx-4 relative backdrop-blur-sm"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1, borderColor: ["#5e8c61", "#a3c9a8", "#5e8c61"] }}
+                            transition={{ duration: 2, repeat: Infinity }}
+                        >
+                            {/* Wireframe internal lines */}
+                            <div className="absolute top-0 left-0 right-0 h-1/4 border-b border-sage-500/50" />
+                            <div className="absolute bottom-0 left-1/2 top-0 w-px bg-sage-500/50" />
+                        </motion.div>
+                        <motion.div
+                            className="w-1/4 h-1/2 border-2 border-sage-400 bg-sage-800/50 rounded-t-lg mx-4 relative backdrop-blur-sm shadow-[0_0_15px_rgba(94,140,97,0.5)]"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ delay: 0.2 }}
+                        />
                     </div>
 
-                    {/* Scanning Effect */}
+                    {/* Scanning Laser */}
                     <motion.div
-                        className="absolute top-0 left-0 w-full h-1 bg-sage-500 shadow-[0_0_20px_#4A614F]"
+                        className="absolute top-0 left-0 w-full h-[2px] bg-green-400 shadow-[0_0_20px_#4ade80]"
                         animate={{ top: ["0%", "100%", "0%"] }}
-                        transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+                        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                     />
 
-                    {/* Analysis Points */}
-                    <motion.div
-                        className="absolute top-1/3 left-1/3 w-4 h-4 bg-white border-2 border-sage-600 rounded-full"
-                        animate={{ scale: [1, 1.5, 1], opacity: [0.5, 1, 0.5] }}
-                        transition={{ duration: 2, repeat: Infinity }}
-                    />
-                    <motion.div
-                        className="absolute bottom-1/3 right-1/4 w-4 h-4 bg-white border-2 border-sage-600 rounded-full"
-                        animate={{ scale: [1, 1.5, 1], opacity: [0.5, 1, 0.5] }}
-                        transition={{ duration: 2, repeat: Infinity, delay: 1 }}
-                    />
+                    {/* Object Detection Tags */}
+                    {[
+                        { label: "Fabric Sofa", conf: "98%", x: "30%", y: "40%" },
+                        { label: "Wood Table", conf: "95%", x: "70%", y: "60%" },
+                        { label: "Ambient Light", conf: "88%", x: "50%", y: "20%" },
+                    ].map((tag, i) => (
+                        <motion.div
+                            key={i}
+                            className="absolute bg-sage-900/80 border border-green-500/50 text-green-400 px-3 py-1 rounded text-xs font-mono flex gap-2 items-center backdrop-blur-md"
+                            style={{ top: tag.y, left: tag.x }}
+                            initial={{ opacity: 0, scale: 0 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ delay: 1 + (i * 0.5) }}
+                        >
+                            <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                            {tag.label} <span className="opacity-70">[{tag.conf}]</span>
+                            {/* Connecting line to object approx */}
+                            <div className="absolute -bottom-4 left-1/2 w-px h-4 bg-green-500/50" />
+                        </motion.div>
+                    ))}
 
                     {/* UI Overlay */}
-                    <div className="absolute top-6 left-6 bg-black/40 text-white px-4 py-2 rounded-full backdrop-blur-md border border-white/10 text-sm flex items-center gap-2 shadow-lg">
-                        <Scan size={14} className="text-sage-300 animate-pulse" />
-                        <span className="font-mono tracking-wide">Scanning Spatial Volume...</span>
+                    <div className="absolute top-4 left-4 bg-black/60 text-white px-3 py-1 rounded text-[10px] font-mono border border-white/10">
+                        AI VISION ANALYZER v2.0
                     </div>
-                    <div className="absolute bottom-6 right-6 bg-sage-600/90 text-white px-6 py-3 rounded-xl shadow-xl backdrop-blur border border-sage-500/50 flex items-center gap-3">
-                        <Box size={18} className="text-sage-200" />
+                    <div className="absolute bottom-4 right-4 bg-sage-600/90 text-white px-5 py-3 rounded-lg shadow-xl backdrop-blur border border-sage-500/50 flex items-center gap-3">
+                        <div className="w-2 h-2 bg-green-400 rounded-full animate-ping" />
                         <div>
-                            <div className="text-[10px] text-sage-200 uppercase tracking-wider font-bold">Analysis Complete</div>
-                            <div className="font-medium">Recommended: Woody Base</div>
+                            <div className="text-[10px] text-sage-200 uppercase tracking-wider font-bold">Analysis Result</div>
+                            <div className="font-medium text-sm">Recommended: Woody Base</div>
                         </div>
                     </div>
                 </motion.div>

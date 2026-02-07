@@ -21,7 +21,7 @@ export default function Slide5_DataMarketing() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.8 }}
                 >
-                    <div className="inline-block px-4 py-2 bg-sage-100 text-sage-700 rounded-full text-sm font-semibold mb-6">첫 걸음 : 역량 강화</div>
+                    <div className="inline-block px-4 py-2 bg-sage-100 text-sage-700 rounded-full text-sm font-semibold mb-6">역량 강화</div>
                     <h2 className="text-5xl font-bold text-sage-900 mb-6 leading-tight">데이터 주도<br />브랜딩/마케팅 최적화</h2>
                     <h3 className="text-2xl text-sage-600 mb-12 font-light">데이터 수집, 캠페인 기획, 소재 생성 및 채널 배포까지<br />모든 과정을 AI 워크플로우로 통합</h3>
 
@@ -47,18 +47,18 @@ export default function Slide5_DataMarketing() {
             {/* Right Infographic: Funnel/Workflow */}
             <div className="w-1/2 z-10 flex items-center justify-center pl-12">
                 <motion.div className="flex flex-col items-center space-y-4 w-full max-w-md">
-                    {["Data Collection", "AI Analysis", "Creative Gen", "Optimization"].map((step, i) => (
+                    {["Data Mining", "AI Analysis", "Creative Gen.", "Optimization", "Release"].map((step, i) => (
                         <motion.div
                             key={i}
                             initial={{ opacity: 0, y: 50 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.2 + (i * 0.2) }}
                             className="w-full bg-white border border-sage-200 p-6 rounded-2xl shadow-lg relative flex items-center justify-between"
-                            style={{ width: `${100 - (i * 10)}%` }} // Funnel effect
+                            style={{ width: `${100 - (i * 5)}%` }} // Adjusted funnel effect
                         >
                             <span className="font-bold text-sage-700">Step 0{i + 1}</span>
                             <span className="text-sage-900 font-medium text-lg">{step}</span>
-                            {i < 3 && (
+                            {i < 4 && (
                                 <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 text-sage-300">
                                     ▼
                                 </div>

@@ -4,7 +4,7 @@ import { GitMerge, ShieldCheck, Activity } from "lucide-react";
 
 export default function Slide14_Orchestration() {
     const features = [
-        { icon: GitMerge, title: "Central Command", text: "공동의 목표 중심으로 에이전트들을 관리, 중단 없는 실행 경로로 유도" },
+        { icon: GitMerge, title: "Central Command", text: "공동의 목표를 중심으로 에이전트들을 관리, 중단 없는 실행 경로로 유도" },
         { icon: ShieldCheck, title: "Self-Regulation", text: "단일 판결 프로토콜을 적용하여 충돌 시에도 시스템이 스스로 판단하고 조율" },
         { icon: Activity, title: "Real-time Monitoring", text: "작업 현황을 실시간으로 감시하고 모든 결과물이 기준을 준수하도록 관리" }
     ];
@@ -16,8 +16,8 @@ export default function Slide14_Orchestration() {
             <div className="absolute top-0 right-1/4 w-px h-full bg-gradient-to-b from-transparent via-sage-500 to-transparent opacity-20" />
 
             <div className="z-10 text-center mb-16">
-                <div className="text-sage-400 text-sm font-semibold tracking-wider mb-4 uppercase">핵심 기재 : 기술 혁신</div>
-                <h2 className="text-6xl font-bold mb-6">AI 오케스트레이션 환경 구축</h2>
+                <div className="text-sage-400 text-sm font-semibold tracking-wider mb-4 uppercase">기술 혁신</div>
+                <h2 className="text-5xl font-bold mb-6">AI 오케스트레이션 환경 구축</h2>
                 <p className="text-2xl text-sage-200 font-light opacity-80">데이터 신경망에 연결된 멀티 에이전트들이 상호 유기적으로<br />작동하기 위한 통합 지휘 체계</p>
             </div>
 

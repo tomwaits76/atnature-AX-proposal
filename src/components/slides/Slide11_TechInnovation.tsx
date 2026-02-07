@@ -21,7 +21,7 @@ export default function Slide11_TechInnovation() {
                 className="z-10"
             >
                 <span className="text-sage-400 text-2xl font-medium tracking-widest mb-6 block uppercase">Phase 03</span>
-                <h2 className="text-7xl font-bold mb-8 text-white">핵심 기재 : 기술 혁신</h2>
+                <h2 className="text-7xl font-bold mb-8 text-white">기술 혁신</h2>
                 <p className="text-3xl text-sage-200 max-w-5xl mx-auto leading-relaxed font-light mb-16">
                     내부 강화에 이어 외연 확장을 실현하는 핵심 기술을 정의하고,<br />
                     <span className="font-semibold text-white">앳네이처만의 기술적 해자</span>를 구축하기 위한 토대 마련

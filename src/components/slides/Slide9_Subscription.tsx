@@ -1,13 +1,13 @@
 "use client";
 import { motion } from "framer-motion";
-import { RefreshCw, Heart, TrendingUp, Package } from "lucide-react";
+import { RefreshCw, Sparkles, Database, Package } from "lucide-react";
 
 export default function Slide9_Subscription() {
     const cycleSteps = [
-        { icon: Heart, label: "취향/소비 분석", color: "bg-sage-200" },
-        { icon: Package, label: "맞춤 큐레이션 & 배송", color: "bg-sage-300" },
+        { icon: Sparkles, label: "AI 큐레이션", color: "bg-sage-200" },
+        { icon: Package, label: "맞춤 판매 & 배송", color: "bg-sage-300" },
         { icon: RefreshCw, label: "피드백 & 재구독", color: "bg-sage-400" },
-        { icon: TrendingUp, label: "충성도 강화", color: "bg-sage-500" },
+        { icon: Database, label: "고객 데이터", color: "bg-sage-500" },
     ];
 
     return (
@@ -19,7 +19,7 @@ export default function Slide9_Subscription() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.8 }}
                 >
-                    <div className="inline-block px-4 py-2 bg-sage-200 text-sage-800 rounded-full text-sm font-semibold mb-6">다음 단계 : 외연 확장</div>
+                    <div className="inline-block px-4 py-2 bg-sage-200 text-sage-800 rounded-full text-sm font-semibold mb-6">외연 확장</div>
                     <h2 className="text-5xl font-bold text-sage-900 mb-6 leading-tight">맞춤형 고객 경험 기반<br />구독 모델</h2>
                     <h3 className="text-2xl text-sage-600 mb-12 font-light">고객 취향과 소비 패턴 학습 기반의 맞춤형 구독 체계,<br />데이터와 피드백을 반영한 향기 큐레이션</h3>
 
@@ -37,50 +37,70 @@ export default function Slide9_Subscription() {
                 </motion.div>
             </div>
 
-            {/* Right Infographic: Subscription Cycle */}
-            <div className="w-1/2 z-10 flex items-center justify-center pl-12">
-                <div className="relative w-[500px] h-[500px]">
-                    {cycleSteps.map((step, i) => {
-                        const angle = (i * 360) / cycleSteps.length;
-                        const radius = 180;
-                        const x = Math.cos((angle - 90) * (Math.PI / 180)) * radius;
-                        const y = Math.sin((angle - 90) * (Math.PI / 180)) * radius;
+            {/* Right Infographic: Spiral LTV Loop */}
+            <div className="w-1/2 z-10 flex items-center justify-center pl-12 relative">
+                {/* Spiral Background Path */}
+                <svg className="absolute w-[120%] h-[120%] opacity-20 pointer-events-none" viewBox="0 0 500 500">
+                    <path
+                        d="M 250 250 m 0 0 a 1 1 0 0 1 3 0 a 20 20 0 0 1 -20 20 a 50 50 0 0 1 -60 -50 a 80 80 0 0 1 90 -90 a 120 120 0 0 1 130 130 a 160 160 0 0 1 -170 170"
+                        fill="none"
+                        stroke="#5e8c61"
+                        strokeWidth="2"
+                        strokeDasharray="10 10"
+                        className="animate-[spin_20s_linear_infinite]"
+                    />
+                </svg>
 
+                <div className="relative w-[500px] h-[500px] flex items-center justify-center">
+                    {/* Central LTV Core */}
+                    <motion.div
+                        className="absolute z-20 w-40 h-40 bg-sage-600 rounded-full flex flex-col items-center justify-center text-white shadow-2xl"
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ type: "spring" }}
+                    >
+                        <div className="text-3xl font-bold">LTV ↑</div>
+                        <div className="text-sm font-light mt-1">Growth Cycle</div>
+                    </motion.div>
+
+                    {/* Orbiting Steps */}
+                    {cycleSteps.map((step, i) => {
+                        const deg = (i * 360) / cycleSteps.length;
                         return (
                             <motion.div
                                 key={i}
-                                className={`absolute w-32 h-32 rounded-full ${step.color} flex flex-col items-center justify-center shadow-lg text-sage-900 z-10`}
-                                initial={{ opacity: 0, scale: 0 }}
-                                animate={{ opacity: 1, scale: 1, x, y }}
-                                transition={{ delay: 0.4 + (i * 0.2), duration: 0.6 }}
+                                className={`absolute w-32 h-32 rounded-full flex flex-col items-center justify-center text-center p-4 shadow-lg border-2 border-white ${step.color}`}
                                 style={{
-                                    top: '50%',
-                                    left: '50%',
-                                    marginTop: -64,
-                                    marginLeft: -64
+                                    transformOrigin: "center center",
+                                    // Calculate position on a circle
                                 }}
+                                initial={{ opacity: 0, scale: 0, x: 0, y: 0 }}
+                                animate={{
+                                    opacity: 1,
+                                    scale: 1,
+                                    x: Math.cos((deg - 90) * (Math.PI / 180)) * 180,
+                                    y: Math.sin((deg - 90) * (Math.PI / 180)) * 180
+                                }}
+                                transition={{ delay: i * 0.2, duration: 0.5 }}
                             >
-                                <step.icon size={32} className="mb-2" />
-                                <span className="text-xs font-bold text-center px-2">{step.label}</span>
+                                <step.icon size={32} className="mb-2 text-sage-800" />
+                                <span className="text-sage-900 font-bold leading-tight">{step.label}</span>
+
+                                {/* Connecting Arrow */}
+                                <motion.div
+                                    className="absolute top-1/2 -right-8 w-8 h-8 text-sage-400"
+                                    style={{ transform: `rotate(${deg + 45}deg)` }}
+                                    animate={{ opacity: [0.5, 1, 0.5] }}
+                                    transition={{ duration: 1.5, repeat: Infinity }}
+                                >
+                                    ➔
+                                </motion.div>
                             </motion.div>
                         );
                     })}
 
-                    {/* Center Circle */}
-                    <motion.div
-                        className="absolute top-1/2 left-1/2 w-32 h-32 bg-white rounded-full flex items-center justify-center shadow-xl border-4 border-sage-200 z-0"
-                        style={{ transform: 'translate(-50%, -50%)' }}
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        transition={{ delay: 1.2, type: "spring" }}
-                    >
-                        <span className="font-bold text-sage-600">Recurring<br />Revenue</span>
-                    </motion.div>
-
-                    {/* Connecting Circle Line */}
-                    <svg className="absolute inset-0 w-full h-full -z-10 pointer-events-none">
-                        <circle cx="50%" cy="50%" r="180" fill="none" stroke="#CFDFD4" strokeWidth="20" strokeOpacity="0.3" />
-                    </svg>
+                    {/* Active Pulse Animation indicating speed */}
+                    <div className="absolute inset-0 rounded-full border border-sage-300 animate-[ping_3s_linear_infinite] opacity-30" />
                 </div>
             </div>
         </div>
