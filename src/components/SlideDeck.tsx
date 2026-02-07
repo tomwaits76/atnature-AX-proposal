@@ -27,6 +27,10 @@ export default function SlideDeck() {
     const [currentSlide, setCurrentSlide] = useState(0);
     const [printMode, setPrintMode] = useState(false);
 
+    const handlePrint = useCallback(() => {
+        window.print();
+    }, []);
+
     const nextSlide = useCallback(() => {
         setCurrentSlide((prev) => (prev < SLIDE_COUNT - 1 ? prev + 1 : prev));
     }, []);
@@ -88,7 +92,7 @@ export default function SlideDeck() {
             <div className="bg-white min-h-screen">
                 <div className="fixed top-4 right-4 z-50 no-print">
                     <button
-                        onClick={() => window.print()}
+                        onClick={handlePrint}
                         className="bg-sage-600 text-white px-4 py-2 rounded shadow hover:bg-sage-700 mr-2"
                     >
                         Save as PDF
@@ -114,16 +118,20 @@ export default function SlideDeck() {
     return (
         <div className="relative w-screen h-screen overflow-hidden bg-sage-50 text-sage-900">
             {/* Navigation Controls */}
-            <div className="absolute bottom-8 right-8 z-50 flex space-x-4 opacity-0 hover:opacity-100 transition-opacity duration-300">
-                <button onClick={prevSlide} disabled={currentSlide === 0} className="p-2 rounded-full bg-sage-200 hover:bg-sage-300 disabled:opacity-50">
-                    <ChevronLeft size={24} />
+            <div className="absolute bottom-8 right-8 z-50 flex items-center space-x-4 bg-white/80 backdrop-blur-md border border-sage-200 p-3 rounded-full shadow-lg transition-all duration-300">
+                <button onClick={prevSlide} disabled={currentSlide === 0} className="p-2 rounded-full bg-sage-100 hover:bg-sage-200 text-sage-700 disabled:opacity-30 transition-colors">
+                    <ChevronLeft size={20} />
                 </button>
-                <span className="self-center font-mono text-sage-600">{currentSlide + 1} / {SLIDE_COUNT}</span>
-                <button onClick={nextSlide} disabled={currentSlide === SLIDE_COUNT - 1} className="p-2 rounded-full bg-sage-200 hover:bg-sage-300 disabled:opacity-50">
-                    <ChevronRight size={24} />
+                <div className="flex items-center space-x-2 px-2 border-x border-sage-200">
+                    <span className="font-mono text-sm font-semibold text-sage-700">{String(currentSlide + 1).padStart(2, '0')}</span>
+                    <span className="text-sage-300">/</span>
+                    <span className="font-mono text-sm text-sage-500">{String(SLIDE_COUNT).padStart(2, '0')}</span>
+                </div>
+                <button onClick={nextSlide} disabled={currentSlide === SLIDE_COUNT - 1} className="p-2 rounded-full bg-sage-100 hover:bg-sage-200 text-sage-700 disabled:opacity-30 transition-colors">
+                    <ChevronRight size={20} />
                 </button>
-                <button onClick={() => setPrintMode(true)} className="p-2 rounded-full bg-sage-200 hover:bg-sage-300 ml-4" title="Print Mode">
-                    <Printer size={24} />
+                <button onClick={() => setPrintMode(true)} className="p-2 rounded-full bg-sage-600 hover:bg-sage-700 text-white shadow-sm ml-2 transition-all hover:scale-110" title="Print Mode">
+                    <Printer size={20} />
                 </button>
             </div>
 
