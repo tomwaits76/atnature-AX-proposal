@@ -35,7 +35,7 @@ export default function Slide17_AITips() {
                 </div>
 
                 {/* Tips Cards */}
-                <div className="flex justify-center gap-[144px] mt-24">
+                <div className="flex justify-center gap-[128px] mt-24">
                     {tips.map((tip, i) => (
                         <motion.div
                             key={i}

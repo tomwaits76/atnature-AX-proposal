@@ -119,13 +119,13 @@ export default function Slide13_MultiAgent() {
                         );
                     })}
 
-                    {/* Floating Knowledge Nodes - Designer 연결선(0.8s)과 함께 시작, 순차 등장 */}
+                    {/* Floating Knowledge Nodes - Developer 연결선(1.0s)과 함께 시작, 순차 등장 */}
                     {[
-                        { x: -250, y: -200, delay: 0.8 },
-                        { x: 150, y: -250, delay: 0.9 }, // 왼쪽으로 이동 (250→150)
-                        { x: 280, y: 0, delay: 1.0 },
-                        { x: -280, y: 120, delay: 1.1 },
-                        { x: 200, y: 200, delay: 1.2 },
+                        { x: -250, y: -200, delay: 1.0 },
+                        { x: 150, y: -250, delay: 1.1 }, // 왼쪽으로 이동 (250→150)
+                        { x: 280, y: 0, delay: 1.2 },
+                        { x: -280, y: 120, delay: 1.3 },
+                        { x: 200, y: 200, delay: 1.4 },
                     ].map((node, i) => (
                         <motion.div
                             key={i}
