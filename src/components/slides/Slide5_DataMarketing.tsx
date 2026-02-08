@@ -46,20 +46,20 @@ export default function Slide5_DataMarketing() {
 
             {/* Right Infographic: Funnel/Workflow */}
             <div className="w-1/2 z-10 flex items-center justify-center pl-12">
-                <motion.div className="flex flex-col items-center space-y-12 w-full max-w-md">
+                <motion.div className="flex flex-col items-center space-y-8 w-full max-w-md">
                     {["Data Mining", "AI Analysis", "Creative Gen.", "Optimization", "Release"].map((step, i) => (
                         <motion.div
                             key={i}
                             initial={{ opacity: 0, y: 50 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.2 + (i * 0.2) }}
-                            className="w-full bg-white border border-sage-200 p-6 rounded-2xl shadow-lg relative flex items-center justify-between"
+                            className="w-full bg-white border border-sage-200 p-6 rounded-2xl shadow-lg relative flex items-center justify-center gap-8"
                             style={{ width: `${100 - (i * 12)}%` }}
                         >
                             <span className="font-bold text-sage-700">Step 0{i + 1}</span>
                             <span className="text-sage-900 font-medium text-lg">{step}</span>
                             {i < 4 && (
-                                <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 text-sage-300">
+                                <div className="absolute -bottom-5 left-1/2 transform -translate-x-1/2 text-sage-300">
                                     ▼
                                 </div>
                             )}

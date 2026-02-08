@@ -19,9 +19,10 @@ import Slide13_MultiAgent from "@/components/slides/Slide13_MultiAgent";
 import Slide14_Orchestration from "@/components/slides/Slide14_Orchestration";
 import Slide15_Conclusion from "@/components/slides/Slide15_Conclusion";
 import Slide16_Appendix from "@/components/slides/Slide16_Appendix";
-import Slide17_Closing from "@/components/slides/Slide17_Closing";
+import Slide17_AITips from "@/components/slides/Slide17_AITips";
+import Slide18_Closing from "@/components/slides/Slide18_Closing";
 
-const SLIDE_COUNT = 17;
+const SLIDE_COUNT = 18;
 const SLIDE_WIDTH = 1920;
 const SLIDE_HEIGHT = 1080;
 
@@ -133,7 +134,8 @@ export default function SlideDeck() {
             case 13: return <Slide14_Orchestration />;
             case 14: return <Slide15_Conclusion />;
             case 15: return <Slide16_Appendix />;
-            case 16: return <Slide17_Closing />;
+            case 16: return <Slide17_AITips />;
+            case 17: return <Slide18_Closing />;
             default: return null;
         }
     };

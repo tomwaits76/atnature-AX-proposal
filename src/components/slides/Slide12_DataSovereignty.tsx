@@ -20,14 +20,14 @@ export default function Slide12_DataSovereignty() {
 
             {/* Process Flow - Centered with equal margins */}
             <div className="flex-1 flex items-center justify-center relative">
-                <div className="flex items-center" style={{ gap: '60px' }}>
+                <div className="flex items-center" style={{ gap: '80px' }}>
                     {steps.map((step, i) => (
-                        <div key={i} className="flex items-center" style={{ gap: '60px' }}>
+                        <div key={i} className="flex items-center" style={{ gap: '80px' }}>
                             <motion.div
                                 initial={{ opacity: 0, y: 50 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.2 + (i * 0.3) }}
-                                className="bg-white rounded-3xl p-8 shadow-lg border border-sage-100 w-[400px] h-[400px] flex flex-col items-center text-center justify-center relative z-10"
+                                className="bg-white rounded-3xl p-8 shadow-lg border border-sage-100 w-[440px] h-[380px] flex flex-col items-center text-center justify-center relative z-10"
                             >
                                 <div className="w-24 h-24 bg-sage-50 rounded-2xl flex items-center justify-center mb-8 text-sage-600 shadow-inner">
                                     <step.icon size={48} />

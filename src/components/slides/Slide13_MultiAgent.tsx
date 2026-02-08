@@ -40,14 +40,20 @@ export default function Slide13_MultiAgent() {
             {/* Right Infographic: Hexagon Swarm Structure */}
             <div className="w-1/2 z-10 flex items-center justify-center pl-12">
                 <div className="relative w-[660px] h-[660px] flex items-center justify-center -mt-12" style={{ transform: 'scale(1.2)' }}>
-                    {/* Connecting Lines - to hexagon vertices (facing vertices) */}
+                    {/* Connecting Lines - vertex to vertex (center hex to surrounding hex) */}
                     <svg className="absolute inset-0 w-full h-full opacity-30 pointer-events-none z-0">
-                        <line x1="300" y1="260" x2="300" y2="140" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" /> {/* Top */}
-                        <line x1="340" y1="280" x2="436" y2="200" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" /> {/* Top Right */}
-                        <line x1="340" y1="320" x2="436" y2="400" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" /> {/* Bottom Right */}
-                        <line x1="300" y1="340" x2="300" y2="460" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" /> {/* Bottom */}
-                        <line x1="260" y1="320" x2="164" y2="400" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" /> {/* Bottom Left */}
-                        <line x1="260" y1="280" x2="164" y2="200" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" /> {/* Top Left */}
+                        {/* Top: center top vertex → surrounding bottom vertex */}
+                        <line x1="300" y1="220" x2="300" y2="110" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" />
+                        {/* Top Right: center top-right vertex → surrounding bottom-left vertex */}
+                        <line x1="370" y1="260" x2="430" y2="180" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" />
+                        {/* Bottom Right: center bottom-right vertex → surrounding top-left vertex */}
+                        <line x1="370" y1="340" x2="430" y2="420" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" />
+                        {/* Bottom: center bottom vertex → surrounding top vertex */}
+                        <line x1="300" y1="380" x2="300" y2="490" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" />
+                        {/* Bottom Left: center bottom-left vertex → surrounding top-right vertex */}
+                        <line x1="230" y1="340" x2="170" y2="420" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" />
+                        {/* Top Left: center top-left vertex → surrounding bottom-right vertex */}
+                        <line x1="230" y1="260" x2="170" y2="180" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" />
                     </svg>
 
                     {/* Central Core: Shared Goal */}

@@ -16,14 +16,14 @@ export default function Slide8_SpaceDesign() {
                 style={{ backgroundImage: 'linear-gradient(#4A614F 1px, transparent 1px), linear-gradient(90deg, #4A614F 1px, transparent 1px)', backgroundSize: '50px 50px' }}
             />
 
-            {/* Left Content */}
-            <div className="w-1/2 z-10 flex flex-col justify-center pr-12 bg-white/90 backdrop-blur-sm p-8 rounded-2xl">
+            {/* Left Content - Grid Pattern Background */}
+            <div className="w-1/2 z-10 flex flex-col justify-center pr-12">
                 <motion.div
                     initial={{ opacity: 0, x: -50 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.8 }}
                 >
-                    <div className="inline-block px-4 py-2 bg-sage-600 text-white rounded-full text-sm font-semibold mb-6">외연 확장</div>
+                    <div className="inline-block px-4 py-2 bg-sage-200 text-sage-800 rounded-full text-sm font-semibold mb-6">외연 확장</div>
                     <h2 className="text-5xl font-bold text-sage-900 mb-6 leading-tight">지능형 공간 디자인 소프트웨어</h2>
                     <h3 className="text-2xl text-sage-600 mb-12 font-light">사진이나 화면을 분석하여 공간에 최적화된<br />조향 솔루션을 제안하고, 가이드를 제공하는 서비스</h3>
 

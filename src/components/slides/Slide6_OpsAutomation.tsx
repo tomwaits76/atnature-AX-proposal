@@ -14,7 +14,7 @@ export default function Slide6_OpsAutomation() {
             {/* Header */}
             <div className="flex justify-between items-end mb-20 z-10">
                 <div>
-                    <div className="text-sage-400 text-sm font-semibold tracking-wider mb-4 uppercase">역량 강화</div>
+                    <div className="text-sage-400 text-sm font-semibold tracking-wider mb-6 uppercase">역량 강화</div>
                     <h2 className="text-5xl font-bold mb-6">단일 대시보드 기반 운영 자동화</h2>
                     <h3 className="text-2xl text-sage-300 font-light">국내외 판매 채널의 데이터를 하나로 통합하고,<br />고객 대응 및 운영 전반의 업무 흐름 개편</h3>
                 </div>
@@ -51,7 +51,13 @@ export default function Slide6_OpsAutomation() {
 
                             <div className="absolute bottom-0 left-0 w-full h-32 opacity-50">
                                 <svg width="100%" height="100%" viewBox="0 0 100 50" preserveAspectRatio="none">
-                                    <path d="M0 50 L0 30 Q 25 25 50 20 T 100 5 V 50 Z" fill="url(#salesGradient)" />
+                                    <motion.path
+                                        d="M0 50 L0 30 Q 25 25 50 20 T 100 5 V 50 Z"
+                                        fill="url(#salesGradient)"
+                                        initial={{ opacity: 0 }}
+                                        animate={{ opacity: 1 }}
+                                        transition={{ duration: 1, delay: 2.5 }}
+                                    />
                                     <motion.path
                                         d="M0 30 Q 25 25 50 20 T 100 5"
                                         fill="none"
@@ -82,7 +88,7 @@ export default function Slide6_OpsAutomation() {
                                         d="M0 25 L 10 30 L 20 15 L 30 35 L 40 20 L 50 40 L 60 10 L 70 30 L 80 20 L 90 35 L 100 15"
                                         fill="none"
                                         stroke="#60a5fa"
-                                        strokeWidth="2"
+                                        strokeWidth="1.5"
                                         strokeLinejoin="round"
                                         initial={{ pathLength: 0 }}
                                         animate={{ pathLength: 1 }}
@@ -95,7 +101,7 @@ export default function Slide6_OpsAutomation() {
                         {/* AI Task Automation - Sine Wave Bars */}
                         <div className="bg-sage-700/50 rounded-xl p-6 col-span-2 relative overflow-hidden">
                             <div className="flex justify-between text-sage-300 mb-4 z-10 relative"><Activity size={20} /> <span>AI Task Automation</span></div>
-                            <div className="flex justify-between items-end h-32 gap-1 relative z-10 px-2 mt-12">
+                            <div className="flex justify-between items-end h-32 gap-1 relative z-10 px-2 mt-16">
                                 {Array.from({ length: 20 }).map((_, i) => (
                                     <motion.div
                                         key={i}

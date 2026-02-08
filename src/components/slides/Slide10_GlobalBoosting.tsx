@@ -19,7 +19,7 @@ export default function Slide10_GlobalBoosting() {
     return (
         <div className="w-[1920px] h-[1080px] bg-sage-900 p-20 flex flex-col relative overflow-hidden text-white">
             {/* Background World Map - Dot Pattern (Asia-Centric) */}
-            <div className="absolute inset-0 opacity-15 pointer-events-none">
+            <div className="absolute inset-0 opacity-25 pointer-events-none">
                 <svg width="100%" height="100%" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
                     {/* Dot pattern base */}
                     <defs>
