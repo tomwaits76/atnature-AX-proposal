@@ -152,8 +152,8 @@ export default function Slide8_SpaceDesign() {
                     <motion.div
                         className="absolute w-12 h-12 border-2 border-sage-400 bg-sage-600/30"
                         style={{
-                            top: 'calc(20% + 56px)', // 태그(20%) + 높이 어림 
-                            left: '50%',
+                            top: 'calc(20% + 36px)', // 태그 하단 + 8px (e7db3fe 정밀 복원)
+                            left: 'calc(50% + 90px)', // 태그 중심 보정 (e7db3fe 정밀 복원)
                             transform: 'translateX(-50%)'
                         }}
                         initial={{ opacity: 0.3 }} // 시작부터 보임
