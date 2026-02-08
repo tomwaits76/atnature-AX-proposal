@@ -12,14 +12,14 @@ export default function Slide18_Closing() {
                 transition={{ duration: 1 }}
                 className="z-10 flex flex-col items-center justify-center flex-1"
             >
-                <h2 className="text-4xl font-light mb-12 leading-relaxed text-sage-200">
+                <h2 className="text-4xl font-light mb-8 leading-relaxed text-sage-200">
                     짧은 지식이나마 도움이 되시기를 바라는 마음에 정리했습니다.<br />
                     모쪼록 가시는 길, 늘 건승하시기 바랍니다.
                 </h2>
 
-                <div className="w-20 h-1 bg-sage-500 mx-auto my-12" />
+                <div className="w-20 h-1 bg-sage-500 mx-auto my-8" />
 
-                <h1 className="text-4xl font-light mb-6 text-sage-200">고맙습니다.</h1>
+                <h1 className="text-4xl font-light mt-8 text-sage-200">고맙습니다.</h1>
             </motion.div>
 
             <p className="text-sage-300 text-xl font-medium tracking-widest uppercase opacity-80 z-10 pb-8">ATNATURE. <span className="lowercase text-lg">x</span> AX Strategy Proposal</p>

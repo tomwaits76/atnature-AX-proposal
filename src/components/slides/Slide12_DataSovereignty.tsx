@@ -4,9 +4,9 @@ import { Database, Filter, BrainCircuit, ArrowRight } from "lucide-react";
 
 export default function Slide12_DataSovereignty() {
     const steps = [
-        { icon: Database, title: "Multilayer Data", text: "하나의 파이프라인으로\n각종 데이터를 취합,\n입체적인 원천 소스로 적재" },
-        { icon: Filter, title: "Ontology Model", text: "원천 소스를 정제하고\n의미를 해석,\n라벨링하여 활용 가능한 정보로 자산화" },
-        { icon: BrainCircuit, title: "Neural Network", text: "정보 간 상관 관계를 부여,\n이를 신경망에\n기반한 의사 결정 구조로 치환" }
+        { icon: Database, title: "Multilayer Data", text: "하나의 파이프라인으로 각종 데이터를 취합,\n입체적인 원천 소스로 적재" },
+        { icon: Filter, title: "Ontology Model", text: "원천 소스를 정제하고 의미를 해석,\n라벨링하여 활용 가능한 정보로 자산화" },
+        { icon: BrainCircuit, title: "Neural Network", text: "정보 간 상관 관계를 부여, 이를 신경망에\n기반한 의사 결정 구조로 치환" }
     ];
 
     return (
@@ -18,22 +18,22 @@ export default function Slide12_DataSovereignty() {
                 <p className="text-2xl text-sage-600 font-light">제품, 고객, 시장 등 다층적 데이터를 체계적으로 관리하고 이를 전략적으로 연결하는 것이 핵심</p>
             </motion.div>
 
-            {/* Process Flow - Centered with equal margins */}
-            <div className="flex-1 flex items-center justify-center relative">
-                <div className="flex items-center" style={{ gap: '80px' }}>
+            {/* Process Flow - Centered with margins > gap */}
+            <div className="flex-1 flex items-center justify-center relative px-[100px]">
+                <div className="flex items-center justify-between w-full">
                     {steps.map((step, i) => (
-                        <div key={i} className="flex items-center" style={{ gap: '80px' }}>
+                        <div key={i} className="flex items-center">
                             <motion.div
                                 initial={{ opacity: 0, y: 50 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.2 + (i * 0.3) }}
-                                className="bg-white rounded-3xl p-8 shadow-lg border border-sage-100 w-[440px] h-[380px] flex flex-col items-center text-center justify-center relative z-10"
+                                className="bg-white rounded-3xl p-8 shadow-lg border border-sage-100 w-[480px] h-[340px] flex flex-col items-center text-center justify-center relative z-10"
                             >
-                                <div className="w-24 h-24 bg-sage-50 rounded-2xl flex items-center justify-center mb-8 text-sage-600 shadow-inner">
-                                    <step.icon size={48} />
+                                <div className="w-20 h-20 bg-sage-50 rounded-2xl flex items-center justify-center mb-6 text-sage-600 shadow-inner">
+                                    <step.icon size={40} />
                                 </div>
-                                <h3 className="text-2xl font-bold text-sage-900 mb-6">{step.title}</h3>
-                                <p className="text-xl text-sage-600 leading-relaxed whitespace-pre-line">{step.text}</p>
+                                <h3 className="text-2xl font-bold text-sage-900 mb-4">{step.title}</h3>
+                                <p className="text-lg text-sage-600 leading-relaxed whitespace-pre-line">{step.text}</p>
                             </motion.div>
 
                             {i < steps.length - 1 && (
@@ -41,9 +41,9 @@ export default function Slide12_DataSovereignty() {
                                     initial={{ opacity: 0, scale: 0 }}
                                     animate={{ opacity: 1, scale: 1 }}
                                     transition={{ delay: 0.4 + (i * 0.3) }}
-                                    className="text-sage-400 flex-shrink-0"
+                                    className="text-sage-400 mx-8 flex-shrink-0"
                                 >
-                                    <ArrowRight size={40} />
+                                    <ArrowRight size={36} />
                                 </motion.div>
                             )}
                         </div>
@@ -51,9 +51,9 @@ export default function Slide12_DataSovereignty() {
                 </div>
             </div>
 
-            {/* Background Flow Line */}
+            {/* Background Flow Line - Extended to full width */}
             <svg className="absolute top-1/2 left-0 w-full h-20 -translate-y-1/2 -z-0 pointer-events-none">
-                <path d="M 0 40 Q 400 0 800 40 T 1600 40" fill="none" stroke="#E8F0EA" strokeWidth="80" />
+                <path d="M 0 40 Q 480 0 960 40 T 1920 40" fill="none" stroke="#E8F0EA" strokeWidth="80" />
             </svg>
         </div>
     );

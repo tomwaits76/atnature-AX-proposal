@@ -76,9 +76,9 @@ export default function Slide4_NativeDev() {
 
                     {/* Connecting Lines (SVG) */}
                     <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 0 }}>
-                        {/* Center to Web Store (top-left) */}
+                        {/* Center to Web Store (from box bottom-center) */}
                         <motion.path
-                            d="M 300 224 L 210 50"
+                            d="M 280 224 L 210 80"
                             stroke="#CFDFD4"
                             strokeWidth="2"
                             strokeDasharray="6 4"

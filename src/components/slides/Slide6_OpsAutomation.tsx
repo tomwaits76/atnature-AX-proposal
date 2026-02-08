@@ -101,7 +101,7 @@ export default function Slide6_OpsAutomation() {
                         {/* AI Task Automation - Sine Wave Bars */}
                         <div className="bg-sage-700/50 rounded-xl p-6 col-span-2 relative overflow-hidden">
                             <div className="flex justify-between text-sage-300 mb-4 z-10 relative"><Activity size={20} /> <span>AI Task Automation</span></div>
-                            <div className="flex justify-between items-end h-32 gap-1 relative z-10 px-2 mt-16">
+                            <div className="flex justify-between items-end h-32 gap-1 relative z-10 px-2 mt-20">
                                 {Array.from({ length: 20 }).map((_, i) => (
                                     <motion.div
                                         key={i}
