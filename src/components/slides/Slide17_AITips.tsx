@@ -6,17 +6,17 @@ export default function Slide17_AITips() {
     const tips = [
         {
             title: "사고 모드",
-            description: "Gemini의 작동 모드를 '사고 모드'로 설정하면, 보다 깊은 수준의 답변을 출력합니다.",
+            description: <>Gemini의 작동 모드를 &apos;사고 모드&apos;로 설정하면,<br />보다 깊은 수준의 답변을 출력합니다.</>,
             image: "/images/atnature_Slide_17_thinking mode.png"
         },
         {
             title: "딥 리서치",
-            description: "Gemini 도구 'Deep Research'로 실시간 검색 기반 심층 연구 보고서를 받을 수 있습니다.",
+            description: <>Gemini 도구 &apos;Deep Research&apos;로 실시간 검색<br />기반 심층 연구 보고서를 받을 수 있습니다.</>,
             image: "/images/atnature_Slide_17_deep research.png"
         },
         {
             title: "이미지",
-            description: "Gemini 도구 '이미지 생성하기'로 인포그래픽, 그래프, 샘플 이미지 등을 만들 수 있습니다.",
+            description: <>Gemini 도구 &apos;이미지 생성하기&apos;로 인포그래픽,<br />그래프, 샘플 이미지 등을 만들 수 있습니다.</>,
             image: "/images/atnature_Slide_17_Image gen.png"
         }
     ];
@@ -35,7 +35,7 @@ export default function Slide17_AITips() {
                 </div>
 
                 {/* Tips Cards */}
-                <div className="flex justify-center gap-[152px] mt-24">
+                <div className="flex justify-center gap-[144px] mt-24">
                     {tips.map((tip, i) => (
                         <motion.div
                             key={i}

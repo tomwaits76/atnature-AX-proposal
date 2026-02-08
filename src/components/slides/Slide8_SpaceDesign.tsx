@@ -11,40 +11,36 @@ export default function Slide8_SpaceDesign() {
 
     return (
         <div className="w-[1920px] h-[1080px] bg-white p-20 flex relative overflow-hidden">
-            {/* Background - 고품질 비정형 디자인 (그라데이션+도트+추상 형태) */}
+            {/* Background - Matrix 스타일 수직 라인 패턴 */}
             <svg className="absolute inset-0 w-full h-full pointer-events-none" preserveAspectRatio="none">
                 <defs>
-                    {/* 대각선 그라데이션 */}
-                    <linearGradient id="diagonalGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#4A614F" stopOpacity="0.08" />
-                        <stop offset="50%" stopColor="#4A614F" stopOpacity="0.02" />
-                        <stop offset="100%" stopColor="#4A614F" stopOpacity="0.06" />
+                    {/* 수직 그라데이션 */}
+                    <linearGradient id="verticalFade" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stopColor="#4A614F" stopOpacity="0.15" />
+                        <stop offset="50%" stopColor="#4A614F" stopOpacity="0.08" />
+                        <stop offset="100%" stopColor="#4A614F" stopOpacity="0.02" />
                     </linearGradient>
-                    {/* 방사형 그라데이션 */}
-                    <radialGradient id="radialGlow" cx="80%" cy="20%" r="40%">
-                        <stop offset="0%" stopColor="#5e8c61" stopOpacity="0.1" />
-                        <stop offset="100%" stopColor="#5e8c61" stopOpacity="0" />
-                    </radialGradient>
                 </defs>
-                {/* 배경 그라데이션 면 */}
-                <rect width="100%" height="100%" fill="url(#diagonalGradient)" />
-                <rect width="100%" height="100%" fill="url(#radialGlow)" />
-                {/* 불규칙 도트 패턴 */}
-                <circle cx="120" cy="180" r="5" fill="#4A614F" opacity="0.15" />
-                <circle cx="280" cy="120" r="3" fill="#4A614F" opacity="0.12" />
-                <circle cx="450" cy="280" r="4" fill="#4A614F" opacity="0.1" />
-                <circle cx="180" cy="450" r="6" fill="#4A614F" opacity="0.08" />
-                <circle cx="1650" cy="150" r="4" fill="#4A614F" opacity="0.15" />
-                <circle cx="1780" cy="320" r="5" fill="#4A614F" opacity="0.12" />
-                <circle cx="1550" cy="550" r="3" fill="#4A614F" opacity="0.1" />
-                <circle cx="1700" cy="750" r="4" fill="#4A614F" opacity="0.08" />
-                {/* 추상적 겱치는 사각형 */}
-                <rect x="80" y="650" width="120" height="80" rx="8" fill="none" stroke="#4A614F" strokeWidth="0.8" opacity="0.12" transform="rotate(-8 140 690)" />
-                <rect x="1650" y="800" width="150" height="100" rx="10" fill="none" stroke="#4A614F" strokeWidth="0.8" opacity="0.1" transform="rotate(5 1725 850)" />
-                {/* 비정형 곡선 */}
-                <path d="M0,300 Q200,250 400,320 T800,280" stroke="#4A614F" strokeWidth="1" fill="none" opacity="0.08" />
-                <path d="M1200,200 Q1400,150 1600,220 T1920,180" stroke="#4A614F" strokeWidth="1" fill="none" opacity="0.08" />
-                <path d="M100,800 Q300,750 500,820" stroke="#4A614F" strokeWidth="1.2" fill="none" opacity="0.06" />
+                {/* 수직 라인들 - 다양한 길이와 opacity */}
+                {[80, 160, 240, 320, 400, 480, 560, 640, 720, 800, 880, 960, 1040, 1120, 1200, 1280, 1360, 1440, 1520, 1600, 1680, 1760, 1840].map((x, i) => (
+                    <line key={i} x1={x} y1="0" x2={x} y2={200 + (i % 5) * 150} stroke="url(#verticalFade)" strokeWidth={0.5 + (i % 3) * 0.3} />
+                ))}
+                {/* 추가 비정형 수직 라인 */}
+                <line x1="120" y1="100" x2="120" y2="600" stroke="#4A614F" strokeWidth="0.8" opacity="0.1" />
+                <line x1="350" y1="50" x2="350" y2="450" stroke="#4A614F" strokeWidth="0.5" opacity="0.12" />
+                <line x1="580" y1="200" x2="580" y2="700" stroke="#4A614F" strokeWidth="0.6" opacity="0.08" />
+                <line x1="1100" y1="0" x2="1100" y2="550" stroke="#4A614F" strokeWidth="0.7" opacity="0.1" />
+                <line x1="1550" y1="150" x2="1550" y2="650" stroke="#4A614F" strokeWidth="0.5" opacity="0.12" />
+                <line x1="1750" y1="80" x2="1750" y2="480" stroke="#4A614F" strokeWidth="0.8" opacity="0.08" />
+                {/* 작은 사각형 요소들 - 코드 느낌 */}
+                <rect x="100" y="200" width="8" height="4" fill="#4A614F" opacity="0.1" />
+                <rect x="100" y="220" width="12" height="4" fill="#4A614F" opacity="0.08" />
+                <rect x="350" y="150" width="6" height="4" fill="#4A614F" opacity="0.12" />
+                <rect x="350" y="170" width="10" height="4" fill="#4A614F" opacity="0.1" />
+                <rect x="1550" y="250" width="8" height="4" fill="#4A614F" opacity="0.1" />
+                <rect x="1550" y="270" width="14" height="4" fill="#4A614F" opacity="0.08" />
+                <rect x="1750" y="180" width="6" height="4" fill="#4A614F" opacity="0.12" />
+                <rect x="1750" y="200" width="10" height="4" fill="#4A614F" opacity="0.08" />
             </svg>
 
             {/* Left Content - Grid Pattern Background */}
@@ -138,16 +134,16 @@ export default function Slide8_SpaceDesign() {
                             {tag.label} <span className="opacity-70">[{tag.conf}]</span>
                             {/* Connecting line to object approx */}
                             <div className="absolute -bottom-4 left-1/2 w-px h-4 bg-green-500/50" />
+                            {/* Ambient Light 사각형 - e7db3fe 위치 복원 (태그 내부 child) */}
+                            {tag.label === "Ambient Light" && (
+                                <motion.div
+                                    className="absolute -bottom-14 left-1/2 -translate-x-1/2 w-12 h-12 border-2 border-sage-400 bg-sage-600/30"
+                                    animate={{ opacity: [0.3, 1, 0.3] }}
+                                    transition={{ duration: 1.5, repeat: Infinity }}
+                                />
+                            )}
                         </motion.div>
                     ))}
-
-                    {/* Ambient Light 사각형 - 태그 하단 수직선이 박스 왼쪽 안으로 걸치는 위치 */}
-                    <motion.div
-                        className="absolute w-10 h-10 border-2 border-sage-300/60 bg-sage-500/15"
-                        style={{ top: 'calc(20% + 12px)', left: 'calc(50% + 30px)', transform: 'translateX(-50%)' }}
-                        animate={{ opacity: [0.2, 0.7, 0.2] }}
-                        transition={{ duration: 2, repeat: Infinity }}
-                    />
 
                     {/* UI Overlay */}
                     <div className="absolute top-4 left-4 bg-black/60 text-white px-3 py-1 rounded text-[10px] font-mono border border-white/10">

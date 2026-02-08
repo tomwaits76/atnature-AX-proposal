@@ -62,7 +62,7 @@ export default function Slide13_MultiAgent() {
                                 strokeDasharray="15 15"
                                 initial={{ pathLength: 0, opacity: 0 }}
                                 animate={{ pathLength: 1, opacity: 1 }}
-                                transition={{ delay: 0.8 + (i * 0.1), duration: 0.5 }}
+                                transition={{ delay: [0.8, 1.0, 1.2, 1.3, 1.4, 1.5][i], duration: 0.5 }}
                             />
                         ))}
                     </svg>
@@ -119,7 +119,7 @@ export default function Slide13_MultiAgent() {
                         );
                     })}
 
-                    {/* Floating Knowledge Nodes - 연결선 시작 시점(0.8)부터 순차 등장 */}
+                    {/* Floating Knowledge Nodes - Designer 연결선(0.8s)과 함께 시작, 순차 등장 */}
                     {[
                         { x: -250, y: -200, delay: 0.8 },
                         { x: 150, y: -250, delay: 0.9 }, // 왼쪽으로 이동 (250→150)
@@ -129,10 +129,15 @@ export default function Slide13_MultiAgent() {
                     ].map((node, i) => (
                         <motion.div
                             key={i}
-                            className="absolute w-3 h-3 bg-sage-400 rounded-full opacity-60"
+                            className="absolute w-3 h-3 bg-sage-400 rounded-full"
                             style={{ x: node.x, y: node.y }}
-                            animate={{ y: [node.y, node.y - 10, node.y] }}
-                            transition={{ duration: 2, repeat: Infinity, delay: node.delay, ease: "easeInOut" }}
+                            initial={{ opacity: 0, scale: 0 }}
+                            animate={{ opacity: 0.6, scale: 1, y: [node.y, node.y - 10, node.y] }}
+                            transition={{
+                                opacity: { delay: node.delay, duration: 0.3 },
+                                scale: { delay: node.delay, duration: 0.3 },
+                                y: { duration: 2, repeat: Infinity, delay: node.delay, ease: "easeInOut" }
+                            }}
                         />
                     ))}
                 </div>
