@@ -6,7 +6,7 @@ export default function Slide17_AITips() {
     const tips = [
         {
             title: "사고 모드",
-            description: <>Gemini의 작동 모드를 &apos;사고 모드&apos;로 설정하면,<br />보다 깊은 수준의 답변을 출력합니다.</>,
+            description: <>Gemini의 작동 모드를 &apos;사고 모드&apos;로 설정하면,<br />보다 깊은 수준의 내용으로 답변합니다.</>,
             image: "/images/atnature_Slide_17_thinking mode.png"
         },
         {
@@ -24,7 +24,7 @@ export default function Slide17_AITips() {
     return (
         <div className="w-[1920px] h-[1080px] bg-sage-50 flex flex-col items-center justify-center p-20 relative overflow-hidden">
             <motion.div
-                className="z-10 w-full max-w-7xl"
+                className="z-10 w-full max-w-[1600px]"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
@@ -35,7 +35,7 @@ export default function Slide17_AITips() {
                 </div>
 
                 {/* Tips Cards */}
-                <div className="flex justify-center gap-[128px] mt-24">
+                <div className="flex justify-center gap-[120px] mt-24">
                     {tips.map((tip, i) => (
                         <motion.div
                             key={i}

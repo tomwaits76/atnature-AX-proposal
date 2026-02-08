@@ -4,7 +4,7 @@ import { Check } from "lucide-react";
 
 export default function Slide15_Conclusion() {
     const points = [
-        { title: "Constitution Improvement", text: "사업 전반에 걸친 AI 기술 도입으로 내부 역량을 강화하는 한편 고정 지출을 절감, 체질을 개선하여 적극적인 시장 개척과 수익 고도화를 위한 건강한 경영 상태를 준비합니다." },
+        { title: "Constitution Improvement", text: "사업 전반에 걸친 AI 기술 도입으로 내부 역량을 강화하는 한편 고정 지출을 절감, 적극적인 국내외 시장 개척과 수익 고도화에 대비한 건강한 체질로 경영 상태를 준비합니다." },
         { title: "Global Wellness Tech", text: "시장, 트렌드, 고객 데이터 기반의 워크플로우와 의사 결정 구조로 사업 전략을 고도화하여, 빠르게 변화하는 글로벌 시장에서 웰니스 테크 기업으로서의 가치 창출을 모색합니다." },
         { title: "Autonomous Enterprise", text: "경영진의 전략적 의사 결정을 통합 지휘 환경 아래 각각의 AI 에이전트들이 즉각적이고 일관되게 실행하는, 기술 격변의 시대에 적합한 딥테크 자율형 운영 기업을 완성합니다." }
     ];
