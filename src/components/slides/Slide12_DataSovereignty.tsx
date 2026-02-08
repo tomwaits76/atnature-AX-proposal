@@ -15,7 +15,7 @@ export default function Slide12_DataSovereignty() {
             <motion.div className="z-10 mb-6 text-center" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
                 <div className="inline-block px-4 py-2 bg-sage-200 text-sage-800 rounded-full text-sm font-semibold mb-6">기술 혁신</div>
                 <h2 className="text-5xl font-bold text-sage-900 mb-6">데이터 주권과 신경망 설계</h2>
-                <p className="text-2xl text-sage-600 font-light">제품, 고객, 시장 등 다층적 데이터를 체계적으로 관리하고 이를 전략적으로 연결하는 것이 핵심</p>
+                <p className="text-2xl text-sage-600 font-light">제품, 고객, 시장 등 다층적 데이터를 체계적으로 관리하고<br />이를 전략적으로 연결하는 것이 핵심</p>
             </motion.div>
 
             {/* Process Flow - Centered with margins > gap */}

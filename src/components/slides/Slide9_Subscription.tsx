@@ -88,7 +88,7 @@ export default function Slide9_Subscription() {
 
                     {/* Active Pulse Animations - 2 pulses with delays 0s, 2s */}
                     <div className="absolute inset-0 rounded-full border border-sage-300 animate-[ping_3s_linear_infinite] opacity-30" />
-                    <div className="absolute inset-0 rounded-full border border-sage-300 animate-[ping_3s_linear_infinite] opacity-30" style={{ animationDelay: '2.5s' }} />
+                    <div className="absolute inset-0 rounded-full border border-sage-300 animate-[ping_3s_linear_infinite] opacity-30" style={{ animationDelay: '1.5s' }} />
                 </div>
             </div>
         </div>

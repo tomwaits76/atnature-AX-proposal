@@ -17,7 +17,7 @@ export default function Slide16_Appendix() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
             >
-                <div className="flex items-center gap-4 mb-12 border-b border-sage-200 pb-6">
+                <div className="flex items-center gap-4 mb-12 border-b border-sage-200 pb-6 -mt-16">
                     <h2 className="text-4xl font-bold text-sage-900">참고 자료</h2>
                     <span className="text-sage-500 text-xl font-light">Appendix</span>
                 </div>

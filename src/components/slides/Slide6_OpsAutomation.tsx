@@ -111,8 +111,8 @@ export default function Slide6_OpsAutomation() {
                                         }}
                                         transition={{
                                             repeat: Infinity,
-                                            duration: 1.5,
-                                            delay: i * 0.05,
+                                            duration: 2.5,
+                                            delay: i * 0.08,
                                             ease: "easeInOut"
                                         }}
                                     />
