@@ -59,30 +59,10 @@ export default function Slide13_MultiAgent() {
                                 y2={line.y2}
                                 stroke="#5e8c61"
                                 strokeWidth="2"
-                                strokeDasharray="10 10"
+                                strokeDasharray="15 15"
                                 initial={{ pathLength: 0, opacity: 0 }}
                                 animate={{ pathLength: 1, opacity: 1 }}
                                 transition={{ delay: 0.8 + (i * 0.1), duration: 0.5 }}
-                            />
-                        ))}
-                        {/* 연결선 끝 점 - 연결선 완료 후 등장 */}
-                        {[
-                            { cx: 330, cy: 180 },
-                            { cx: 360, cy: 220 }, // Developer 점 왼쪽 이동
-                            { cx: 460, cy: 430 },
-                            { cx: 330, cy: 480 },
-                            { cx: 200, cy: 430 },
-                            { cx: 200, cy: 220 },
-                        ].map((dot, i) => (
-                            <motion.circle
-                                key={`dot-${i}`}
-                                cx={dot.cx}
-                                cy={dot.cy}
-                                r="4"
-                                fill="#5e8c61"
-                                initial={{ opacity: 0, scale: 0 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                transition={{ delay: 1.8 + (i * 0.1), duration: 0.3 }}
                             />
                         ))}
                     </svg>
@@ -139,12 +119,12 @@ export default function Slide13_MultiAgent() {
                         );
                     })}
 
-                    {/* Floating Knowledge Nodes - Manager 왼쪽 상단 점 조정됨 */}
+                    {/* Floating Knowledge Nodes - 연결선과 동시 등장 (delay: 0.8) */}
                     {[
-                        { x: -250, y: -200, delay: 0 },
-                        { x: 250, y: -250, delay: 1 },
-                        { x: 280, y: 0, delay: 1.5 },
-                        { x: -280, y: 120, delay: 0.5 },
+                        { x: -250, y: -200, delay: 0.8 },
+                        { x: 150, y: -250, delay: 0.8 }, // 왼쪽으로 이동 (250→150)
+                        { x: 280, y: 0, delay: 0.8 },
+                        { x: -280, y: 120, delay: 0.8 },
                         { x: 200, y: 200, delay: 0.8 },
                     ].map((node, i) => (
                         <motion.div

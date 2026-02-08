@@ -11,17 +11,20 @@ export default function Slide8_SpaceDesign() {
 
     return (
         <div className="w-[1920px] h-[1080px] bg-white p-20 flex relative overflow-hidden">
-            {/* Organic Background - Scattered dots and arcs */}
-            <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-[0.15]" preserveAspectRatio="none">
-                <circle cx="100" cy="200" r="4" fill="#4A614F" />
-                <circle cx="300" cy="150" r="3" fill="#4A614F" />
-                <circle cx="500" cy="300" r="5" fill="#4A614F" />
-                <circle cx="200" cy="500" r="3" fill="#4A614F" />
-                <circle cx="1600" cy="200" r="4" fill="#4A614F" />
-                <circle cx="1750" cy="400" r="5" fill="#4A614F" />
-                <circle cx="1500" cy="800" r="3" fill="#4A614F" />
-                <path d="M1700,100 Q1800,200 1850,50" stroke="#4A614F" strokeWidth="1" fill="none" />
-                <path d="M50,800 Q150,750 100,900" stroke="#4A614F" strokeWidth="1" fill="none" />
+            {/* Background - 직선 비정형 배치 (p4 참조) */}
+            <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-[0.12]" preserveAspectRatio="none">
+                {/* 비정형 직선 배치 */}
+                <line x1="100" y1="150" x2="400" y2="200" stroke="#4A614F" strokeWidth="1.5" />
+                <line x1="1500" y1="100" x2="1800" y2="180" stroke="#4A614F" strokeWidth="1.5" />
+                <line x1="200" y1="400" x2="350" y2="380" stroke="#4A614F" strokeWidth="1" />
+                <line x1="1600" y1="350" x2="1850" y2="400" stroke="#4A614F" strokeWidth="1" />
+                <line x1="150" y1="700" x2="450" y2="750" stroke="#4A614F" strokeWidth="1.5" />
+                <line x1="1400" y1="650" x2="1700" y2="700" stroke="#4A614F" strokeWidth="1" />
+                <line x1="300" y1="900" x2="500" y2="880" stroke="#4A614F" strokeWidth="1" />
+                <line x1="1550" y1="850" x2="1800" y2="900" stroke="#4A614F" strokeWidth="1.5" />
+                {/* 장식용 원 */}
+                <circle cx="150" cy="150" r="60" fill="none" stroke="#4A614F" strokeWidth="0.5" />
+                <circle cx="1780" cy="920" r="80" fill="none" stroke="#4A614F" strokeWidth="0.5" />
             </svg>
 
             {/* Left Content - Grid Pattern Background */}
@@ -118,12 +121,12 @@ export default function Slide8_SpaceDesign() {
                         </motion.div>
                     ))}
 
-                    {/* Ambient Light 사각형 - 슬라이드 시작 시 즉시 생성, 태그 하단 선이 박스 안으로 들어가도록 배치 */}
+                    {/* Ambient Light 사각형 - 태그 우측으로 이동, 원근감 연출 (연한 색상, 작은 크기, 느린 점멸) */}
                     <motion.div
-                        className="absolute w-12 h-12 border-2 border-sage-400 bg-sage-600/30"
-                        style={{ top: 'calc(20% + 32px)', left: '50%', transform: 'translateX(-50%)' }}
-                        animate={{ opacity: [0.3, 1, 0.3] }}
-                        transition={{ duration: 1.5, repeat: Infinity }}
+                        className="absolute w-10 h-10 border-2 border-sage-300/60 bg-sage-500/15"
+                        style={{ top: 'calc(20% + 28px)', left: 'calc(50% + 20px)', transform: 'translateX(-50%)' }}
+                        animate={{ opacity: [0.2, 0.7, 0.2] }}
+                        transition={{ duration: 2, repeat: Infinity }}
                     />
 
                     {/* UI Overlay */}
