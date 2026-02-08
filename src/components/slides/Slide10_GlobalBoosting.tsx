@@ -19,15 +19,9 @@ export default function Slide10_GlobalBoosting() {
     return (
         <div className="w-[1920px] h-[1080px] bg-sage-900 p-20 flex flex-col relative overflow-hidden text-white">
             {/* Background World Map - Dot Pattern (Asia-Centric) */}
-            <div className="absolute inset-0 opacity-50 pointer-events-none">
+            <div className="absolute inset-0 opacity-30 pointer-events-none">
                 <svg width="100%" height="100%" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
-                    {/* Dot pattern base */}
-                    <defs>
-                        <pattern id="dot-pattern-map" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-                            <circle cx="2" cy="2" r="1.5" fill="#5e8c61" opacity="0.5" />
-                        </pattern>
-                    </defs>
-                    <rect width="100%" height="100%" fill="url(#dot-pattern-map)" />
+                    {/* World Map - Dot pattern continents only (no background dots) */}
 
                     {/* Stylized continent shapes with dots - Asia-centric world map */}
                     {/* Asia (Korea, Japan, Southeast Asia) - Center-Right */}

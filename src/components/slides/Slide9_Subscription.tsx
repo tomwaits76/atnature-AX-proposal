@@ -75,12 +75,12 @@ export default function Slide9_Subscription() {
 
                                 {/* Connecting Arrow */}
                                 <motion.div
-                                    className="absolute top-1/2 -right-8 w-8 h-8 text-sage-400"
+                                    className="absolute top-1/2 -right-10 w-10 h-10 text-sage-500 text-2xl font-bold flex items-center justify-center"
                                     style={{ transform: `rotate(${deg + 45}deg)` }}
                                     animate={{ opacity: [0.5, 1, 0.5] }}
                                     transition={{ duration: 1.5, repeat: Infinity }}
                                 >
-                                    ➔
+                                    →
                                 </motion.div>
                             </motion.div>
                         );

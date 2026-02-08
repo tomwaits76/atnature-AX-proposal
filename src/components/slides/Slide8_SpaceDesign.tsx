@@ -11,18 +11,10 @@ export default function Slide8_SpaceDesign() {
 
     return (
         <div className="w-[1920px] h-[1080px] bg-white p-20 flex relative overflow-hidden">
-            {/* Organic Background - Scattered dots and arcs */}
-            <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-[0.12]" preserveAspectRatio="none">
-                <circle cx="100" cy="200" r="4" fill="#4A614F" />
-                <circle cx="300" cy="150" r="3" fill="#4A614F" />
-                <circle cx="500" cy="300" r="5" fill="#4A614F" />
-                <circle cx="200" cy="500" r="3" fill="#4A614F" />
-                <circle cx="1600" cy="200" r="4" fill="#4A614F" />
-                <circle cx="1750" cy="400" r="5" fill="#4A614F" />
-                <circle cx="1500" cy="800" r="3" fill="#4A614F" />
-                <path d="M1700,100 Q1800,200 1850,50" stroke="#4A614F" strokeWidth="1" fill="none" />
-                <path d="M50,800 Q150,750 100,900" stroke="#4A614F" strokeWidth="1" fill="none" />
-            </svg>
+            {/* Subtle Background Gradient */}
+            <div className="absolute inset-0 z-0 opacity-20"
+                style={{ background: 'radial-gradient(ellipse at 70% 50%, rgba(74, 97, 79, 0.3) 0%, transparent 60%)' }}
+            />
 
             {/* Left Content - Grid Pattern Background */}
             <div className="w-1/2 z-10 flex flex-col justify-center pr-12">
@@ -71,16 +63,16 @@ export default function Slide8_SpaceDesign() {
                             }}
                         />
 
-                        {/* Sofa - 가로 형태로 변경 (상단 기준, 하단 잘림) */}
+                        {/* Sofa - 원래 형태 복구 + 높이만 축소 (하단 잘림 효과) */}
                         <motion.div
-                            className="w-2/3 h-1/3 border-2 border-sage-400 bg-sage-800/50 rounded-lg mx-4 mb-16 relative backdrop-blur-sm"
+                            className="w-1/2 h-1/3 border-2 border-sage-400 bg-sage-800/50 rounded-t-lg mx-4 relative backdrop-blur-sm"
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1, borderColor: ["#5e8c61", "#a3c9a8", "#5e8c61"] }}
                             transition={{ duration: 2, repeat: Infinity }}
                         >
-                            {/* Wireframe internal lines - 소파 쿠션 표현 */}
-                            <div className="absolute top-0 left-1/3 bottom-0 w-px bg-sage-500/50" />
-                            <div className="absolute top-0 right-1/3 bottom-0 w-px bg-sage-500/50" />
+                            {/* Wireframe internal lines */}
+                            <div className="absolute top-0 left-0 right-0 h-1/4 border-b border-sage-500/50" />
+                            <div className="absolute bottom-0 left-1/2 top-0 w-px bg-sage-500/50" />
                         </motion.div>
                         {/* Table */}
                         <motion.div
@@ -119,7 +111,7 @@ export default function Slide8_SpaceDesign() {
                             {/* 앰비언트 라이트 포인트에 작은 사각형 추가 */}
                             {tag.isAmbient && (
                                 <motion.div
-                                    className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-6 h-6 border-2 border-sage-400 bg-sage-600/30"
+                                    className="absolute -bottom-14 left-1/2 -translate-x-1/2 w-12 h-12 border-2 border-sage-400 bg-sage-600/30"
                                     animate={{ opacity: [0.3, 1, 0.3], borderColor: ["#5e8c61", "#a3c9a8", "#5e8c61"] }}
                                     transition={{ duration: 2.5, repeat: Infinity }}
                                 />

@@ -12,7 +12,7 @@ export default function Slide4_NativeDev() {
     return (
         <div className="w-[1920px] h-[1080px] bg-sage-50 p-20 flex relative overflow-hidden">
             {/* Organic Background Pattern - Subtle flowing curves */}
-            <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-[0.15]" preserveAspectRatio="none">
+            <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-[0.12]" preserveAspectRatio="none">
                 <path d="M0,200 Q300,100 600,250 T1200,180 T1920,300" stroke="#4A614F" strokeWidth="1.5" fill="none" />
                 <path d="M0,400 Q400,300 800,450 T1400,350 T1920,500" stroke="#4A614F" strokeWidth="1" fill="none" />
                 <path d="M0,700 Q350,600 700,750 T1100,650 T1920,800" stroke="#4A614F" strokeWidth="1.5" fill="none" />
