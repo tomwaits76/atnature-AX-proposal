@@ -12,7 +12,7 @@ export default function Slide8_SpaceDesign() {
     return (
         <div className="w-[1920px] h-[1080px] bg-white p-20 flex relative overflow-hidden">
             {/* Organic Background - Scattered dots and arcs */}
-            <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-[0.06]" preserveAspectRatio="none">
+            <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-[0.15]" preserveAspectRatio="none">
                 <circle cx="100" cy="200" r="4" fill="#4A614F" />
                 <circle cx="300" cy="150" r="3" fill="#4A614F" />
                 <circle cx="500" cy="300" r="5" fill="#4A614F" />
@@ -115,16 +115,16 @@ export default function Slide8_SpaceDesign() {
                             {tag.label} <span className="opacity-70">[{tag.conf}]</span>
                             {/* Connecting line to object approx */}
                             <div className="absolute -bottom-4 left-1/2 w-px h-4 bg-green-500/50" />
-                            {/* Ambient Light 사각형 - 소파와 다른 주기(1.5초) 점멸 */}
-                            {tag.label === "Ambient Light" && (
-                                <motion.div
-                                    className="absolute -bottom-20 left-1/2 -translate-x-1/2 w-12 h-12 border-2 border-sage-400 bg-sage-600/30"
-                                    animate={{ opacity: [0.3, 1, 0.3] }}
-                                    transition={{ duration: 1.5, repeat: Infinity }}
-                                />
-                            )}
                         </motion.div>
                     ))}
+
+                    {/* Ambient Light 사각형 - 슬라이드 시작 시 즉시 생성, 태그 하단 선이 박스 안으로 들어가도록 배치 */}
+                    <motion.div
+                        className="absolute w-12 h-12 border-2 border-sage-400 bg-sage-600/30"
+                        style={{ top: 'calc(20% + 32px)', left: '50%', transform: 'translateX(-50%)' }}
+                        animate={{ opacity: [0.3, 1, 0.3] }}
+                        transition={{ duration: 1.5, repeat: Infinity }}
+                    />
 
                     {/* UI Overlay */}
                     <div className="absolute top-4 left-4 bg-black/60 text-white px-3 py-1 rounded text-[10px] font-mono border border-white/10">

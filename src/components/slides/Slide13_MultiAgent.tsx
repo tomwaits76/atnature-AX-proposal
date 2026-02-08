@@ -45,7 +45,7 @@ export default function Slide13_MultiAgent() {
                         {/* 중앙 육각형 꼭지점 (중심: 330, 330, 반경: 80) */}
                         {[
                             { x1: 330, y1: 250, x2: 330, y2: 180, label: "Designer" },
-                            { x1: 400, y1: 290, x2: 440, y2: 220, label: "Developer" }, // 왼쪽 이동 (460→440)
+                            { x1: 400, y1: 290, x2: 360, y2: 220, label: "Developer" }, // 육각형 중앙 기준선 왼쪽으로 이동
                             { x1: 400, y1: 370, x2: 460, y2: 430, label: "Marketer" },
                             { x1: 330, y1: 410, x2: 330, y2: 480, label: "Analyst" },
                             { x1: 260, y1: 370, x2: 200, y2: 430, label: "Operator" },
@@ -59,16 +59,16 @@ export default function Slide13_MultiAgent() {
                                 y2={line.y2}
                                 stroke="#5e8c61"
                                 strokeWidth="2"
-                                strokeDasharray="5 5"
+                                strokeDasharray="10 10"
                                 initial={{ pathLength: 0, opacity: 0 }}
                                 animate={{ pathLength: 1, opacity: 1 }}
                                 transition={{ delay: 0.8 + (i * 0.1), duration: 0.5 }}
                             />
                         ))}
-                        {/* 연결선 끝 점 - 연결선과 동시 등장 */}
+                        {/* 연결선 끝 점 - 연결선 완료 후 등장 */}
                         {[
                             { cx: 330, cy: 180 },
-                            { cx: 440, cy: 220 }, // Developer 점 왼쪽 이동
+                            { cx: 360, cy: 220 }, // Developer 점 왼쪽 이동
                             { cx: 460, cy: 430 },
                             { cx: 330, cy: 480 },
                             { cx: 200, cy: 430 },
@@ -82,7 +82,7 @@ export default function Slide13_MultiAgent() {
                                 fill="#5e8c61"
                                 initial={{ opacity: 0, scale: 0 }}
                                 animate={{ opacity: 1, scale: 1 }}
-                                transition={{ delay: 0.8 + (i * 0.1), duration: 0.3 }}
+                                transition={{ delay: 1.8 + (i * 0.1), duration: 0.3 }}
                             />
                         ))}
                     </svg>

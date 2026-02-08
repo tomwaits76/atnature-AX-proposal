@@ -21,7 +21,7 @@ export default function Slide10_GlobalBoosting() {
             {/* Background World Map - Dot Pattern (Asia-Centric) */}
             {/* Background World Map - Wikimedia Commons SVG */}
             <div
-                className="absolute inset-0 opacity-20 bg-no-repeat bg-cover bg-center pointer-events-none"
+                className="absolute inset-0 opacity-[0.12] bg-no-repeat bg-cover bg-center pointer-events-none"
                 style={{
                     backgroundImage: "url('/images/atnature_Slide_10_world map.svg')",
                     filter: 'invert(1)'
