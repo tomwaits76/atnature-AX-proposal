@@ -19,80 +19,14 @@ export default function Slide10_GlobalBoosting() {
     return (
         <div className="w-[1920px] h-[1080px] bg-sage-900 p-20 flex flex-col relative overflow-hidden text-white">
             {/* Background World Map - Dot Pattern (Asia-Centric) */}
-            {/* Background World Map - Dot Pattern (Asia-Centric) */}
-            <div className="absolute inset-0 opacity-40 pointer-events-none">
-                <svg width="100%" height="100%" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
-                    {/* World Map - 세계 지도 형태로 인지 가능하게 개선 */}
-
-                    {/* 아시아 대륙 (Korea, Japan, China, Southeast Asia, India) - 중앙 오른쪽 */}
-                    <g fill="#5e8c61" opacity="0.5">
-                        {/* 한국 - 반도 형태 */}
-                        {[860, 870, 880, 890].map((x, i) => [340, 360, 380, 400, 420].map((y, j) =>
-                            <circle key={`kr-${i}-${j}`} cx={x} cy={y} r="3.5" />
-                        ))}
-                        {/* 일본 - 호 형태 */}
-                        {[910, 920, 930, 940, 950].map((x, i) => [280, 300, 320, 340, 360, 380, 400, 420, 440, 460].map((y, j) =>
-                            <circle key={`jp-${i}-${j}`} cx={x + Math.sin(j * 0.5) * 10} cy={y} r="3" />
-                        ))}
-                        {/* 중국 - 넓은 사각형 + 북서쪽 확장 */}
-                        {[640, 660, 680, 700, 720, 740, 760, 780, 800, 820, 840].map((x, i) => [280, 300, 320, 340, 360, 380, 400, 420, 440, 460, 480, 500].map((y, j) =>
-                            <circle key={`cn-${i}-${j}`} cx={x} cy={y} r="2.5" />
-                        ))}
-                        {/* 동남아시아 - 남쪽 반도 형태 */}
-                        {[760, 780, 800, 820, 840, 860, 880, 900, 920, 940].map((x, i) => [520, 540, 560, 580, 600, 620, 640, 660, 680, 700].map((y, j) =>
-                            <circle key={`sea-${i}-${j}`} cx={x} cy={y} r="2.5" />
-                        ))}
-                        {/* 인도 - 삼각형 형태 */}
-                        {[540, 560, 580, 600, 620, 640, 660].map((x, i) => [420, 440, 460, 480, 500, 520, 540, 560, 580].slice(0, 7 - Math.abs(3 - i)).map((y, j) =>
-                            <circle key={`in-${i}-${j}`} cx={x} cy={y + i * 10} r="2.5" />
-                        ))}
-                        {/* 중동 - 횟보 형태 */}
-                        {[460, 480, 500, 520].map((x, i) => [360, 380, 400, 420, 440, 460].map((y, j) =>
-                            <circle key={`me-${i}-${j}`} cx={x} cy={y} r="2.5" />
-                        ))}
-                    </g>
-
-                    {/* 북미 - 왼쪽 상단 */}
-                    <g fill="#5e8c61" opacity="0.5">
-                        {/* 캐나다 - 넓은 영역 */}
-                        {[120, 150, 180, 210, 240, 270, 300, 330, 360, 390, 420, 450].map((x, i) => [200, 220, 240, 260, 280, 300, 320].map((y, j) =>
-                            <circle key={`ca-${i}-${j}`} cx={x} cy={y} r="2.5" />
-                        ))}
-                        {/* 미국 - 넓은 영역 */}
-                        {[140, 170, 200, 230, 260, 290, 320, 350, 380, 410, 440].map((x, i) => [340, 360, 380, 400, 420, 440, 460, 480, 500].map((y, j) =>
-                            <circle key={`us-${i}-${j}`} cx={x} cy={y} r="2.5" />
-                        ))}
-                    </g>
-
-                    {/* 유럽 - 중앙 상단 */}
-                    <g fill="#5e8c61" opacity="0.5">
-                        {[440, 460, 480, 500, 520, 540, 560, 580, 600, 620].map((x, i) => [200, 220, 240, 260, 280, 300, 320, 340, 360].map((y, j) =>
-                            <circle key={`eu-${i}-${j}`} cx={x} cy={y} r="2.5" />
-                        ))}
-                    </g>
-
-                    {/* 아프리카 - 중앙 하단 */}
-                    <g fill="#5e8c61" opacity="0.5">
-                        {[480, 500, 520, 540, 560, 580, 600, 620].map((x, i) => [400, 420, 440, 460, 480, 500, 520, 540, 560, 580, 600, 620, 640, 660, 680].map((y, j) =>
-                            <circle key={`af-${i}-${j}`} cx={x} cy={y} r="2.5" />
-                        ))}
-                    </g>
-
-                    {/* 남미 - 왼쪽 하단 */}
-                    <g fill="#5e8c61" opacity="0.5">
-                        {[260, 280, 300, 320, 340, 360, 380, 400].map((x, i) => [540, 560, 580, 600, 620, 640, 660, 680, 700, 720, 740, 760, 780, 800].map((y, j) =>
-                            <circle key={`sa-${i}-${j}`} cx={x} cy={y} r="2.5" />
-                        ))}
-                    </g>
-
-                    {/* 호주 - 오른쪽 하단 */}
-                    <g fill="#5e8c61" opacity="0.5">
-                        {[960, 980, 1000, 1020, 1040, 1060, 1080, 1100, 1120, 1140].map((x, i) => [580, 600, 620, 640, 660, 680, 700, 720, 740, 760].map((y, j) =>
-                            <circle key={`au-${i}-${j}`} cx={x} cy={y} r="2.5" />
-                        ))}
-                    </g>
-                </svg>
-            </div>
+            {/* Background World Map - Wikimedia Commons SVG */}
+            <div
+                className="absolute inset-0 opacity-20 bg-no-repeat bg-cover bg-center pointer-events-none"
+                style={{
+                    backgroundImage: "url('/images/atnature_Slide_10_world map.svg')",
+                    filter: 'invert(1)'
+                }}
+            />
 
             {/* Header */}
             <div className="z-10 mb-16 text-center">

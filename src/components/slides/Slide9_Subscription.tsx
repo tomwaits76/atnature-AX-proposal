@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import { RefreshCw, Sparkles, Database, Package } from "lucide-react";
+import { useState, useEffect } from "react";
 
 export default function Slide9_Subscription() {
     const cycleSteps = [
@@ -9,6 +10,13 @@ export default function Slide9_Subscription() {
         { icon: RefreshCw, label: "피드백 &\n재구독", color: "bg-sage-400" },
         { icon: Database, label: "고객 데이터", color: "bg-sage-500" },
     ];
+
+    // 두 번째 펄스: 1.5초 후 생성
+    const [showSecondPulse, setShowSecondPulse] = useState(false);
+    useEffect(() => {
+        const timer = setTimeout(() => setShowSecondPulse(true), 1500);
+        return () => clearTimeout(timer);
+    }, []);
 
     return (
         <div className="w-[1920px] h-[1080px] bg-sage-50 p-20 flex relative overflow-hidden">
@@ -40,12 +48,12 @@ export default function Slide9_Subscription() {
             {/* Right Infographic: LTV Loop */}
             <div className="w-1/2 z-10 flex items-center justify-center pl-12 relative">
                 <div className="relative w-[500px] h-[500px] flex items-center justify-center">
-                    {/* Central LTV Core */}
+                    {/* Central LTV Core - 주변 요소 등장 후 마지막으로 등장 */}
                     <motion.div
                         className="absolute z-20 w-40 h-40 bg-sage-600 rounded-full flex flex-col items-center justify-center text-white shadow-2xl"
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
-                        transition={{ type: "spring" }}
+                        transition={{ type: "spring", delay: 1.0 }}
                     >
                         <div className="text-3xl font-bold">LTV ↑</div>
                         <div className="text-sm font-light mt-1">Growth Cycle</div>
@@ -73,10 +81,10 @@ export default function Slide9_Subscription() {
                                 <step.icon size={28} className="mb-3 text-sage-800" />
                                 <span className="text-sage-900 font-semibold text-sm leading-tight whitespace-pre-line">{step.label}</span>
 
-                                {/* Connecting Arrow - 위쪽 오른편 */}
+                                {/* Connecting Arrow - 방향만 e7db3fe 복원 */}
                                 <motion.div
                                     className="absolute -top-6 right-0 w-8 h-8 text-sage-500 text-xl font-bold flex items-center justify-center"
-                                    style={{ transform: `rotate(${deg + 90}deg)` }}
+                                    style={{ transform: `rotate(${deg + 45}deg)` }}
                                     animate={{ opacity: [0.5, 1, 0.5] }}
                                     transition={{ duration: 1.5, repeat: Infinity }}
                                 >
@@ -86,14 +94,11 @@ export default function Slide9_Subscription() {
                         );
                     })}
 
-                    {/* Active Pulse Animations - 2 pulses: 0s, +1.5s 간격 */}
+                    {/* Active Pulse Animations - 첫 번째: 즉시, 두 번째: 1.5초 후 */}
                     <div className="absolute inset-0 rounded-full border border-sage-300 animate-[ping_3s_linear_infinite] opacity-30" />
-                    <motion.div
-                        className="absolute inset-0 rounded-full border border-sage-300 animate-[ping_3s_linear_infinite]"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 0.3 }}
-                        transition={{ delay: 1.5 }}
-                    />
+                    {showSecondPulse && (
+                        <div className="absolute inset-0 rounded-full border border-sage-300 animate-[ping_3s_linear_infinite] opacity-30" />
+                    )}
                 </div>
             </div>
         </div>

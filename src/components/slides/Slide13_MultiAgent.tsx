@@ -40,24 +40,51 @@ export default function Slide13_MultiAgent() {
             {/* Right Infographic: Hexagon Swarm Structure */}
             <div className="w-1/2 z-10 flex items-center justify-center pl-12">
                 <div className="relative w-[660px] h-[660px] flex items-center justify-center -mt-12" style={{ transform: 'scale(1.2)' }}>
-                    {/* Connecting Lines - vertex to vertex (center hex to surrounding hex) */}
+                    {/* Connecting Lines - 육각형 등장 후 순차 애니메이션 */}
                     <svg className="absolute inset-0 w-full h-full opacity-40 pointer-events-none z-0" viewBox="0 0 660 660">
                         {/* 중앙 육각형 꼭지점 (중심: 330, 330, 반경: 80) */}
-                        {/* 상단: (330, 250), 우상단: (400, 290), 우하단: (400, 370) */}
-                        {/* 하단: (330, 410), 좌하단: (260, 370), 좌상단: (260, 290) */}
-
-                        {/* Top: Designer 향 - 중앙 상단(330,250) → 외각 하단 */}
-                        <line x1="330" y1="250" x2="330" y2="180" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" />
-                        {/* Top Right: Developer 향 - 중앙 우상단(400,290) → Developer 중앙보다 왼쪽 */}
-                        <line x1="400" y1="290" x2="460" y2="220" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" />
-                        {/* Bottom Right: Marketer 향 - 중앙 우하단(400,370) → 외각 좌상단 */}
-                        <line x1="400" y1="370" x2="460" y2="430" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" />
-                        {/* Bottom: Analyst 향 - 중앙 하단(330,410) → 외각 상단 */}
-                        <line x1="330" y1="410" x2="330" y2="480" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" />
-                        {/* Bottom Left: Operator 향 - 중앙 좌하단(260,370) → 외각 우상단 */}
-                        <line x1="260" y1="370" x2="200" y2="430" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" />
-                        {/* Top Left: Manager 향 - 중앙 좌상단(260,290) → 외각 우하단 */}
-                        <line x1="260" y1="290" x2="200" y2="220" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" />
+                        {[
+                            { x1: 330, y1: 250, x2: 330, y2: 180, label: "Designer" },
+                            { x1: 400, y1: 290, x2: 440, y2: 220, label: "Developer" }, // 왼쪽 이동 (460→440)
+                            { x1: 400, y1: 370, x2: 460, y2: 430, label: "Marketer" },
+                            { x1: 330, y1: 410, x2: 330, y2: 480, label: "Analyst" },
+                            { x1: 260, y1: 370, x2: 200, y2: 430, label: "Operator" },
+                            { x1: 260, y1: 290, x2: 200, y2: 220, label: "Manager" },
+                        ].map((line, i) => (
+                            <motion.line
+                                key={i}
+                                x1={line.x1}
+                                y1={line.y1}
+                                x2={line.x2}
+                                y2={line.y2}
+                                stroke="#5e8c61"
+                                strokeWidth="2"
+                                strokeDasharray="5 5"
+                                initial={{ pathLength: 0, opacity: 0 }}
+                                animate={{ pathLength: 1, opacity: 1 }}
+                                transition={{ delay: 0.8 + (i * 0.1), duration: 0.5 }}
+                            />
+                        ))}
+                        {/* 연결선 끝 점 - 연결선과 동시 등장 */}
+                        {[
+                            { cx: 330, cy: 180 },
+                            { cx: 440, cy: 220 }, // Developer 점 왼쪽 이동
+                            { cx: 460, cy: 430 },
+                            { cx: 330, cy: 480 },
+                            { cx: 200, cy: 430 },
+                            { cx: 200, cy: 220 },
+                        ].map((dot, i) => (
+                            <motion.circle
+                                key={`dot-${i}`}
+                                cx={dot.cx}
+                                cy={dot.cy}
+                                r="4"
+                                fill="#5e8c61"
+                                initial={{ opacity: 0, scale: 0 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                transition={{ delay: 0.8 + (i * 0.1), duration: 0.3 }}
+                            />
+                        ))}
                     </svg>
 
                     {/* Central Core: Shared Goal */}
