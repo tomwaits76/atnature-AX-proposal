@@ -29,13 +29,13 @@ export default function Slide17_AITips() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
             >
-                <div className="flex items-center gap-4 mb-12 border-b border-sage-200 pb-6 -mt-16">
+                <div className="flex items-center gap-4 mb-12 border-b border-sage-200 pb-6 -mt-8">
                     <h2 className="text-4xl font-bold text-sage-900">앳네이처 AI 컨설턴트 활용 팁</h2>
                     <span className="text-sage-500 text-xl font-light">Tips</span>
                 </div>
 
                 {/* Tips Cards */}
-                <div className="grid grid-cols-3 gap-48 mt-24">
+                <div className="flex justify-center gap-96 mt-24">
                     {tips.map((tip, i) => (
                         <motion.div
                             key={i}

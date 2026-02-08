@@ -73,10 +73,10 @@ export default function Slide9_Subscription() {
                                 <step.icon size={28} className="mb-3 text-sage-800" />
                                 <span className="text-sage-900 font-semibold text-sm leading-tight whitespace-pre-line">{step.label}</span>
 
-                                {/* Connecting Arrow */}
+                                {/* Connecting Arrow - 위쪽 오른편 */}
                                 <motion.div
-                                    className="absolute top-1/2 -right-10 w-10 h-10 text-sage-500 text-2xl font-bold flex items-center justify-center"
-                                    style={{ transform: `rotate(${deg + 45}deg)` }}
+                                    className="absolute -top-6 right-0 w-8 h-8 text-sage-500 text-xl font-bold flex items-center justify-center"
+                                    style={{ transform: `rotate(${deg + 90}deg)` }}
                                     animate={{ opacity: [0.5, 1, 0.5] }}
                                     transition={{ duration: 1.5, repeat: Infinity }}
                                 >
@@ -86,11 +86,13 @@ export default function Slide9_Subscription() {
                         );
                     })}
 
-                    {/* Active Pulse Animations - 2 pulses: 0s, +1.5s 간격으로 3초 주기 반복 */}
+                    {/* Active Pulse Animations - 2 pulses: 0s, +1.5s 간격 */}
                     <div className="absolute inset-0 rounded-full border border-sage-300 animate-[ping_3s_linear_infinite] opacity-30" />
-                    <div
-                        className="absolute inset-0 rounded-full border border-sage-300 animate-[ping_3s_linear_infinite] opacity-30"
-                        style={{ animationDelay: '1.5s' }}
+                    <motion.div
+                        className="absolute inset-0 rounded-full border border-sage-300 animate-[ping_3s_linear_infinite]"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 0.3 }}
+                        transition={{ delay: 1.5 }}
                     />
                 </div>
             </div>

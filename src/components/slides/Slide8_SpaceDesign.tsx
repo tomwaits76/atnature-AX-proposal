@@ -11,10 +11,8 @@ export default function Slide8_SpaceDesign() {
 
     return (
         <div className="w-[1920px] h-[1080px] bg-white p-20 flex relative overflow-hidden">
-            {/* Subtle Background Gradient */}
-            <div className="absolute inset-0 z-0 opacity-20"
-                style={{ background: 'radial-gradient(ellipse at 70% 50%, rgba(74, 97, 79, 0.3) 0%, transparent 60%)' }}
-            />
+            {/* Background Accent - Slide5 방식 */}
+            <div className="absolute right-0 top-0 w-1/3 h-full bg-sage-50 z-0" />
 
             {/* Left Content - Grid Pattern Background */}
             <div className="w-1/2 z-10 flex flex-col justify-center pr-12">
@@ -53,7 +51,7 @@ export default function Slide8_SpaceDesign() {
                     transition={{ duration: 0.8, delay: 0.2 }}
                 >
                     {/* Simulated Room Image - Abstract blocks representing furniture */}
-                    <div className="absolute inset-0 bg-sage-900 flex items-end justify-center perspective-[500px]">
+                    <div className="absolute inset-0 bg-sage-900 flex items-start justify-center pt-8 perspective-[500px]">
                         {/* Floor Grid */}
                         <div className="absolute inset-0 opacity-20"
                             style={{
@@ -63,16 +61,16 @@ export default function Slide8_SpaceDesign() {
                             }}
                         />
 
-                        {/* Sofa - 원래 형태 복구 + 높이만 축소 (하단 잘림 효과) */}
+                        {/* Sofa - 가로 직사각형, 상단 고정 */}
                         <motion.div
-                            className="w-1/2 h-1/3 border-2 border-sage-400 bg-sage-800/50 rounded-t-lg mx-4 relative backdrop-blur-sm"
+                            className="w-3/5 h-24 border-2 border-sage-400 bg-sage-800/50 mx-4 relative backdrop-blur-sm"
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1, borderColor: ["#5e8c61", "#a3c9a8", "#5e8c61"] }}
                             transition={{ duration: 2, repeat: Infinity }}
                         >
-                            {/* Wireframe internal lines */}
-                            <div className="absolute top-0 left-0 right-0 h-1/4 border-b border-sage-500/50" />
-                            <div className="absolute bottom-0 left-1/2 top-0 w-px bg-sage-500/50" />
+                            {/* Wireframe internal lines - 소파 쿠션 표현 */}
+                            <div className="absolute top-0 left-1/3 bottom-0 w-px bg-sage-500/50" />
+                            <div className="absolute top-0 right-1/3 bottom-0 w-px bg-sage-500/50" />
                         </motion.div>
                         {/* Table */}
                         <motion.div

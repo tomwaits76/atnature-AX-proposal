@@ -41,19 +41,23 @@ export default function Slide13_MultiAgent() {
             <div className="w-1/2 z-10 flex items-center justify-center pl-12">
                 <div className="relative w-[660px] h-[660px] flex items-center justify-center -mt-12" style={{ transform: 'scale(1.2)' }}>
                     {/* Connecting Lines - vertex to vertex (center hex to surrounding hex) */}
-                    <svg className="absolute inset-0 w-full h-full opacity-40 pointer-events-none z-0">
-                        {/* Top: center top vertex (300, 220) → surrounding bottom vertex (300, 145) */}
-                        <line x1="300" y1="220" x2="300" y2="145" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" />
-                        {/* Top Right: center top-right vertex (370, 260) → Developer 육각형 중앙보다 왼쪽 (340, 200) */}
-                        <line x1="370" y1="260" x2="340" y2="200" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" />
-                        {/* Bottom Right: center bottom-right vertex (370, 340) → surrounding top-left vertex (405, 385) */}
-                        <line x1="370" y1="340" x2="405" y2="385" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" />
-                        {/* Bottom: center bottom vertex (300, 380) → surrounding top vertex (300, 455) */}
-                        <line x1="300" y1="380" x2="300" y2="455" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" />
-                        {/* Bottom Left: center bottom-left vertex (230, 340) → surrounding top-right vertex (195, 385) */}
-                        <line x1="230" y1="340" x2="195" y2="385" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" />
-                        {/* Top Left: center top-left vertex (230, 260) → surrounding bottom-right vertex (195, 215) */}
-                        <line x1="230" y1="260" x2="195" y2="215" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" />
+                    <svg className="absolute inset-0 w-full h-full opacity-40 pointer-events-none z-0" viewBox="0 0 660 660">
+                        {/* 중앙 육각형 꼭지점 (중심: 330, 330, 반경: 80) */}
+                        {/* 상단: (330, 250), 우상단: (400, 290), 우하단: (400, 370) */}
+                        {/* 하단: (330, 410), 좌하단: (260, 370), 좌상단: (260, 290) */}
+
+                        {/* Top: Designer 향 - 중앙 상단(330,250) → 외각 하단 */}
+                        <line x1="330" y1="250" x2="330" y2="180" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" />
+                        {/* Top Right: Developer 향 - 중앙 우상단(400,290) → Developer 중앙보다 왼쪽 */}
+                        <line x1="400" y1="290" x2="460" y2="220" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" />
+                        {/* Bottom Right: Marketer 향 - 중앙 우하단(400,370) → 외각 좌상단 */}
+                        <line x1="400" y1="370" x2="460" y2="430" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" />
+                        {/* Bottom: Analyst 향 - 중앙 하단(330,410) → 외각 상단 */}
+                        <line x1="330" y1="410" x2="330" y2="480" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" />
+                        {/* Bottom Left: Operator 향 - 중앙 좌하단(260,370) → 외각 우상단 */}
+                        <line x1="260" y1="370" x2="200" y2="430" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" />
+                        {/* Top Left: Manager 향 - 중앙 좌상단(260,290) → 외각 우하단 */}
+                        <line x1="260" y1="290" x2="200" y2="220" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" />
                     </svg>
 
                     {/* Central Core: Shared Goal */}
