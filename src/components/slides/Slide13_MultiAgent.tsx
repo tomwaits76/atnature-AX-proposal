@@ -40,14 +40,14 @@ export default function Slide13_MultiAgent() {
             {/* Right Infographic: Hexagon Swarm Structure */}
             <div className="w-1/2 z-10 flex items-center justify-center pl-12">
                 <div className="relative w-[660px] h-[660px] flex items-center justify-center -mt-12" style={{ transform: 'scale(1.2)' }}>
-                    {/* Connecting Lines - to hexagon vertices */}
+                    {/* Connecting Lines - to hexagon vertices (facing vertices) */}
                     <svg className="absolute inset-0 w-full h-full opacity-30 pointer-events-none z-0">
-                        <line x1="300" y1="300" x2="300" y2="120" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" /> {/* Top */}
-                        <line x1="300" y1="300" x2="456" y2="210" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" /> {/* Top Right */}
-                        <line x1="300" y1="300" x2="456" y2="390" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" /> {/* Bottom Right */}
-                        <line x1="300" y1="300" x2="300" y2="480" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" /> {/* Bottom */}
-                        <line x1="300" y1="300" x2="144" y2="390" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" /> {/* Bottom Left */}
-                        <line x1="300" y1="300" x2="144" y2="210" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" /> {/* Top Left */}
+                        <line x1="300" y1="260" x2="300" y2="140" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" /> {/* Top */}
+                        <line x1="340" y1="280" x2="436" y2="200" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" /> {/* Top Right */}
+                        <line x1="340" y1="320" x2="436" y2="400" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" /> {/* Bottom Right */}
+                        <line x1="300" y1="340" x2="300" y2="460" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" /> {/* Bottom */}
+                        <line x1="260" y1="320" x2="164" y2="400" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" /> {/* Bottom Left */}
+                        <line x1="260" y1="280" x2="164" y2="200" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" /> {/* Top Left */}
                     </svg>
 
                     {/* Central Core: Shared Goal */}
@@ -95,9 +95,9 @@ export default function Slide13_MultiAgent() {
                         );
                     })}
 
-                    {/* Floating Knowledge Nodes - Operator 하단 점 제거됨 */}
+                    {/* Floating Knowledge Nodes - Manager 왼쪽 상단 점 조정됨 */}
                     {[
-                        { x: -250, y: -250, delay: 0 },
+                        { x: -250, y: -200, delay: 0 },
                         { x: 250, y: -250, delay: 1 },
                         { x: 280, y: 0, delay: 1.5 },
                         { x: -280, y: 120, delay: 0.5 },

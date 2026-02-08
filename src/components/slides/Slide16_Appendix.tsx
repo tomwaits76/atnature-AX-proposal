@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { FileText, ExternalLink } from "lucide-react";
+import { FileText, ExternalLink, Sparkles } from "lucide-react";
 
 export default function Slide16_Appendix() {
     const materials = [
@@ -34,17 +34,23 @@ export default function Slide16_Appendix() {
                                 href={item.link}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="group bg-white p-10 rounded-2xl border border-sage-200 shadow-sm hover:shadow-xl transition-all flex items-center justify-between hover:border-sage-300"
+                                className={`group p-10 rounded-2xl border shadow-sm hover:shadow-xl transition-all flex items-center justify-between ${item.highlight
+                                    ? "bg-gradient-to-r from-sage-100 via-sage-50 to-white border-sage-300"
+                                    : "bg-white border-sage-200 hover:border-sage-300"
+                                    }`}
                             >
                                 <div className="flex items-center gap-8">
                                     <div className={`w-16 h-16 rounded-2xl flex items-center justify-center transition-all shadow-inner ${item.highlight
-                                        ? "bg-sage-100 text-sage-700"
+                                        ? "bg-sage-50 text-sage-500 group-hover:bg-sage-600 group-hover:text-white"
                                         : "bg-sage-50 text-sage-500 group-hover:bg-sage-600 group-hover:text-white"
                                         }`}>
                                         <FileText size={32} />
                                     </div>
                                     <div className="flex flex-col">
-                                        <span className="text-2xl font-bold text-sage-900 group-hover:text-sage-700">{item.title}</span>
+                                        <div className="flex items-center gap-2">
+                                            <span className="text-2xl font-bold text-sage-900 group-hover:text-sage-700">{item.title}</span>
+                                            {item.highlight && <Sparkles size={20} className="text-sage-500" />}
+                                        </div>
                                         <span className="text-sage-400 text-sm mt-1 group-hover:text-sage-500 transition-colors">Click to view resource</span>
                                     </div>
                                 </div>

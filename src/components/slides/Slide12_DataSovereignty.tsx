@@ -18,35 +18,37 @@ export default function Slide12_DataSovereignty() {
                 <p className="text-2xl text-sage-600 font-light">제품, 고객, 시장 등 다층적 데이터를 체계적으로 관리하고 이를 전략적으로 연결하는 것이 핵심</p>
             </motion.div>
 
-            {/* Process Flow */}
-            <div className="flex-1 flex items-center justify-center gap-8 px-20">
-                {steps.map((step, i) => (
-                    <div key={i} className="flex flex-1 items-center gap-4">
-                        <motion.div
-                            initial={{ opacity: 0, y: 50 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.2 + (i * 0.3) }}
-                            className="bg-white rounded-3xl p-8 shadow-lg border border-sage-100 w-[400px] h-[400px] flex flex-col items-center text-center justify-center relative z-10"
-                        >
-                            <div className="w-24 h-24 bg-sage-50 rounded-2xl flex items-center justify-center mb-8 text-sage-600 shadow-inner">
-                                <step.icon size={48} />
-                            </div>
-                            <h3 className="text-2xl font-bold text-sage-900 mb-6">{step.title}</h3>
-                            <p className="text-xl text-sage-600 leading-relaxed word-keep-all">{step.text}</p>
-                        </motion.div>
-
-                        {i < steps.length - 1 && (
+            {/* Process Flow - Centered with equal margins */}
+            <div className="flex-1 flex items-center justify-center relative">
+                <div className="flex items-center" style={{ gap: '60px' }}>
+                    {steps.map((step, i) => (
+                        <div key={i} className="flex items-center" style={{ gap: '60px' }}>
                             <motion.div
-                                initial={{ opacity: 0, x: -20 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                transition={{ delay: 0.4 + (i * 0.3) }}
-                                className="text-sage-400"
+                                initial={{ opacity: 0, y: 50 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.2 + (i * 0.3) }}
+                                className="bg-white rounded-3xl p-8 shadow-lg border border-sage-100 w-[400px] h-[400px] flex flex-col items-center text-center justify-center relative z-10"
                             >
-                                <ArrowRight size={40} />
+                                <div className="w-24 h-24 bg-sage-50 rounded-2xl flex items-center justify-center mb-8 text-sage-600 shadow-inner">
+                                    <step.icon size={48} />
+                                </div>
+                                <h3 className="text-2xl font-bold text-sage-900 mb-6">{step.title}</h3>
+                                <p className="text-xl text-sage-600 leading-relaxed whitespace-pre-line">{step.text}</p>
                             </motion.div>
-                        )}
-                    </div>
-                ))}
+
+                            {i < steps.length - 1 && (
+                                <motion.div
+                                    initial={{ opacity: 0, scale: 0 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    transition={{ delay: 0.4 + (i * 0.3) }}
+                                    className="text-sage-400 flex-shrink-0"
+                                >
+                                    <ArrowRight size={40} />
+                                </motion.div>
+                            )}
+                        </div>
+                    ))}
+                </div>
             </div>
 
             {/* Background Flow Line */}

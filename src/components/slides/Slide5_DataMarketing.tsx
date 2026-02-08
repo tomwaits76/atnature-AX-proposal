@@ -54,7 +54,7 @@ export default function Slide5_DataMarketing() {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.2 + (i * 0.2) }}
                             className="w-full bg-white border border-sage-200 p-6 rounded-2xl shadow-lg relative flex items-center justify-between"
-                            style={{ width: `${100 - (i * 15)}%` }}
+                            style={{ width: `${100 - (i * 12)}%` }}
                         >
                             <span className="font-bold text-sage-700">Step 0{i + 1}</span>
                             <span className="text-sage-900 font-medium text-lg">{step}</span>

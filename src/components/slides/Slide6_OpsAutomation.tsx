@@ -76,7 +76,7 @@ export default function Slide6_OpsAutomation() {
                             <div className="flex justify-between text-sage-300 z-10"><Users size={20} /> <span className="text-sm">Active Users</span></div>
                             <div className="text-3xl font-mono text-white z-10 mt-2">45.2K <span className="text-blue-400 text-sm">~2.4k</span></div>
 
-                            <div className="absolute bottom-0 left-0 right-0 mx-auto w-3/4 h-24 opacity-50 flex justify-center">
+                            <div className="absolute inset-0 flex items-center justify-center opacity-50">
                                 <svg width="100%" height="100%" viewBox="0 0 100 50" preserveAspectRatio="none">
                                     <motion.path
                                         d="M0 25 L 10 30 L 20 15 L 30 35 L 40 20 L 50 40 L 60 10 L 70 30 L 80 20 L 90 35 L 100 15"
@@ -95,7 +95,7 @@ export default function Slide6_OpsAutomation() {
                         {/* AI Task Automation - Sine Wave Bars */}
                         <div className="bg-sage-700/50 rounded-xl p-6 col-span-2 relative overflow-hidden">
                             <div className="flex justify-between text-sage-300 mb-4 z-10 relative"><Activity size={20} /> <span>AI Task Automation</span></div>
-                            <div className="flex justify-between items-end h-32 gap-1 relative z-10 px-2 mt-8">
+                            <div className="flex justify-between items-end h-32 gap-1 relative z-10 px-2 mt-12">
                                 {Array.from({ length: 20 }).map((_, i) => (
                                     <motion.div
                                         key={i}

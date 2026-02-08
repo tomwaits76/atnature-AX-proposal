@@ -57,9 +57,9 @@ export default function Slide4_NativeDev() {
 
                     {/* Satellite Nodes - Fixed positions for stable line connections */}
                     {[
-                        { icon: Globe, label: "Web Store", top: "30px", left: "50%", translateX: "-50%", lineEnd: { x: 300, y: 110 } },
+                        { icon: Globe, label: "Web Store", top: "30px", left: "35%", translateX: "-50%", lineEnd: { x: 210, y: 110 } },
                         { icon: Smartphone, label: "Mobile App", top: "430px", left: "calc(100% - 100px)", translateX: "-50%", lineEnd: { x: 500, y: 510 } },
-                        { icon: Monitor, label: "Brand Page", top: "430px", left: "100px", translateX: "-50%", lineEnd: { x: 100, y: 510 } }
+                        { icon: Monitor, label: "Brand Page", top: "430px", left: "60px", translateX: "-50%", lineEnd: { x: 60, y: 510 } }
                     ].map((node, i) => (
                         <motion.div
                             key={i}
@@ -76,9 +76,9 @@ export default function Slide4_NativeDev() {
 
                     {/* Connecting Lines (SVG) */}
                     <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 0 }}>
-                        {/* Center to Web Store (top) */}
+                        {/* Center to Web Store (top-left) */}
                         <motion.path
-                            d="M 300 224 L 300 110"
+                            d="M 260 224 L 210 110"
                             stroke="#CFDFD4"
                             strokeWidth="2"
                             strokeDasharray="6 4"
@@ -89,7 +89,7 @@ export default function Slide4_NativeDev() {
                         />
                         {/* Center to Brand Page (bottom-left) */}
                         <motion.path
-                            d="M 224 300 L 100 510"
+                            d="M 224 300 L 60 510"
                             stroke="#CFDFD4"
                             strokeWidth="2"
                             strokeDasharray="6 4"
