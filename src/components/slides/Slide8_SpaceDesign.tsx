@@ -150,15 +150,15 @@ export default function Slide8_SpaceDesign() {
                     {/* 하지만 "Ambient Light" 태그 위치가 고정(50%, 20%)이므로 절대 좌표로 배치 가능. */}
 
                     <motion.div
-                        className="absolute w-12 h-12 border-2 border-sage-400 bg-sage-600/30"
+                        className="absolute w-10 h-10 border border-sage-300/60 bg-sage-500/15"
                         style={{
                             top: 'calc(20% + 36px)', // 태그 하단 + 8px (e7db3fe 정밀 복원)
                             left: 'calc(50% + 90px)', // 태그 중심 보정 (e7db3fe 정밀 복원)
                             transform: 'translateX(-50%)'
                         }}
-                        initial={{ opacity: 0.3 }} // 시작부터 보임
-                        animate={{ opacity: [0.3, 1, 0.3] }}
-                        transition={{ duration: 1.5, repeat: Infinity }}
+                        initial={{ opacity: 0.2 }} // 시작부터 보임 (은은하게)
+                        animate={{ opacity: [0.2, 0.7, 0.2] }}
+                        transition={{ duration: 2, repeat: Infinity }}
                     />
 
                     {/* UI Overlay */}
