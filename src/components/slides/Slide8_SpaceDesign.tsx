@@ -11,20 +11,40 @@ export default function Slide8_SpaceDesign() {
 
     return (
         <div className="w-[1920px] h-[1080px] bg-white p-20 flex relative overflow-hidden">
-            {/* Background - 직선 비정형 배치 (p4 참조) */}
-            <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-[0.12]" preserveAspectRatio="none">
-                {/* 비정형 직선 배치 */}
-                <line x1="100" y1="150" x2="400" y2="200" stroke="#4A614F" strokeWidth="1.5" />
-                <line x1="1500" y1="100" x2="1800" y2="180" stroke="#4A614F" strokeWidth="1.5" />
-                <line x1="200" y1="400" x2="350" y2="380" stroke="#4A614F" strokeWidth="1" />
-                <line x1="1600" y1="350" x2="1850" y2="400" stroke="#4A614F" strokeWidth="1" />
-                <line x1="150" y1="700" x2="450" y2="750" stroke="#4A614F" strokeWidth="1.5" />
-                <line x1="1400" y1="650" x2="1700" y2="700" stroke="#4A614F" strokeWidth="1" />
-                <line x1="300" y1="900" x2="500" y2="880" stroke="#4A614F" strokeWidth="1" />
-                <line x1="1550" y1="850" x2="1800" y2="900" stroke="#4A614F" strokeWidth="1.5" />
-                {/* 장식용 원 */}
-                <circle cx="150" cy="150" r="60" fill="none" stroke="#4A614F" strokeWidth="0.5" />
-                <circle cx="1780" cy="920" r="80" fill="none" stroke="#4A614F" strokeWidth="0.5" />
+            {/* Background - 고품질 비정형 디자인 (그라데이션+도트+추상 형태) */}
+            <svg className="absolute inset-0 w-full h-full pointer-events-none" preserveAspectRatio="none">
+                <defs>
+                    {/* 대각선 그라데이션 */}
+                    <linearGradient id="diagonalGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="#4A614F" stopOpacity="0.08" />
+                        <stop offset="50%" stopColor="#4A614F" stopOpacity="0.02" />
+                        <stop offset="100%" stopColor="#4A614F" stopOpacity="0.06" />
+                    </linearGradient>
+                    {/* 방사형 그라데이션 */}
+                    <radialGradient id="radialGlow" cx="80%" cy="20%" r="40%">
+                        <stop offset="0%" stopColor="#5e8c61" stopOpacity="0.1" />
+                        <stop offset="100%" stopColor="#5e8c61" stopOpacity="0" />
+                    </radialGradient>
+                </defs>
+                {/* 배경 그라데이션 면 */}
+                <rect width="100%" height="100%" fill="url(#diagonalGradient)" />
+                <rect width="100%" height="100%" fill="url(#radialGlow)" />
+                {/* 불규칙 도트 패턴 */}
+                <circle cx="120" cy="180" r="5" fill="#4A614F" opacity="0.15" />
+                <circle cx="280" cy="120" r="3" fill="#4A614F" opacity="0.12" />
+                <circle cx="450" cy="280" r="4" fill="#4A614F" opacity="0.1" />
+                <circle cx="180" cy="450" r="6" fill="#4A614F" opacity="0.08" />
+                <circle cx="1650" cy="150" r="4" fill="#4A614F" opacity="0.15" />
+                <circle cx="1780" cy="320" r="5" fill="#4A614F" opacity="0.12" />
+                <circle cx="1550" cy="550" r="3" fill="#4A614F" opacity="0.1" />
+                <circle cx="1700" cy="750" r="4" fill="#4A614F" opacity="0.08" />
+                {/* 추상적 겱치는 사각형 */}
+                <rect x="80" y="650" width="120" height="80" rx="8" fill="none" stroke="#4A614F" strokeWidth="0.8" opacity="0.12" transform="rotate(-8 140 690)" />
+                <rect x="1650" y="800" width="150" height="100" rx="10" fill="none" stroke="#4A614F" strokeWidth="0.8" opacity="0.1" transform="rotate(5 1725 850)" />
+                {/* 비정형 곡선 */}
+                <path d="M0,300 Q200,250 400,320 T800,280" stroke="#4A614F" strokeWidth="1" fill="none" opacity="0.08" />
+                <path d="M1200,200 Q1400,150 1600,220 T1920,180" stroke="#4A614F" strokeWidth="1" fill="none" opacity="0.08" />
+                <path d="M100,800 Q300,750 500,820" stroke="#4A614F" strokeWidth="1.2" fill="none" opacity="0.06" />
             </svg>
 
             {/* Left Content - Grid Pattern Background */}
@@ -121,10 +141,10 @@ export default function Slide8_SpaceDesign() {
                         </motion.div>
                     ))}
 
-                    {/* Ambient Light 사각형 - 태그 우측으로 이동, 원근감 연출 (연한 색상, 작은 크기, 느린 점멸) */}
+                    {/* Ambient Light 사각형 - 태그 하단 수직선이 박스 왼쪽 안으로 걸치는 위치 */}
                     <motion.div
                         className="absolute w-10 h-10 border-2 border-sage-300/60 bg-sage-500/15"
-                        style={{ top: 'calc(20% + 28px)', left: 'calc(50% + 20px)', transform: 'translateX(-50%)' }}
+                        style={{ top: 'calc(20% + 12px)', left: 'calc(50% + 30px)', transform: 'translateX(-50%)' }}
                         animate={{ opacity: [0.2, 0.7, 0.2] }}
                         transition={{ duration: 2, repeat: Infinity }}
                     />

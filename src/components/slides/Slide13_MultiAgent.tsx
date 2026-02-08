@@ -45,7 +45,7 @@ export default function Slide13_MultiAgent() {
                         {/* 중앙 육각형 꼭지점 (중심: 330, 330, 반경: 80) */}
                         {[
                             { x1: 330, y1: 250, x2: 330, y2: 180, label: "Designer" },
-                            { x1: 400, y1: 290, x2: 360, y2: 220, label: "Developer" }, // 육각형 중앙 기준선 왼쪽으로 이동
+                            { x1: 400, y1: 290, x2: 491, y2: 265, label: "Developer" }, // Developer 육각형 하단 꼬지점으로 복원
                             { x1: 400, y1: 370, x2: 460, y2: 430, label: "Marketer" },
                             { x1: 330, y1: 410, x2: 330, y2: 480, label: "Analyst" },
                             { x1: 260, y1: 370, x2: 200, y2: 430, label: "Operator" },
@@ -119,13 +119,13 @@ export default function Slide13_MultiAgent() {
                         );
                     })}
 
-                    {/* Floating Knowledge Nodes - 연결선과 동시 등장 (delay: 0.8) */}
+                    {/* Floating Knowledge Nodes - 연결선 시작 시점(0.8)부터 순차 등장 */}
                     {[
                         { x: -250, y: -200, delay: 0.8 },
-                        { x: 150, y: -250, delay: 0.8 }, // 왼쪽으로 이동 (250→150)
-                        { x: 280, y: 0, delay: 0.8 },
-                        { x: -280, y: 120, delay: 0.8 },
-                        { x: 200, y: 200, delay: 0.8 },
+                        { x: 150, y: -250, delay: 0.9 }, // 왼쪽으로 이동 (250→150)
+                        { x: 280, y: 0, delay: 1.0 },
+                        { x: -280, y: 120, delay: 1.1 },
+                        { x: 200, y: 200, delay: 1.2 },
                     ].map((node, i) => (
                         <motion.div
                             key={i}
