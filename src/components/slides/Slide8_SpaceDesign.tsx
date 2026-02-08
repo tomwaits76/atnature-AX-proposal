@@ -12,7 +12,7 @@ export default function Slide8_SpaceDesign() {
     return (
         <div className="w-[1920px] h-[1080px] bg-white p-20 flex relative overflow-hidden">
             {/* Organic Background - Scattered dots and arcs */}
-            <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-[0.06]" preserveAspectRatio="none">
+            <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-[0.12]" preserveAspectRatio="none">
                 <circle cx="100" cy="200" r="4" fill="#4A614F" />
                 <circle cx="300" cy="150" r="3" fill="#4A614F" />
                 <circle cx="500" cy="300" r="5" fill="#4A614F" />
@@ -55,7 +55,7 @@ export default function Slide8_SpaceDesign() {
             {/* Right Infographic: Space Analysis Simulation */}
             <div className="w-1/2 z-10 flex items-center justify-center pl-12">
                 <motion.div
-                    className="relative w-full h-[480px] bg-gray-900 rounded-xl overflow-hidden shadow-2xl border border-sage-500/30"
+                    className="relative w-full h-[520px] bg-gray-900 rounded-xl overflow-hidden shadow-2xl border border-sage-500/30"
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
@@ -71,17 +71,18 @@ export default function Slide8_SpaceDesign() {
                             }}
                         />
 
-                        {/* 3D Wireframe Objects */}
+                        {/* Sofa - 가로 형태로 변경 (상단 기준, 하단 잘림) */}
                         <motion.div
-                            className="w-1/2 h-2/3 border-2 border-sage-400 bg-sage-800/50 rounded-t-lg mx-4 relative backdrop-blur-sm"
+                            className="w-2/3 h-1/3 border-2 border-sage-400 bg-sage-800/50 rounded-lg mx-4 mb-16 relative backdrop-blur-sm"
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1, borderColor: ["#5e8c61", "#a3c9a8", "#5e8c61"] }}
                             transition={{ duration: 2, repeat: Infinity }}
                         >
-                            {/* Wireframe internal lines */}
-                            <div className="absolute top-0 left-0 right-0 h-1/4 border-b border-sage-500/50" />
-                            <div className="absolute bottom-0 left-1/2 top-0 w-px bg-sage-500/50" />
+                            {/* Wireframe internal lines - 소파 쿠션 표현 */}
+                            <div className="absolute top-0 left-1/3 bottom-0 w-px bg-sage-500/50" />
+                            <div className="absolute top-0 right-1/3 bottom-0 w-px bg-sage-500/50" />
                         </motion.div>
+                        {/* Table */}
                         <motion.div
                             className="w-1/4 h-1/2 border-2 border-sage-400 bg-sage-800/50 rounded-t-lg mx-4 relative backdrop-blur-sm shadow-[0_0_15px_rgba(94,140,97,0.5)]"
                             initial={{ opacity: 0 }}
@@ -99,9 +100,9 @@ export default function Slide8_SpaceDesign() {
 
                     {/* Object Detection Tags */}
                     {[
-                        { label: "Fabric Sofa", conf: "98%", x: "30%", y: "40%" },
-                        { label: "Wood Table", conf: "95%", x: "70%", y: "60%" },
-                        { label: "Ambient Light", conf: "88%", x: "50%", y: "20%" },
+                        { label: "Fabric Sofa", conf: "98%", x: "30%", y: "40%", hasObject: true },
+                        { label: "Wood Table", conf: "95%", x: "70%", y: "60%", hasObject: false },
+                        { label: "Ambient Light", conf: "88%", x: "50%", y: "20%", hasObject: true, isAmbient: true },
                     ].map((tag, i) => (
                         <motion.div
                             key={i}
@@ -115,6 +116,14 @@ export default function Slide8_SpaceDesign() {
                             {tag.label} <span className="opacity-70">[{tag.conf}]</span>
                             {/* Connecting line to object approx */}
                             <div className="absolute -bottom-4 left-1/2 w-px h-4 bg-green-500/50" />
+                            {/* 앰비언트 라이트 포인트에 작은 사각형 추가 */}
+                            {tag.isAmbient && (
+                                <motion.div
+                                    className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-6 h-6 border-2 border-sage-400 bg-sage-600/30"
+                                    animate={{ opacity: [0.3, 1, 0.3], borderColor: ["#5e8c61", "#a3c9a8", "#5e8c61"] }}
+                                    transition={{ duration: 2.5, repeat: Infinity }}
+                                />
+                            )}
                         </motion.div>
                     ))}
 

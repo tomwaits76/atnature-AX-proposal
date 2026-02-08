@@ -35,14 +35,14 @@ export default function Slide17_AITips() {
                 </div>
 
                 {/* Tips Cards */}
-                <div className="grid grid-cols-3 gap-24 mt-8">
+                <div className="grid grid-cols-3 gap-36 mt-16">
                     {tips.map((tip, i) => (
                         <motion.div
                             key={i}
                             initial={{ opacity: 0, y: 30 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.2 + (i * 0.15) }}
-                            className="bg-white rounded-2xl border border-sage-200 shadow-lg overflow-hidden flex flex-col"
+                            className="bg-white rounded-2xl border border-sage-200 shadow-lg overflow-hidden flex flex-col min-w-[380px]"
                         >
                             {/* Image Area */}
                             <div className="w-full h-56 bg-sage-100 relative">

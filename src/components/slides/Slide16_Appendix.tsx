@@ -22,7 +22,7 @@ export default function Slide16_Appendix() {
                     <span className="text-sage-500 text-xl font-light">Appendix</span>
                 </div>
 
-                <div className="grid grid-cols-1 gap-6 mt-8">
+                <div className="grid grid-cols-1 gap-6 mt-16">
                     {materials.map((item, i) => (
                         <motion.div
                             key={i}

@@ -44,8 +44,8 @@ export default function Slide13_MultiAgent() {
                     <svg className="absolute inset-0 w-full h-full opacity-40 pointer-events-none z-0">
                         {/* Top: center top vertex (300, 220) → surrounding bottom vertex (300, 145) */}
                         <line x1="300" y1="220" x2="300" y2="145" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" />
-                        {/* Top Right: center top-right vertex (370, 260) → surrounding bottom-left vertex (405, 215) */}
-                        <line x1="370" y1="260" x2="405" y2="215" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" />
+                        {/* Top Right: center top-right vertex (370, 260) → surrounding bottom-left vertex (380, 215) */}
+                        <line x1="370" y1="260" x2="380" y2="215" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" />
                         {/* Bottom Right: center bottom-right vertex (370, 340) → surrounding top-left vertex (405, 385) */}
                         <line x1="370" y1="340" x2="405" y2="385" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" />
                         {/* Bottom: center bottom vertex (300, 380) → surrounding top vertex (300, 455) */}

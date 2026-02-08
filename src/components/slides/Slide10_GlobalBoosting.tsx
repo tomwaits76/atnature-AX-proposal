@@ -19,12 +19,12 @@ export default function Slide10_GlobalBoosting() {
     return (
         <div className="w-[1920px] h-[1080px] bg-sage-900 p-20 flex flex-col relative overflow-hidden text-white">
             {/* Background World Map - Dot Pattern (Asia-Centric) */}
-            <div className="absolute inset-0 opacity-30 pointer-events-none">
+            <div className="absolute inset-0 opacity-50 pointer-events-none">
                 <svg width="100%" height="100%" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
                     {/* Dot pattern base */}
                     <defs>
                         <pattern id="dot-pattern-map" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-                            <circle cx="2" cy="2" r="1" fill="#5e8c61" opacity="0.3" />
+                            <circle cx="2" cy="2" r="1.5" fill="#5e8c61" opacity="0.5" />
                         </pattern>
                     </defs>
                     <rect width="100%" height="100%" fill="url(#dot-pattern-map)" />
@@ -40,38 +40,38 @@ export default function Slide10_GlobalBoosting() {
                         {[920, 930, 940, 950].map((x, i) => [280, 300, 320, 340, 360, 380, 400, 420, 440].map((y, j) =>
                             <circle key={`jp-${i}-${j}`} cx={x + Math.sin(j) * 8} cy={y} r="2.5" />
                         ))}
-                        {/* China */}
-                        {[680, 700, 720, 740, 760, 780, 800, 820].map((x, i) => [340, 360, 380, 400, 420, 440, 460, 480].map((y, j) =>
-                            (Math.random() > 0.3) && <circle key={`cn-${i}-${j}`} cx={x} cy={y} r="2" />
+                        {/* China - 확장 */}
+                        {[660, 680, 700, 720, 740, 760, 780, 800, 820, 840].map((x, i) => [300, 320, 340, 360, 380, 400, 420, 440, 460, 480, 500].map((y, j) =>
+                            <circle key={`cn-${i}-${j}`} cx={x} cy={y} r="2" />
                         ))}
-                        {/* Southeast Asia */}
-                        {[780, 800, 820, 840, 860, 880, 900].map((x, i) => [520, 540, 560, 580, 600, 620, 640].map((y, j) =>
-                            (Math.random() > 0.4) && <circle key={`sea-${i}-${j}`} cx={x} cy={y} r="2" />
+                        {/* Southeast Asia - 확장 */}
+                        {[760, 780, 800, 820, 840, 860, 880, 900, 920].map((x, i) => [500, 520, 540, 560, 580, 600, 620, 640, 660, 680].map((y, j) =>
+                            <circle key={`sea-${i}-${j}`} cx={x} cy={y} r="2" />
                         ))}
-                        {/* India/Middle East */}
-                        {[560, 580, 600, 620, 640, 660, 680].map((x, i) => [420, 440, 460, 480, 500, 520, 540].map((y, j) =>
-                            (Math.random() > 0.5) && <circle key={`in-${i}-${j}`} cx={x} cy={y} r="2" />
+                        {/* India/Middle East - 확장 */}
+                        {[520, 540, 560, 580, 600, 620, 640, 660, 680, 700].map((x, i) => [380, 400, 420, 440, 460, 480, 500, 520, 540, 560].map((y, j) =>
+                            <circle key={`in-${i}-${j}`} cx={x} cy={y} r="2" />
                         ))}
                     </g>
 
                     {/* North America - Left side */}
-                    <g fill="#5e8c61" opacity="0.4">
-                        {[200, 220, 240, 260, 280, 300, 320, 340, 360, 380, 400].map((x, i) => [280, 300, 320, 340, 360, 380, 400, 420, 440].map((y, j) =>
-                            (Math.random() > 0.5) && <circle key={`na-${i}-${j}`} cx={x} cy={y} r="2" />
+                    <g fill="#5e8c61" opacity="0.5">
+                        {[150, 180, 210, 240, 270, 300, 330, 360, 390, 420, 450].map((x, i) => [240, 270, 300, 330, 360, 390, 420, 450, 480].map((y, j) =>
+                            <circle key={`na-${i}-${j}`} cx={x} cy={y} r="2" />
                         ))}
                     </g>
 
                     {/* Europe - Center-Left */}
-                    <g fill="#5e8c61" opacity="0.35">
-                        {[460, 480, 500, 520, 540, 560, 580].map((x, i) => [260, 280, 300, 320, 340, 360].map((y, j) =>
-                            (Math.random() > 0.4) && <circle key={`eu-${i}-${j}`} cx={x} cy={y} r="2" />
+                    <g fill="#5e8c61" opacity="0.45">
+                        {[440, 460, 480, 500, 520, 540, 560, 580, 600].map((x, i) => [220, 240, 260, 280, 300, 320, 340, 360, 380].map((y, j) =>
+                            <circle key={`eu-${i}-${j}`} cx={x} cy={y} r="2" />
                         ))}
                     </g>
 
                     {/* Australia - Bottom Right */}
-                    <g fill="#5e8c61" opacity="0.35">
-                        {[1000, 1020, 1040, 1060, 1080, 1100].map((x, i) => [640, 660, 680, 700, 720].map((y, j) =>
-                            (Math.random() > 0.4) && <circle key={`au-${i}-${j}`} cx={x} cy={y} r="2" />
+                    <g fill="#5e8c61" opacity="0.45">
+                        {[980, 1000, 1020, 1040, 1060, 1080, 1100, 1120].map((x, i) => [600, 620, 640, 660, 680, 700, 720, 740].map((y, j) =>
+                            <circle key={`au-${i}-${j}`} cx={x} cy={y} r="2" />
                         ))}
                     </g>
                 </svg>
