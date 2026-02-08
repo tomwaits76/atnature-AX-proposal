@@ -42,18 +42,18 @@ export default function Slide13_MultiAgent() {
                 <div className="relative w-[660px] h-[660px] flex items-center justify-center -mt-12" style={{ transform: 'scale(1.2)' }}>
                     {/* Connecting Lines - vertex to vertex (center hex to surrounding hex) */}
                     <svg className="absolute inset-0 w-full h-full opacity-40 pointer-events-none z-0">
-                        {/* Top: center top vertex → surrounding bottom vertex */}
-                        <line x1="300" y1="220" x2="300" y2="130" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" />
-                        {/* Top Right: center top-right vertex → surrounding bottom-left vertex */}
-                        <line x1="370" y1="260" x2="420" y2="210" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" />
-                        {/* Bottom Right: center bottom-right vertex → surrounding top-left vertex */}
-                        <line x1="370" y1="340" x2="420" y2="390" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" />
-                        {/* Bottom: center bottom vertex → surrounding top vertex */}
-                        <line x1="300" y1="380" x2="300" y2="470" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" />
-                        {/* Bottom Left: center bottom-left vertex → surrounding top-right vertex */}
-                        <line x1="230" y1="340" x2="180" y2="390" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" />
-                        {/* Top Left: center top-left vertex → surrounding bottom-right vertex */}
-                        <line x1="230" y1="260" x2="180" y2="210" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" />
+                        {/* Top: center top vertex (300, 220) → surrounding bottom vertex (300, 145) */}
+                        <line x1="300" y1="220" x2="300" y2="145" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" />
+                        {/* Top Right: center top-right vertex (370, 260) → surrounding bottom-left vertex (405, 215) */}
+                        <line x1="370" y1="260" x2="405" y2="215" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" />
+                        {/* Bottom Right: center bottom-right vertex (370, 340) → surrounding top-left vertex (405, 385) */}
+                        <line x1="370" y1="340" x2="405" y2="385" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" />
+                        {/* Bottom: center bottom vertex (300, 380) → surrounding top vertex (300, 455) */}
+                        <line x1="300" y1="380" x2="300" y2="455" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" />
+                        {/* Bottom Left: center bottom-left vertex (230, 340) → surrounding top-right vertex (195, 385) */}
+                        <line x1="230" y1="340" x2="195" y2="385" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" />
+                        {/* Top Left: center top-left vertex (230, 260) → surrounding bottom-right vertex (195, 215) */}
+                        <line x1="230" y1="260" x2="195" y2="215" stroke="#5e8c61" strokeWidth="2" strokeDasharray="5 5" />
                     </svg>
 
                     {/* Central Core: Shared Goal */}
@@ -77,18 +77,25 @@ export default function Slide13_MultiAgent() {
                         { role: "Operator", icon: Settings, angle: 240, color: "bg-red-100 text-red-900" },
                         { role: "Manager", icon: Users, angle: 300, color: "bg-yellow-100 text-yellow-900" },
                     ].map((agent, i) => {
-                        const radius = 150;
-                        const angleRad = (agent.angle - 90) * (Math.PI / 180);
-                        const x = Math.cos(angleRad) * radius;
-                        const y = Math.sin(angleRad) * radius;
+                        // Vertex-based positioning: center hex vertex + gap + outer hex opposing vertex offset
+                        const gap = 35; // gap between center vertex and outer hex vertex
+                        const outerHexHalfH = 64; // half of outer hex height (128/2)
+                        const positions = [
+                            { x: 0, y: -(80 + gap + outerHexHalfH) }, // Top
+                            { x: 70 + gap + 56, y: -(40 + gap / 2 + 32) }, // Top Right
+                            { x: 70 + gap + 56, y: 40 + gap / 2 + 32 }, // Bottom Right
+                            { x: 0, y: 80 + gap + outerHexHalfH }, // Bottom
+                            { x: -(70 + gap + 56), y: 40 + gap / 2 + 32 }, // Bottom Left
+                            { x: -(70 + gap + 56), y: -(40 + gap / 2 + 32) }, // Top Left
+                        ];
                         return (
                             <motion.div
                                 key={i}
                                 className={`absolute w-32 h-32 ${agent.color} flex flex-col items-center justify-center z-10 shadow-lg`}
                                 style={{
                                     clipPath: "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)",
-                                    x: x,
-                                    y: y
+                                    x: positions[i].x,
+                                    y: positions[i].y
                                 }}
                                 initial={{ opacity: 0, scale: 0 }}
                                 animate={{ opacity: 1, scale: 1 }}

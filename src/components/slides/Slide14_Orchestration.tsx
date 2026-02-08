@@ -21,7 +21,7 @@ export default function Slide14_Orchestration() {
                 <p className="text-2xl text-sage-200 font-light">데이터 신경망에 연결된 멀티 에이전트들이 상호 유기적으로<br />작동하기 위한 통합 지휘 체계</p>
             </div>
 
-            <div className="grid grid-cols-3 gap-12 max-w-7xl z-10">
+            <div className="grid grid-cols-3 gap-12 max-w-7xl z-10 mt-12">
                 {features.map((item, i) => (
                     <motion.div
                         key={i}

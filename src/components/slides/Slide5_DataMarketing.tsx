@@ -56,7 +56,8 @@ export default function Slide5_DataMarketing() {
                             className="w-full bg-white border border-sage-200 p-6 rounded-2xl shadow-lg relative flex items-center justify-center"
                             style={{ width: `${100 - (i * 12)}%` }}
                         >
-                            <span className="text-sage-900 font-medium text-lg">Step 0{i + 1}. {step}</span>
+                            <span className="text-sage-500 font-medium text-lg">Step 0{i + 1}.</span>
+                            <span className="text-sage-900 font-medium text-lg ml-2">{step}</span>
                             {i < 4 && (
                                 <div className="absolute -bottom-9 left-1/2 transform -translate-x-1/2 text-sage-300">
                                     ▼

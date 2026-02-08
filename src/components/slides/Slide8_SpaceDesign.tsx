@@ -11,10 +11,18 @@ export default function Slide8_SpaceDesign() {
 
     return (
         <div className="w-[1920px] h-[1080px] bg-white p-20 flex relative overflow-hidden">
-            {/* Decorative Grid */}
-            <div className="absolute inset-0 z-0 opacity-10"
-                style={{ backgroundImage: 'linear-gradient(#4A614F 1px, transparent 1px), linear-gradient(90deg, #4A614F 1px, transparent 1px)', backgroundSize: '50px 50px' }}
-            />
+            {/* Organic Background - Scattered dots and arcs */}
+            <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-[0.06]" preserveAspectRatio="none">
+                <circle cx="100" cy="200" r="4" fill="#4A614F" />
+                <circle cx="300" cy="150" r="3" fill="#4A614F" />
+                <circle cx="500" cy="300" r="5" fill="#4A614F" />
+                <circle cx="200" cy="500" r="3" fill="#4A614F" />
+                <circle cx="1600" cy="200" r="4" fill="#4A614F" />
+                <circle cx="1750" cy="400" r="5" fill="#4A614F" />
+                <circle cx="1500" cy="800" r="3" fill="#4A614F" />
+                <path d="M1700,100 Q1800,200 1850,50" stroke="#4A614F" strokeWidth="1" fill="none" />
+                <path d="M50,800 Q150,750 100,900" stroke="#4A614F" strokeWidth="1" fill="none" />
+            </svg>
 
             {/* Left Content - Grid Pattern Background */}
             <div className="w-1/2 z-10 flex flex-col justify-center pr-12">
@@ -47,7 +55,7 @@ export default function Slide8_SpaceDesign() {
             {/* Right Infographic: Space Analysis Simulation */}
             <div className="w-1/2 z-10 flex items-center justify-center pl-12">
                 <motion.div
-                    className="relative w-full aspect-video bg-gray-900 rounded-xl overflow-hidden shadow-2xl border border-sage-500/30"
+                    className="relative w-full h-[480px] bg-gray-900 rounded-xl overflow-hidden shadow-2xl border border-sage-500/30"
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.8, delay: 0.2 }}

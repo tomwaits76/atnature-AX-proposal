@@ -86,9 +86,14 @@ export default function Slide9_Subscription() {
                         );
                     })}
 
-                    {/* Active Pulse Animations - 2 pulses with delays 0s, 2s */}
+                    {/* Active Pulse Animations - 2 pulses with staggered start */}
                     <div className="absolute inset-0 rounded-full border border-sage-300 animate-[ping_3s_linear_infinite] opacity-30" />
-                    <div className="absolute inset-0 rounded-full border border-sage-300 animate-[ping_3s_linear_infinite] opacity-30" style={{ animationDelay: '1.5s' }} />
+                    <motion.div
+                        className="absolute inset-0 rounded-full border border-sage-300 animate-[ping_3s_linear_infinite]"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 0.3 }}
+                        transition={{ delay: 1.5 }}
+                    />
                 </div>
             </div>
         </div>
