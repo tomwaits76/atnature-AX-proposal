@@ -1,8 +1,12 @@
 "use client";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { useState } from "react";
+import MediaModal from "../ui/MediaModal";
 
 export default function Slide17_AITips() {
+    const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
     const tips = [
         {
             title: "사고 모드",
@@ -45,13 +49,21 @@ export default function Slide17_AITips() {
                             className="bg-white rounded-2xl border border-sage-200 shadow-lg overflow-hidden flex flex-col min-w-[440px]"
                         >
                             {/* Image Area */}
-                            <div className="w-full h-56 bg-sage-100 relative">
+                            <div
+                                className="w-full h-56 bg-sage-100 relative cursor-pointer group overflow-hidden"
+                                onClick={() => setSelectedImage(tip.image)}
+                            >
                                 <Image
                                     src={tip.image}
                                     alt={tip.title}
                                     fill
-                                    className="object-cover"
+                                    className="object-cover transition-transform duration-500 group-hover:scale-110"
                                 />
+                                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 flex items-center justify-center">
+                                    <span className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 font-medium bg-black/50 px-4 py-2 rounded-full backdrop-blur-sm">
+                                        크게 보기
+                                    </span>
+                                </div>
                             </div>
 
                             {/* Content */}
@@ -63,6 +75,13 @@ export default function Slide17_AITips() {
                     ))}
                 </div>
             </motion.div>
+
+            <MediaModal
+                isOpen={!!selectedImage}
+                onClose={() => setSelectedImage(null)}
+                src={selectedImage || ""}
+                alt="Selected tip image"
+            />
         </div>
     );
 }
