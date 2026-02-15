@@ -31,9 +31,14 @@ body {
   display: none;
 }
 
+/* 프린트용 슬라이드 내부 (스크린에서는 비활성) */
+.slide-print-inner {
+  transform: none;
+}
+
 @media print {
   @page {
-    size: landscape;
+    size: A4 landscape;
     margin: 0;
   }
 
@@ -42,6 +47,8 @@ body {
     width: 100% !important;
     height: auto !important;
     overflow: visible !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
 
   body {
@@ -61,12 +68,23 @@ body {
     width: 100%;
   }
 
-  /* Slide container for print — 고정 사이즈 (React inline scale 사용) */
+  /* Slide container — 페이지 전체 폭에 맞춤, 16:9 비율 유지 */
   .slide-container {
-    width: 1123px;
-    height: 632px;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
     overflow: hidden;
     position: relative;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    box-sizing: border-box;
+  }
+
+  /* 슬라이드 내부 — CSS calc로 페이지 너비 기준 동적 스케일 */
+  .slide-print-inner {
+    transform: scale(calc(100vw / 1920));
+    transform-origin: top left;
   }
 
   /* Add page break ONLY for non-last slides */

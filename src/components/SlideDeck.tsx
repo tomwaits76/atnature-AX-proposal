@@ -143,7 +143,7 @@ export default function SlideDeck() {
     return (
         <>
             {/* Main Interactive View - Hidden during print */}
-            <div className="relative w-screen h-screen overflow-hidden bg-sage-50 text-sage-900 no-print">
+            <div className="relative w-screen h-screen overflow-hidden bg-sage-50 text-sage-900 no-print" style={{ position: "fixed", inset: 0 }}>
                 {/* Navigation Controls */}
                 <div className="absolute bottom-8 right-8 z-50 flex items-center space-x-4 bg-white/80 backdrop-blur-md border border-sage-200 p-3 rounded-full shadow-lg transition-all duration-300">
                     <button onClick={prevSlide} disabled={currentSlide === 0} className="p-2 rounded-full bg-sage-100 hover:bg-sage-200 text-sage-700 disabled:opacity-30 transition-colors">

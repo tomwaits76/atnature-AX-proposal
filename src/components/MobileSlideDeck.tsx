@@ -27,8 +27,7 @@ const SLIDE_WIDTH = 1920;
 const SLIDE_HEIGHT = 1080;
 const NAV_BAR_HEIGHT = 56;
 
-/** A4 landscape 96dpi 기준 scale (297mm × 210mm → ~1123px × ~794px) */
-const PRINT_SCALE = Math.min(1123 / SLIDE_WIDTH, 794 / SLIDE_HEIGHT);
+
 
 /**
  * 모바일 전용 슬라이드 덱 컴포넌트 (v7).
@@ -141,12 +140,10 @@ export default function MobileSlideDeck() {
      */
     const handlePrint = useCallback(() => {
         setIsPrinting(true);
-        // requestAnimationFrame으로 DOM 렌더 완료 대기 후 print
-        requestAnimationFrame(() => {
-            requestAnimationFrame(() => {
-                window.print();
-            });
-        });
+        // 18개 슬라이드 DOM 생성에 충분한 시간 확보 후 print 호출
+        setTimeout(() => {
+            window.print();
+        }, 500);
     }, []);
 
     const dismissPWABanner = useCallback(() => {
@@ -237,8 +234,8 @@ export default function MobileSlideDeck() {
         <>
             {/* Main Interactive View */}
             <div
-                className="fixed inset-0 flex flex-col bg-sage-200 no-print"
-                style={{ height: "100dvh" }}
+                className="flex flex-col bg-sage-200 no-print"
+                style={{ minHeight: "100dvh" }}
             >
                 {/* PWA 안내 배너 */}
                 {showPWABanner && (
@@ -266,7 +263,7 @@ export default function MobileSlideDeck() {
                     onTouchStart={handleTouchStart}
                     onTouchMove={handleTouchMove}
                     onTouchEnd={handleTouchEnd}
-                    style={{ minHeight: 0, touchAction: "none" }}
+                    style={{ minHeight: 0, touchAction: "pan-y pinch-zoom" }}
                 >
                     <AnimatePresence mode="wait">
                         <motion.div
@@ -351,10 +348,10 @@ export default function MobileSlideDeck() {
                     {Array.from({ length: SLIDE_COUNT }).map((_, index) => (
                         <div key={index} className="slide-container">
                             <div
+                                className="slide-print-inner"
                                 style={{
                                     width: SLIDE_WIDTH,
                                     height: SLIDE_HEIGHT,
-                                    transform: `scale(${PRINT_SCALE})`,
                                     transformOrigin: "top left",
                                 }}
                             >
