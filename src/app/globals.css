@@ -37,7 +37,8 @@ body {
     margin: 0;
   }
 
-  html, body {
+  html,
+  body {
     width: 100% !important;
     height: auto !important;
     overflow: visible !important;
@@ -60,20 +61,12 @@ body {
     width: 100%;
   }
 
-  /* Slide container for print — viewport 비율 기반 */
+  /* Slide container for print — 고정 사이즈 (React inline scale 사용) */
   .slide-container {
-    width: 100vw;
-    aspect-ratio: 16 / 9;
+    width: 1123px;
+    height: 632px;
     overflow: hidden;
     position: relative;
-  }
-
-  /* 내부 콘텐츠를 컨테이너에 맞춤 */
-  .slide-container > * {
-    width: 1920px;
-    height: 1080px;
-    transform: scale(calc(100vw / 1920));
-    transform-origin: top left;
   }
 
   /* Add page break ONLY for non-last slides */
