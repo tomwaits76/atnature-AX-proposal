@@ -34,6 +34,8 @@ export default function SlideDeck() {
     const INPUT_THROTTLE_MS = 150;
 
     const handlePrint = useCallback(() => {
+        // @page size: 1920px 1080px → Chrome은 슬라이드 크기 페이지 생성, zoom:1 유지
+        document.documentElement.style.setProperty("--print-slide-zoom", "1");
         window.print();
     }, []);
 

@@ -19,6 +19,7 @@
   --background: #F5F9F6;
   --foreground: #2C3A30;
   --font-inter: 'Inter', sans-serif;
+  --print-slide-zoom: 1;
 }
 
 body {
@@ -34,7 +35,7 @@ body {
 
 @media print {
   @page {
-    size: landscape;
+    size: 1920px 1080px;
     margin: 0;
   }
 
@@ -73,6 +74,15 @@ body {
     overflow: hidden;
     position: relative;
     page-break-inside: avoid;
+  }
+
+  /*
+   * 슬라이드 스케일링.
+   * PC (Chrome): @page 1920x1080 → zoom:1 → 정확히 맞음.
+   * Mobile (Safari): @page 무시, A4 사용 → JS가 --print-slide-zoom 설정 → 축소.
+   */
+  .slide-container > * {
+    zoom: var(--print-slide-zoom, 1);
   }
 
   /* 마지막 슬라이드 외에 페이지 브레이크 */

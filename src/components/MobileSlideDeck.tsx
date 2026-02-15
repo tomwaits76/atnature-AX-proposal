@@ -28,13 +28,14 @@ const SLIDE_HEIGHT = 1080;
 const NAV_BAR_HEIGHT = 56;
 
 /**
- * 모바일 전용 슬라이드 덱 (V9).
+ * 모바일 전용 슬라이드 덱 (V9.1).
  *
- * V9 아키텍처:
- * - 스케일링: CSS zoom (PC와 동일) — transform:scale 제거
- * - 줌: 네이티브 줌 비활성, 커스텀 핀치줌 (슬라이드 콘텐츠 전용)
- * - 레이아웃: document flow (fixed 제거) — 브라우저 chrome 자연 동작
- * - 프린트: PC와 100% 동일 구조 — slide-container > slide 직접 렌더
+ * 핵심 아키텍처:
+ * - 레이아웃: fixed inset-0 + 100dvh (v5~v8 검증 방식)
+ * - 스케일링: transform:scale() + wrapper div (iOS Safari 검증 방식)
+ * - 핀치줌: 프레임 포함 전체 슬라이드 확대 + 팬 이동
+ * - 프린트: PC와 동일 구조 + iOS용 zoom 변수 설정
+ * - 네비바: 줌 영역 완전 분리, safe-area 패딩
  */
 export default function MobileSlideDeck() {
     const [currentSlide, setCurrentSlide] = useState(0);
@@ -69,6 +70,8 @@ export default function MobileSlideDeck() {
         const now = Date.now();
         if (now - lastInputTime.current < INPUT_THROTTLE_MS) return;
         lastInputTime.current = now;
+        setPinchScale(1);
+        setPanOffset({ x: 0, y: 0 });
         setCurrentSlide((prev) => (prev < SLIDE_COUNT - 1 ? prev + 1 : prev));
     }, []);
 
@@ -76,16 +79,12 @@ export default function MobileSlideDeck() {
         const now = Date.now();
         if (now - lastInputTime.current < INPUT_THROTTLE_MS) return;
         lastInputTime.current = now;
+        setPinchScale(1);
+        setPanOffset({ x: 0, y: 0 });
         setCurrentSlide((prev) => (prev > 0 ? prev - 1 : prev));
     }, []);
 
-    // 슬라이드 전환 시 줌 리셋
-    useEffect(() => {
-        setPinchScale(1);
-        setPanOffset({ x: 0, y: 0 });
-    }, [currentSlide]);
-
-    // ── 스케일 계산 (CSS zoom 용) ──
+    // ── 스케일 계산 (transform:scale 용) ──
 
     const calculateScale = useCallback(() => {
         const vw = document.documentElement.clientWidth;
@@ -99,7 +98,7 @@ export default function MobileSlideDeck() {
         calculateScale();
 
         const handleOrientationChange = () => {
-            // 방향 전환 시 커스텀 줌도 리셋
+            // 방향 전환 시 줌 리셋
             setPinchScale(1);
             setPanOffset({ x: 0, y: 0 });
             setTimeout(calculateScale, 100);
@@ -142,13 +141,18 @@ export default function MobileSlideDeck() {
         localStorage.setItem("pwa-banner-dismissed", "true");
     }, []);
 
-    // ── 프린트: PC와 동일하게 window.print() 직접 호출 ──
-
+    // ── 프린트 ──
+    // iOS Safari는 @page custom size를 무시하고 A4를 사용.
+    // A4 landscape 72dpi = 842px → 842/1920 ≈ 0.44
     const handlePrint = useCallback(() => {
+        document.documentElement.style.setProperty(
+            "--print-slide-zoom",
+            "0.44"
+        );
         window.print();
     }, []);
 
-    // ── 터치 핸들러: 스와이프 + 커스텀 핀치줌 + 팬 ──
+    // ── 터치 핸들러: 스와이프 + 핀치줌 + 팬 ──
 
     const getTouchDistance = (touches: React.TouchList) => {
         const dx = touches[0].clientX - touches[1].clientX;
@@ -159,7 +163,6 @@ export default function MobileSlideDeck() {
     const handleTouchStart = useCallback(
         (e: React.TouchEvent) => {
             if (e.touches.length >= 2) {
-                // 핀치 시작
                 isPinching.current = true;
                 isPanning.current = false;
                 initialPinchDist.current = getTouchDistance(e.touches);
@@ -167,14 +170,12 @@ export default function MobileSlideDeck() {
                 return;
             }
 
-            // 단일 터치
             isPinching.current = false;
             touchStartX.current = e.touches[0].clientX;
             touchStartY.current = e.touches[0].clientY;
             touchStartTime.current = Date.now();
 
             if (pinchScale > 1.05) {
-                // 줌 상태에서 단일 터치 → 팬 시작
                 isPanning.current = true;
                 lastPanPos.current = {
                     x: e.touches[0].clientX,
@@ -190,7 +191,6 @@ export default function MobileSlideDeck() {
     const handleTouchMove = useCallback(
         (e: React.TouchEvent) => {
             if (e.touches.length >= 2 && isPinching.current) {
-                // 핀치 줌 업데이트
                 const newDist = getTouchDistance(e.touches);
                 const ratio = newDist / initialPinchDist.current;
                 const newScale = Math.min(
@@ -202,7 +202,6 @@ export default function MobileSlideDeck() {
             }
 
             if (isPanning.current && e.touches.length === 1) {
-                // 팬 업데이트
                 const dx = e.touches[0].clientX - lastPanPos.current.x;
                 const dy = e.touches[0].clientY - lastPanPos.current.y;
                 lastPanPos.current = {
@@ -219,7 +218,6 @@ export default function MobileSlideDeck() {
         (e: React.TouchEvent) => {
             if (isPinching.current) {
                 isPinching.current = false;
-                // 1x 근처면 스냅 리셋
                 if (pinchScale < 1.1) {
                     setPinchScale(1);
                     setPanOffset({ x: 0, y: 0 });
@@ -278,14 +276,19 @@ export default function MobileSlideDeck() {
         }
     };
 
+    // ── 계산 값 ──
+    const scaledWidth = SLIDE_WIDTH * scale;
+    const scaledHeight = SLIDE_HEIGHT * scale;
+    const effectiveScale = scale * pinchScale;
+
     return (
         <>
             {/* ═══ Main Interactive View ═══
-                 document flow (not fixed) → 브라우저 chrome 자연 동작
+                 fixed inset-0 + 100dvh: v5~v8 검증 방식
             */}
             <div
-                className="flex flex-col bg-sage-200 no-print"
-                style={{ height: "100dvh", overflow: "hidden" }}
+                className="fixed inset-0 flex flex-col bg-sage-200 no-print"
+                style={{ height: "100dvh" }}
             >
                 {/* PWA 배너 */}
                 {showPWABanner && (
@@ -306,7 +309,7 @@ export default function MobileSlideDeck() {
                     </div>
                 )}
 
-                {/* 슬라이드 영역 */}
+                {/* 슬라이드 영역 (뷰포트 역할 — overflow:hidden으로 확대 시 클리핑) */}
                 <div
                     ref={containerRef}
                     className="flex-1 overflow-hidden flex items-center justify-center"
@@ -315,41 +318,48 @@ export default function MobileSlideDeck() {
                     onTouchEnd={handleTouchEnd}
                     style={{ minHeight: 0, touchAction: "none" }}
                 >
-                    <AnimatePresence mode="wait">
-                        <motion.div
-                            key={currentSlide}
-                            initial={{ opacity: 0, x: 30 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            exit={{ opacity: 0, x: -30 }}
-                            transition={{ duration: 0.3, ease: "easeInOut" }}
-                            className="relative bg-white shadow-2xl ring-1 ring-sage-300 overflow-hidden"
-                            style={{
-                                width: SLIDE_WIDTH,
-                                height: SLIDE_HEIGHT,
-                                zoom: scale,
-                            }}
-                        >
-                            {/* 커스텀 핀치줌: 슬라이드 콘텐츠에만 적용 */}
-                            <div
+                    {/* 팬 레이어: 확대 상태에서 슬라이드를 이동 */}
+                    <div
+                        style={{
+                            transform:
+                                pinchScale > 1
+                                    ? `translate(${panOffset.x}px, ${panOffset.y}px)`
+                                    : undefined,
+                        }}
+                    >
+                        <AnimatePresence mode="wait">
+                            <motion.div
+                                key={currentSlide}
+                                initial={{ opacity: 0, x: 30 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                exit={{ opacity: 0, x: -30 }}
+                                transition={{ duration: 0.3, ease: "easeInOut" }}
+                                className="relative bg-white shadow-2xl ring-1 ring-sage-300"
                                 style={{
-                                    width: SLIDE_WIDTH,
-                                    height: SLIDE_HEIGHT,
-                                    transform:
-                                        pinchScale !== 1
-                                            ? `scale(${pinchScale}) translate(${panOffset.x / pinchScale}px, ${panOffset.y / pinchScale}px)`
-                                            : undefined,
-                                    transformOrigin: "center center",
-                                    willChange: pinchScale !== 1 ? "transform" : undefined,
+                                    width: scaledWidth * pinchScale,
+                                    height: scaledHeight * pinchScale,
+                                    overflow: "hidden",
+                                    flexShrink: 0,
                                 }}
                             >
-                                {renderSlide(currentSlide)}
-                            </div>
-                        </motion.div>
-                    </AnimatePresence>
+                                {/* 슬라이드 콘텐츠: transform:scale로 축소 */}
+                                <div
+                                    style={{
+                                        width: SLIDE_WIDTH,
+                                        height: SLIDE_HEIGHT,
+                                        transform: `scale(${effectiveScale})`,
+                                        transformOrigin: "top left",
+                                    }}
+                                >
+                                    {renderSlide(currentSlide)}
+                                </div>
+                            </motion.div>
+                        </AnimatePresence>
+                    </div>
                 </div>
 
                 {/* ═══ 네비게이션 바 ═══
-                     줌 영역 바깥 → 어떤 상황에서도 항상 표시
+                     줌 영역 완전 분리 → 항상 표시
                      safe-area 패딩 전방위 적용
                 */}
                 <nav
@@ -403,7 +413,7 @@ export default function MobileSlideDeck() {
 
             {/* ═══ Print-Only Container ═══
                  PC와 100% 동일 구조: slide-container > slide 직접 렌더.
-                 브라우저의 기본 print scaling이 1920px → 페이지 너비로 축소.
+                 CSS .slide-container > * { zoom: var(--print-slide-zoom) } 로 스케일링.
             */}
             <div className="print-only">
                 {Array.from({ length: SLIDE_COUNT }).map((_, index) => (
