@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight, Maximize, Printer } from "lucide-react";
+import { ChevronLeft, ChevronRight, Printer } from "lucide-react";
 import Slide1_Title from "@/components/slides/Slide1_Title";
 import Slide2_Definitions from "@/components/slides/Slide2_Definitions";
 import Slide3_CapacityBuilding from "@/components/slides/Slide3_CapacityBuilding";
@@ -28,23 +28,24 @@ const SLIDE_HEIGHT = 1080;
 const NAV_BAR_HEIGHT = 56;
 
 /**
- * 모바일 전용 슬라이드 덱 컴포넌트.
- * PC의 SlideDeck.tsx와 완전히 독립된 컴포넌트.
+ * 모바일 전용 슬라이드 덱 컴포넌트 (v6).
+ * PC SlideDeck.tsx와 완전 독립.
  *
- * 핵심 설계 (v5 Bugfix):
- * - 슬라이드: Wrapper div가 scaledWidth × scaledHeight로 실제 크기를 제한
- * - 내부 div는 1920×1080 고정 + transform: scale() + transformOrigin: top left
- * - negative margin 완전 제거 → 모바일 브라우저 overflow 문제 해결
- * - 네비게이션: transform 컨테이너 바깥, minHeight로 safe-area 충돌 해소
+ * v6 변경점:
+ * - Fullscreen API / Scroll trick 완전 제거 (iOS 미지원)
+ * - 핀치줌 차단 (viewport 복원) → resize 간섭 제거
+ * - orientationchange 전용 재계산 (다중 지연)
+ * - 멀티터치 감지로 swipe 오작동 방지
+ * - 배경색 sage-200으로 슬라이드 테두리 구분
+ * - Print 버튼 PC 스타일 통일
  */
 export default function MobileSlideDeck() {
     const [currentSlide, setCurrentSlide] = useState(0);
     const [scale, setScale] = useState(0.2);
-    const [isFullscreen, setIsFullscreen] = useState(false);
-    const [showFullscreenHint, setShowFullscreenHint] = useState(true);
     const containerRef = useRef<HTMLDivElement>(null);
     const touchStartX = useRef(0);
     const touchStartY = useRef(0);
+    const isMultiTouch = useRef(false);
     const lastInputTime = useRef(0);
     const INPUT_THROTTLE_MS = 300;
 
@@ -63,71 +64,41 @@ export default function MobileSlideDeck() {
     }, []);
 
     /**
-     * 스케일 계산: 화면 크기에 맞춰 1920x1080을 축소.
-     * 네비 바 높이를 빼고 남은 영역에 맞춤.
+     * 스케일 계산.
+     * document.documentElement.clientWidth를 사용하여 핀치줌에 불변.
      */
     const calculateScale = useCallback(() => {
-        const vw = window.innerWidth;
-        const vh = window.innerHeight - NAV_BAR_HEIGHT;
+        const vw = document.documentElement.clientWidth;
+        const vh = document.documentElement.clientHeight - NAV_BAR_HEIGHT;
         const scaleX = vw / SLIDE_WIDTH;
         const scaleY = vh / SLIDE_HEIGHT;
         setScale(Math.min(scaleX, scaleY));
     }, []);
 
-    // 초기화 + 리사이즈/방향전환 핸들링
+    // 초기화 + 방향 전환 전용 핸들링
     useEffect(() => {
         calculateScale();
 
-        const handleResize = () => calculateScale();
-        const handleOrientation = () => {
-            setTimeout(calculateScale, 150);
+        // 방향 전환 시 다중 지연 재계산 (Chrome 호환)
+        const handleOrientationChange = () => {
+            setTimeout(calculateScale, 100);
+            setTimeout(calculateScale, 300);
+            setTimeout(calculateScale, 600);
         };
 
-        window.addEventListener("resize", handleResize);
-        window.addEventListener("orientationchange", handleOrientation);
+        // screen.orientation API (primary) + orientationchange (fallback)
+        if (screen.orientation) {
+            screen.orientation.addEventListener("change", handleOrientationChange);
+        }
+        window.addEventListener("orientationchange", handleOrientationChange);
 
         return () => {
-            window.removeEventListener("resize", handleResize);
-            window.removeEventListener("orientationchange", handleOrientation);
+            if (screen.orientation) {
+                screen.orientation.removeEventListener("change", handleOrientationChange);
+            }
+            window.removeEventListener("orientationchange", handleOrientationChange);
         };
     }, [calculateScale]);
-
-    // 브라우저 바 숨김 전략 ① Scroll Trick
-    useEffect(() => {
-        const scrollTrick = () => {
-            document.documentElement.style.height = "calc(100% + 1px)";
-            window.scrollTo(0, 1);
-            setTimeout(() => {
-                document.documentElement.style.height = "100%";
-            }, 300);
-        };
-        scrollTrick();
-    }, []);
-
-    // Fullscreen API 상태 추적
-    useEffect(() => {
-        const handleFullscreenChange = () => {
-            setIsFullscreen(!!document.fullscreenElement);
-        };
-        document.addEventListener("fullscreenchange", handleFullscreenChange);
-        return () => document.removeEventListener("fullscreenchange", handleFullscreenChange);
-    }, []);
-
-    /**
-     * 전체 화면 전환 (Fullscreen API).
-     */
-    const toggleFullscreen = useCallback(async () => {
-        try {
-            if (!document.fullscreenElement) {
-                await document.documentElement.requestFullscreen();
-                setShowFullscreenHint(false);
-            } else {
-                await document.exitFullscreen();
-            }
-        } catch {
-            setShowFullscreenHint(false);
-        }
-    }, []);
 
     /**
      * PDF 인쇄 핸들러.
@@ -136,19 +107,37 @@ export default function MobileSlideDeck() {
         window.print();
     }, []);
 
-    // 스와이프 제스처 (터치 네비게이션)
+    // 스와이프 제스처 — 멀티터치 감지 포함
     const handleTouchStart = useCallback((e: React.TouchEvent) => {
+        if (e.touches.length > 1) {
+            isMultiTouch.current = true;
+            return;
+        }
+        isMultiTouch.current = false;
         touchStartX.current = e.touches[0].clientX;
         touchStartY.current = e.touches[0].clientY;
     }, []);
 
+    const handleTouchMove = useCallback((e: React.TouchEvent) => {
+        // 멀티터치 전환 감지 (1점 → 2점 추가)
+        if (e.touches.length > 1) {
+            isMultiTouch.current = true;
+        }
+    }, []);
+
     const handleTouchEnd = useCallback((e: React.TouchEvent) => {
+        // 멀티터치였으면 swipe 무시
+        if (isMultiTouch.current) {
+            isMultiTouch.current = false;
+            return;
+        }
+
         const touchEndX = e.changedTouches[0].clientX;
         const touchEndY = e.changedTouches[0].clientY;
         const deltaX = touchEndX - touchStartX.current;
         const deltaY = touchEndY - touchStartY.current;
 
-        // 수평 스와이프만 인식 (수직 스와이프는 무시)
+        // 수평 스와이프만 인식 (수직 무시)
         if (Math.abs(deltaX) > 50 && Math.abs(deltaX) > Math.abs(deltaY) * 1.5) {
             if (deltaX < 0) {
                 nextSlide();
@@ -157,13 +146,6 @@ export default function MobileSlideDeck() {
             }
         }
     }, [nextSlide, prevSlide]);
-
-    // 첫 터치 시 Fullscreen 시도 (한 번만)
-    const handleFirstInteraction = useCallback(() => {
-        if (showFullscreenHint && !document.fullscreenElement) {
-            toggleFullscreen();
-        }
-    }, [showFullscreenHint, toggleFullscreen]);
 
     const renderSlide = (index: number) => {
         switch (index) {
@@ -189,23 +171,22 @@ export default function MobileSlideDeck() {
         }
     };
 
-    // 슬라이드의 실제 렌더링 크기 (wrapper용)
     const scaledWidth = SLIDE_WIDTH * scale;
     const scaledHeight = SLIDE_HEIGHT * scale;
 
     return (
         <>
-            {/* Main Interactive View - Hidden during print */}
+            {/* Main Interactive View */}
             <div
-                className="fixed inset-0 flex flex-col bg-sage-50 no-print"
+                className="fixed inset-0 flex flex-col bg-sage-200 no-print"
                 style={{ height: "100dvh" }}
-                onClick={handleFirstInteraction}
             >
-                {/* 슬라이드 영역: flex-1로 남은 공간 전부 차지 */}
+                {/* 슬라이드 영역 */}
                 <div
                     ref={containerRef}
                     className="flex-1 overflow-hidden flex items-center justify-center"
                     onTouchStart={handleTouchStart}
+                    onTouchMove={handleTouchMove}
                     onTouchEnd={handleTouchEnd}
                     style={{ minHeight: 0 }}
                 >
@@ -222,9 +203,8 @@ export default function MobileSlideDeck() {
                                 overflow: "hidden",
                                 flexShrink: 0,
                             }}
-                            className="relative"
+                            className="relative shadow-2xl ring-1 ring-sage-300"
                         >
-                            {/* 내부: 1920×1080 고정 크기를 scale로 축소 */}
                             <div
                                 style={{
                                     width: SLIDE_WIDTH,
@@ -232,7 +212,7 @@ export default function MobileSlideDeck() {
                                     transform: `scale(${scale})`,
                                     transformOrigin: "top left",
                                 }}
-                                className="bg-white shadow-xl overflow-hidden"
+                                className="bg-white overflow-hidden"
                             >
                                 {renderSlide(currentSlide)}
                             </div>
@@ -240,7 +220,7 @@ export default function MobileSlideDeck() {
                     </AnimatePresence>
                 </div>
 
-                {/* 하단 고정 네비게이션: transform 바깥, 항상 터치 가능 크기 */}
+                {/* 하단 네비게이션 */}
                 <nav
                     className="flex items-center justify-center gap-3 bg-white/95 backdrop-blur-md border-t border-sage-200 shadow-lg"
                     style={{
@@ -276,30 +256,19 @@ export default function MobileSlideDeck() {
                         <ChevronRight size={22} />
                     </button>
 
-                    {/* Print 버튼 */}
+                    {/* Print 버튼 — PC와 동일 스타일 */}
                     <button
                         onClick={handlePrint}
-                        className="flex items-center justify-center w-11 h-11 rounded-full bg-sage-100 active:bg-sage-300 text-sage-700 transition-colors ml-1"
+                        className="flex items-center justify-center w-11 h-11 rounded-full bg-sage-600 active:bg-sage-700 text-white shadow-sm ml-2 transition-colors"
                         aria-label="PDF로 저장"
                         title="PDF로 저장"
                     >
                         <Printer size={18} />
                     </button>
-
-                    {/* 전체 화면 버튼 */}
-                    {!isFullscreen && (
-                        <button
-                            onClick={toggleFullscreen}
-                            className="flex items-center justify-center w-11 h-11 rounded-full bg-sage-600 active:bg-sage-700 text-white transition-colors"
-                            aria-label="전체 화면"
-                        >
-                            <Maximize size={18} />
-                        </button>
-                    )}
                 </nav>
             </div>
 
-            {/* Print-Only Container - Hidden on screen, visible only during print */}
+            {/* Print-Only Container */}
             <div className="print-only">
                 {Array.from({ length: SLIDE_COUNT }).map((_, index) => (
                     <div key={index} className="slide-container">
