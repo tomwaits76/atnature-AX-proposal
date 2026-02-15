@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight, Maximize } from "lucide-react";
+import { ChevronLeft, ChevronRight, Maximize, Printer } from "lucide-react";
 import Slide1_Title from "@/components/slides/Slide1_Title";
 import Slide2_Definitions from "@/components/slides/Slide2_Definitions";
 import Slide3_CapacityBuilding from "@/components/slides/Slide3_CapacityBuilding";
@@ -25,17 +25,17 @@ import Slide18_Closing from "@/components/slides/Slide18_Closing";
 const SLIDE_COUNT = 18;
 const SLIDE_WIDTH = 1920;
 const SLIDE_HEIGHT = 1080;
-const NAV_BAR_HEIGHT = 56; // 하단 네비게이션 바 높이 (px)
+const NAV_BAR_HEIGHT = 56;
 
 /**
  * 모바일 전용 슬라이드 덱 컴포넌트.
  * PC의 SlideDeck.tsx와 완전히 독립된 컴포넌트.
  *
- * 핵심 설계:
- * - 슬라이드: 1920x1080 고정 크기를 transform: scale()로 축소
- * - 네비게이션: transform 컨테이너 바깥에 위치 → 항상 터치 가능 크기 유지
- * - 브라우저 바: Scroll trick + Fullscreen API로 자동 숨김
- * - 방향 전환: resize 이벤트로 자동 재계산
+ * 핵심 설계 (v5 Bugfix):
+ * - 슬라이드: Wrapper div가 scaledWidth × scaledHeight로 실제 크기를 제한
+ * - 내부 div는 1920×1080 고정 + transform: scale() + transformOrigin: top left
+ * - negative margin 완전 제거 → 모바일 브라우저 overflow 문제 해결
+ * - 네비게이션: transform 컨테이너 바깥, minHeight로 safe-area 충돌 해소
  */
 export default function MobileSlideDeck() {
     const [currentSlide, setCurrentSlide] = useState(0);
@@ -80,7 +80,6 @@ export default function MobileSlideDeck() {
 
         const handleResize = () => calculateScale();
         const handleOrientation = () => {
-            // 방향 전환 후 브라우저가 치수를 업데이트할 시간 확보
             setTimeout(calculateScale, 150);
         };
 
@@ -95,17 +94,13 @@ export default function MobileSlideDeck() {
 
     // 브라우저 바 숨김 전략 ① Scroll Trick
     useEffect(() => {
-        // body 높이를 살짝 넘겨서 스크롤 가능하게 만든 뒤,
-        // 즉시 스크롤하여 주소창을 축소시킴
         const scrollTrick = () => {
             document.documentElement.style.height = "calc(100% + 1px)";
             window.scrollTo(0, 1);
-            // 스크롤 후 원래 높이로 복원
             setTimeout(() => {
                 document.documentElement.style.height = "100%";
             }, 300);
         };
-
         scrollTrick();
     }, []);
 
@@ -114,14 +109,12 @@ export default function MobileSlideDeck() {
         const handleFullscreenChange = () => {
             setIsFullscreen(!!document.fullscreenElement);
         };
-
         document.addEventListener("fullscreenchange", handleFullscreenChange);
         return () => document.removeEventListener("fullscreenchange", handleFullscreenChange);
     }, []);
 
     /**
      * 전체 화면 전환 (Fullscreen API).
-     * 브라우저 바 숨김 전략 ②.
      */
     const toggleFullscreen = useCallback(async () => {
         try {
@@ -132,9 +125,15 @@ export default function MobileSlideDeck() {
                 await document.exitFullscreen();
             }
         } catch {
-            // Fullscreen API 미지원 또는 거부 시 무시
             setShowFullscreenHint(false);
         }
+    }, []);
+
+    /**
+     * PDF 인쇄 핸들러.
+     */
+    const handlePrint = useCallback(() => {
+        window.print();
     }, []);
 
     // 스와이프 제스처 (터치 네비게이션)
@@ -152,9 +151,9 @@ export default function MobileSlideDeck() {
         // 수평 스와이프만 인식 (수직 스와이프는 무시)
         if (Math.abs(deltaX) > 50 && Math.abs(deltaX) > Math.abs(deltaY) * 1.5) {
             if (deltaX < 0) {
-                nextSlide(); // 왼쪽 스와이프 = 다음 슬라이드
+                nextSlide();
             } else {
-                prevSlide(); // 오른쪽 스와이프 = 이전 슬라이드
+                prevSlide();
             }
         }
     }, [nextSlide, prevSlide]);
@@ -190,97 +189,124 @@ export default function MobileSlideDeck() {
         }
     };
 
-    // 슬라이드의 실제 렌더링 크기 계산 (중앙 정렬용)
+    // 슬라이드의 실제 렌더링 크기 (wrapper용)
     const scaledWidth = SLIDE_WIDTH * scale;
     const scaledHeight = SLIDE_HEIGHT * scale;
 
     return (
-        <div
-            className="fixed inset-0 flex flex-col bg-sage-50"
-            style={{ height: "100dvh" }}
-            onClick={handleFirstInteraction}
-        >
-            {/* 슬라이드 영역: transform 컨테이너 */}
+        <>
+            {/* Main Interactive View - Hidden during print */}
             <div
-                ref={containerRef}
-                className="flex-1 overflow-hidden flex items-center justify-center"
-                onTouchStart={handleTouchStart}
-                onTouchEnd={handleTouchEnd}
-                style={{ minHeight: 0 }}
+                className="fixed inset-0 flex flex-col bg-sage-50 no-print"
+                style={{ height: "100dvh" }}
+                onClick={handleFirstInteraction}
             >
-                <AnimatePresence mode="wait">
-                    <motion.div
-                        key={currentSlide}
-                        initial={{ opacity: 0, x: 30 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: -30 }}
-                        transition={{ duration: 0.3, ease: "easeInOut" }}
-                        style={{
-                            width: SLIDE_WIDTH,
-                            height: SLIDE_HEIGHT,
-                            transform: `scale(${scale})`,
-                            transformOrigin: "center center",
-                            flexShrink: 0,
-                            /* 축소 후 실제 차지하는 공간을 맞춤 */
-                            marginTop: -(SLIDE_HEIGHT - scaledHeight) / 2,
-                            marginBottom: -(SLIDE_HEIGHT - scaledHeight) / 2,
-                            marginLeft: -(SLIDE_WIDTH - scaledWidth) / 2,
-                            marginRight: -(SLIDE_WIDTH - scaledWidth) / 2,
-                        }}
-                        className="relative bg-white shadow-xl overflow-hidden"
-                    >
-                        {renderSlide(currentSlide)}
-                    </motion.div>
-                </AnimatePresence>
-            </div>
-
-            {/* 하단 고정 네비게이션: transform 바깥, 항상 터치 가능 크기 */}
-            <nav
-                className="flex items-center justify-center gap-4 bg-white/95 backdrop-blur-md border-t border-sage-200 shadow-lg"
-                style={{
-                    height: NAV_BAR_HEIGHT,
-                    paddingBottom: "env(safe-area-inset-bottom, 0px)",
-                }}
-            >
-                <button
-                    onClick={prevSlide}
-                    disabled={currentSlide === 0}
-                    className="flex items-center justify-center w-11 h-11 rounded-full bg-sage-100 active:bg-sage-300 text-sage-700 disabled:opacity-30 transition-colors"
-                    aria-label="이전 슬라이드"
+                {/* 슬라이드 영역: flex-1로 남은 공간 전부 차지 */}
+                <div
+                    ref={containerRef}
+                    className="flex-1 overflow-hidden flex items-center justify-center"
+                    onTouchStart={handleTouchStart}
+                    onTouchEnd={handleTouchEnd}
+                    style={{ minHeight: 0 }}
                 >
-                    <ChevronLeft size={22} />
-                </button>
-
-                <div className="flex items-center gap-2 px-3">
-                    <span className="font-mono text-sm font-semibold text-sage-700">
-                        {String(currentSlide + 1).padStart(2, "0")}
-                    </span>
-                    <span className="text-sage-300">/</span>
-                    <span className="font-mono text-sm text-sage-500">
-                        {String(SLIDE_COUNT).padStart(2, "0")}
-                    </span>
+                    <AnimatePresence mode="wait">
+                        <motion.div
+                            key={currentSlide}
+                            initial={{ opacity: 0, x: 30 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, x: -30 }}
+                            transition={{ duration: 0.3, ease: "easeInOut" }}
+                            style={{
+                                width: scaledWidth,
+                                height: scaledHeight,
+                                overflow: "hidden",
+                                flexShrink: 0,
+                            }}
+                            className="relative"
+                        >
+                            {/* 내부: 1920×1080 고정 크기를 scale로 축소 */}
+                            <div
+                                style={{
+                                    width: SLIDE_WIDTH,
+                                    height: SLIDE_HEIGHT,
+                                    transform: `scale(${scale})`,
+                                    transformOrigin: "top left",
+                                }}
+                                className="bg-white shadow-xl overflow-hidden"
+                            >
+                                {renderSlide(currentSlide)}
+                            </div>
+                        </motion.div>
+                    </AnimatePresence>
                 </div>
 
-                <button
-                    onClick={nextSlide}
-                    disabled={currentSlide === SLIDE_COUNT - 1}
-                    className="flex items-center justify-center w-11 h-11 rounded-full bg-sage-100 active:bg-sage-300 text-sage-700 disabled:opacity-30 transition-colors"
-                    aria-label="다음 슬라이드"
+                {/* 하단 고정 네비게이션: transform 바깥, 항상 터치 가능 크기 */}
+                <nav
+                    className="flex items-center justify-center gap-3 bg-white/95 backdrop-blur-md border-t border-sage-200 shadow-lg"
+                    style={{
+                        minHeight: NAV_BAR_HEIGHT,
+                        paddingBottom: "env(safe-area-inset-bottom, 0px)",
+                    }}
                 >
-                    <ChevronRight size={22} />
-                </button>
-
-                {/* 전체 화면 버튼 */}
-                {!isFullscreen && (
                     <button
-                        onClick={toggleFullscreen}
-                        className="flex items-center justify-center w-11 h-11 rounded-full bg-sage-600 active:bg-sage-700 text-white transition-colors ml-1"
-                        aria-label="전체 화면"
+                        onClick={prevSlide}
+                        disabled={currentSlide === 0}
+                        className="flex items-center justify-center w-11 h-11 rounded-full bg-sage-100 active:bg-sage-300 text-sage-700 disabled:opacity-30 transition-colors"
+                        aria-label="이전 슬라이드"
                     >
-                        <Maximize size={18} />
+                        <ChevronLeft size={22} />
                     </button>
-                )}
-            </nav>
-        </div>
+
+                    <div className="flex items-center gap-2 px-3">
+                        <span className="font-mono text-sm font-semibold text-sage-700">
+                            {String(currentSlide + 1).padStart(2, "0")}
+                        </span>
+                        <span className="text-sage-300">/</span>
+                        <span className="font-mono text-sm text-sage-500">
+                            {String(SLIDE_COUNT).padStart(2, "0")}
+                        </span>
+                    </div>
+
+                    <button
+                        onClick={nextSlide}
+                        disabled={currentSlide === SLIDE_COUNT - 1}
+                        className="flex items-center justify-center w-11 h-11 rounded-full bg-sage-100 active:bg-sage-300 text-sage-700 disabled:opacity-30 transition-colors"
+                        aria-label="다음 슬라이드"
+                    >
+                        <ChevronRight size={22} />
+                    </button>
+
+                    {/* Print 버튼 */}
+                    <button
+                        onClick={handlePrint}
+                        className="flex items-center justify-center w-11 h-11 rounded-full bg-sage-100 active:bg-sage-300 text-sage-700 transition-colors ml-1"
+                        aria-label="PDF로 저장"
+                        title="PDF로 저장"
+                    >
+                        <Printer size={18} />
+                    </button>
+
+                    {/* 전체 화면 버튼 */}
+                    {!isFullscreen && (
+                        <button
+                            onClick={toggleFullscreen}
+                            className="flex items-center justify-center w-11 h-11 rounded-full bg-sage-600 active:bg-sage-700 text-white transition-colors"
+                            aria-label="전체 화면"
+                        >
+                            <Maximize size={18} />
+                        </button>
+                    )}
+                </nav>
+            </div>
+
+            {/* Print-Only Container - Hidden on screen, visible only during print */}
+            <div className="print-only">
+                {Array.from({ length: SLIDE_COUNT }).map((_, index) => (
+                    <div key={index} className="slide-container">
+                        {renderSlide(index)}
+                    </div>
+                ))}
+            </div>
+        </>
     );
 }
