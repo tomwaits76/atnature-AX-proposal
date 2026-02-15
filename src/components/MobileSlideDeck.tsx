@@ -27,23 +27,21 @@ const SLIDE_WIDTH = 1920;
 const SLIDE_HEIGHT = 1080;
 const NAV_BAR_HEIGHT = 56;
 
-
-
 /**
- * 모바일 전용 슬라이드 덱 컴포넌트 (v7).
+ * 모바일 전용 슬라이드 덱 컴포넌트 (v8).
  * PC SlideDeck.tsx와 완전 독립.
  *
- * v7 변경점:
- * - touch-action: none → 브라우저 기본 제스처 차단
+ * v8 변경점:
+ * - fixed 레이아웃 복원 → 줌/스크롤에 불변하는 안정적 구조
+ * - touch-action: none → 브라우저 기본 제스처 차단 복원
+ * - 프린트: PC 동일 구조 (18슬라이드 항상 DOM, window.print() 즉시 호출)
+ * - isPrinting lazy rendering 제거 → 타이밍 불안정 근본 해결
  * - 멀티터치 쿨다운 500ms + swipe 임계값 80px + 터치 시간 필터
- * - Lazy Print: 인쇄 버튼 클릭 시에만 18슬라이드 DOM 렌더 → Safari 메모리 절감
- * - Print scale 인라인 고정값 (CSS calc 제거)
  * - PWA 안내 배너 (홈 화면 추가 유도)
  */
 export default function MobileSlideDeck() {
     const [currentSlide, setCurrentSlide] = useState(0);
     const [scale, setScale] = useState(0.2);
-    const [isPrinting, setIsPrinting] = useState(false);
     const [showPWABanner, setShowPWABanner] = useState(false);
     const containerRef = useRef<HTMLDivElement>(null);
     const touchStartX = useRef(0);
@@ -88,37 +86,30 @@ export default function MobileSlideDeck() {
         calculateScale();
 
         const handleOrientationChange = () => {
+            // 방향 전환 시 다중 타이밍으로 재계산 (브라우저별 뷰포트 업데이트 지연 대응)
             setTimeout(calculateScale, 100);
             setTimeout(calculateScale, 300);
             setTimeout(calculateScale, 600);
+        };
+
+        const handleResize = () => {
+            calculateScale();
         };
 
         if (screen.orientation) {
             screen.orientation.addEventListener("change", handleOrientationChange);
         }
         window.addEventListener("orientationchange", handleOrientationChange);
+        window.addEventListener("resize", handleResize);
 
         return () => {
             if (screen.orientation) {
                 screen.orientation.removeEventListener("change", handleOrientationChange);
             }
             window.removeEventListener("orientationchange", handleOrientationChange);
+            window.removeEventListener("resize", handleResize);
         };
     }, [calculateScale]);
-
-    // Lazy Print: beforeprint/afterprint 이벤트 리스닝
-    useEffect(() => {
-        const handleBeforePrint = () => setIsPrinting(true);
-        const handleAfterPrint = () => setIsPrinting(false);
-
-        window.addEventListener("beforeprint", handleBeforePrint);
-        window.addEventListener("afterprint", handleAfterPrint);
-
-        return () => {
-            window.removeEventListener("beforeprint", handleBeforePrint);
-            window.removeEventListener("afterprint", handleAfterPrint);
-        };
-    }, []);
 
     // PWA 안내 배너: standalone이 아닐 때만 표시
     useEffect(() => {
@@ -136,14 +127,10 @@ export default function MobileSlideDeck() {
 
     /**
      * PDF 인쇄 핸들러.
-     * isPrinting을 먼저 true로 설정 → DOM 렌더 후 print 호출.
+     * PC 동일 구조: 18슬라이드가 항상 DOM에 존재하므로 즉시 print 호출.
      */
     const handlePrint = useCallback(() => {
-        setIsPrinting(true);
-        // 18개 슬라이드 DOM 생성에 충분한 시간 확보 후 print 호출
-        setTimeout(() => {
-            window.print();
-        }, 500);
+        window.print();
     }, []);
 
     const dismissPWABanner = useCallback(() => {
@@ -232,14 +219,14 @@ export default function MobileSlideDeck() {
 
     return (
         <>
-            {/* Main Interactive View */}
+            {/* Main Interactive View — fixed 레이아웃으로 뷰포트에 고정 */}
             <div
-                className="flex flex-col bg-sage-200 no-print"
-                style={{ minHeight: "100dvh" }}
+                className="fixed inset-0 flex flex-col bg-sage-200 no-print"
+                style={{ height: "100dvh" }}
             >
                 {/* PWA 안내 배너 */}
                 {showPWABanner && (
-                    <div className="flex items-center justify-between px-4 py-2.5 bg-sage-700 text-white text-xs gap-2">
+                    <div className="flex items-center justify-between px-4 py-2.5 bg-sage-700 text-white text-xs gap-2 flex-shrink-0">
                         <div className="flex items-center gap-2 flex-1 min-w-0">
                             <Share size={14} className="flex-shrink-0" />
                             <span className="truncate">
@@ -263,7 +250,7 @@ export default function MobileSlideDeck() {
                     onTouchStart={handleTouchStart}
                     onTouchMove={handleTouchMove}
                     onTouchEnd={handleTouchEnd}
-                    style={{ minHeight: 0, touchAction: "pan-y pinch-zoom" }}
+                    style={{ minHeight: 0, touchAction: "none" }}
                 >
                     <AnimatePresence mode="wait">
                         <motion.div
@@ -295,9 +282,9 @@ export default function MobileSlideDeck() {
                     </AnimatePresence>
                 </div>
 
-                {/* 하단 네비게이션 */}
+                {/* 하단 네비게이션 — fixed 컨테이너 하단에 고정 */}
                 <nav
-                    className="flex items-center justify-center gap-3 bg-white/95 backdrop-blur-md border-t border-sage-200 shadow-lg"
+                    className="flex items-center justify-center gap-3 bg-white/95 backdrop-blur-md border-t border-sage-200 shadow-lg flex-shrink-0"
                     style={{
                         minHeight: NAV_BAR_HEIGHT,
                         paddingBottom: "env(safe-area-inset-bottom, 0px)",
@@ -342,25 +329,14 @@ export default function MobileSlideDeck() {
                 </nav>
             </div>
 
-            {/* Print-Only Container — Lazy Rendering */}
-            {isPrinting && (
-                <div className="print-only">
-                    {Array.from({ length: SLIDE_COUNT }).map((_, index) => (
-                        <div key={index} className="slide-container">
-                            <div
-                                className="slide-print-inner"
-                                style={{
-                                    width: SLIDE_WIDTH,
-                                    height: SLIDE_HEIGHT,
-                                    transformOrigin: "top left",
-                                }}
-                            >
-                                {renderSlide(index)}
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            )}
+            {/* Print-Only Container — PC 동일 구조: 항상 DOM에 존재, 스크린에서 숨김 */}
+            <div className="print-only">
+                {Array.from({ length: SLIDE_COUNT }).map((_, index) => (
+                    <div key={index} className="slide-container">
+                        {renderSlide(index)}
+                    </div>
+                ))}
+            </div>
         </>
     );
 }

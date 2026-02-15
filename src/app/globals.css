@@ -31,14 +31,9 @@ body {
   display: none;
 }
 
-/* 프린트용 슬라이드 내부 (스크린에서는 비활성) */
-.slide-print-inner {
-  transform: none;
-}
-
 @media print {
   @page {
-    size: A4 landscape;
+    size: landscape;
     margin: 0;
   }
 
@@ -68,23 +63,12 @@ body {
     width: 100%;
   }
 
-  /* Slide container — 페이지 전체 폭에 맞춤, 16:9 비율 유지 */
+  /* Slide container — PC 동일 구조: 고정 크기 + overflow hidden */
   .slide-container {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 16 / 9;
+    width: 1120px;
+    height: 630px;
     overflow: hidden;
     position: relative;
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
-    box-sizing: border-box;
-  }
-
-  /* 슬라이드 내부 — CSS calc로 페이지 너비 기준 동적 스케일 */
-  .slide-print-inner {
-    transform: scale(calc(100vw / 1920));
-    transform-origin: top left;
   }
 
   /* Add page break ONLY for non-last slides */
