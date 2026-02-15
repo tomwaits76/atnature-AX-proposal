@@ -19,6 +19,8 @@
   --background: #F5F9F6;
   --foreground: #2C3A30;
   --font-inter: 'Inter', sans-serif;
+  --print-slide-zoom: 0.44;
+  /* JS가 측정한 값으로 덮어씀. 기본값=iOS Safari A4 landscape */
 }
 
 body {
@@ -29,6 +31,11 @@ body {
 /* Hide print-only container on screen */
 .print-only {
   display: none;
+}
+
+/* 프린트용 슬라이드 내부 (스크린에서는 비활성) */
+.slide-print-inner {
+  transform: none;
 }
 
 @media print {
@@ -52,26 +59,38 @@ body {
     background-color: #F5F9F6 !important;
   }
 
-  /* Hide interactive view during print */
+  /* Hide interactive view */
   .no-print {
     display: none !important;
   }
 
-  /* Show print-only container during print */
+  /* Show print-only container */
   .print-only {
     display: block !important;
     width: 100%;
   }
 
-  /* Slide container — PC 동일 구조: 고정 크기 + overflow hidden */
+  /*
+   * 슬라이드 컨테이너.
+   * 내부의 1920x1080 슬라이드를 zoom으로 축소하여 페이지에 맞춤.
+   * zoom은 layout 크기를 줄이므로 overflow 문제 없음.
+   */
   .slide-container {
-    width: 1120px;
-    height: 630px;
     overflow: hidden;
     position: relative;
+    page-break-inside: avoid;
   }
 
-  /* Add page break ONLY for non-last slides */
+  /*
+   * 슬라이드 내부 — zoom으로 축소.
+   * --print-slide-zoom: JS가 handlePrint에서 측정하여 설정.
+   * 기본값 0.44 (iOS Safari A4 landscape 72dpi 기준).
+   */
+  .slide-print-inner {
+    zoom: var(--print-slide-zoom, 0.44);
+  }
+
+  /* 마지막 슬라이드 외에 페이지 브레이크 */
   .slide-container:not(:last-child) {
     break-after: page;
     page-break-after: always;
