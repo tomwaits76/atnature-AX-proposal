@@ -19,7 +19,7 @@
   --background: #F5F9F6;
   --foreground: #2C3A30;
   --font-inter: 'Inter', sans-serif;
-  --print-slide-zoom: 1;
+  --print-slide-scale: 1;
 }
 
 body {
@@ -67,22 +67,21 @@ body {
 
   /*
    * 슬라이드 컨테이너.
-   * 내부의 1920x1080 슬라이드를 zoom으로 축소하여 페이지에 맞춤.
-   * zoom은 layout 크기를 줄이므로 overflow 문제 없음.
+   * transform:scale()로 축소 시 레이아웃 크기도 맞추기 위해 calc()로 크기 설정.
+   * PC (Chrome): --print-slide-scale:1 → 1920x1080 그대로 → @page에 정확히 맞음.
+   * Mobile (Safari/Chrome): --print-slide-scale:0.44 → 845x475 → A4 landscape에 수용.
    */
   .slide-container {
+    width: calc(1920px * var(--print-slide-scale, 1));
+    height: calc(1080px * var(--print-slide-scale, 1));
     overflow: hidden;
     position: relative;
     page-break-inside: avoid;
   }
 
-  /*
-   * 슬라이드 스케일링.
-   * PC (Chrome): @page 1920x1080 → zoom:1 → 정확히 맞음.
-   * Mobile (Safari): @page 무시, A4 사용 → JS가 --print-slide-zoom 설정 → 축소.
-   */
   .slide-container > * {
-    zoom: var(--print-slide-zoom, 1);
+    transform: scale(var(--print-slide-scale, 1));
+    transform-origin: top left;
   }
 
   /* 마지막 슬라이드 외에 페이지 브레이크 */

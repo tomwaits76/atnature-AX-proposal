@@ -7,12 +7,6 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 export const metadata: Metadata = {
   title: "AtNature x AX Strategy Proposal",
   description: "Wellness Tech & Autonomous Operation Strategy",
-  appleWebApp: {
-    capable: true,
-    statusBarStyle: "black-translucent",
-    title: "AtNature AX",
-  },
-  manifest: "/manifest.json",
 };
 
 export const viewport: Viewport = {
